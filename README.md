@@ -1,5 +1,18 @@
 # 📚 Ishkarim - System Szablonów Dokumentacji Projektowej
 
+[![Licencja: CC BY 4.0](https://img.shields.io/badge/Licencja-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![Język](https://img.shields.io/badge/J%C4%99zyk-Polski-red.svg)](https://github.com/Aerendal/ishkarim-documentation)
+[![Główny język](https://img.shields.io/github/languages/top/Aerendal/ishkarim-documentation)](https://github.com/Aerendal/ishkarim-documentation)
+[![Rozmiar repo](https://img.shields.io/github/repo-size/Aerendal/ishkarim-documentation)](https://github.com/Aerendal/ishkarim-documentation)
+
+[![Ostatni commit](https://img.shields.io/github/last-commit/Aerendal/ishkarim-documentation)](https://github.com/Aerendal/ishkarim-documentation/commits/main)
+[![GitHub topics](https://img.shields.io/github/topics/Aerendal/ishkarim-documentation)](https://github.com/Aerendal/ishkarim-documentation)
+[![Made in Poland](https://img.shields.io/badge/Made_in-Poland_🇵🇱-red.svg)](https://github.com/Aerendal/ishkarim-documentation)
+
+[![Szablony](https://img.shields.io/badge/Szablony-148-blue.svg)](docs/templates/dokumentacja_typy.md)
+[![Cross-References](https://img.shields.io/badge/Cross--References-100%25-brightgreen.svg)](docs/dependency_graph.md)
+[![Połączenia](https://img.shields.io/badge/Po%C5%82%C4%85czenia-1096-orange.svg)](docs/dependency_graph.md)
+
 Kompleksowy system szablonów dokumentacji z pełnymi Cross-References (wzajemnymi odwołaniami między dokumentami).
 
 ## 📊 Statystyki
