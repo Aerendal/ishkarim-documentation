@@ -364,11 +364,11 @@ graph TB
 
 ## Statystyki
 
-- Total dokumentów: 116
-- Total dependencies: 331
-- Total impacts: 349
-- Total related: 277
-- Total połączeń: 957
+- Total dokumentów: 132
+- Total dependencies: 376
+- Total impacts: 405
+- Total related: 315
+- Total połączeń: 1096
 - Dokumenty bez dependencies: 18
 - Dokumenty bez impacts: 18
 
@@ -404,6 +404,340 @@ graph TB
 
 ### Kategorie dokumentów:
   - Przedprodukcyjna: 25
-  - Produkcyjna: 47
+  - Produkcyjna: 63
   - Branżowa: 13
-  - Supporting: 31
+  - Supporting: 33
+
+## Nowe dokumenty dodane (16 templates)
+
+### Sprint Documentation (5)
+1. **SPRINT-CORE** - Główny dokument sprintu
+   - Dependencies: PRD, SPRINT-PLANNING, TEAM-CAPACITY
+   - Impacts: SPRINT-BOARD, DAILY-STANDUP, SPRINT-RETRO, BURNDOWN-CHART
+   - Related: SPRINT-DISCOVERY, SPRINT-HARDENING, SPRINT-RELEASE, SPRINT-INFRA
+
+2. **SPRINT-DISCOVERY** - Sprint odkrywczy
+   - Dependencies: PRODUCT-ROADMAP, RESEARCH-QUESTIONS, HYPOTHESIS
+   - Impacts: EXPERIMENT-RESULTS, PROTOTYPE, LEARNINGS-DOC, PIVOT-DECISION
+   - Related: SPRINT-CORE, INNOVATION-ROADMAP
+
+3. **SPRINT-HARDENING** - Sprint stabilizacyjny
+   - Dependencies: BUG-BACKLOG, TECH-DEBT-REGISTER, QUALITY-METRICS
+   - Impacts: BUGFIX-LOG, STABILITY-REPORT, PERFORMANCE-BASELINE, REFACTORING-TASKS
+   - Related: SPRINT-CORE, TEST-PLAN
+
+4. **SPRINT-RELEASE** - Sprint wydaniowy
+   - Dependencies: RELEASE-CHECKLIST, DEPLOYMENT-PLAN, ROLLBACK-PLAN
+   - Impacts: RELEASE-NOTES, DEPLOYMENT-LOG, GO-LIVE-REPORT, POST-DEPLOYMENT-METRICS
+   - Related: SPRINT-CORE, RELEASE-MANAGEMENT-PLAN
+
+5. **SPRINT-INFRA** - Sprint infrastrukturalny
+   - Dependencies: INFRASTRUCTURE-ROADMAP, PLATFORM-REQUIREMENTS, DEVOPS-BACKLOG
+   - Impacts: INFRASTRUCTURE-CHANGES, CI-CD-IMPROVEMENTS, PLATFORM-UPGRADES, TOOLING-UPDATES
+   - Related: SPRINT-CORE, DEPLOYMENT-GUIDE
+
+### Architecture & Analysis (7)
+6. **AS-IS-ARCHITECTURE** - Dokumentacja aktualnego stanu architektury
+   - Dependencies: CODEBASE, DEPLOYMENT-CONFIGS, SYSTEM-MONITORING, EXISTING-DOCS
+   - Impacts: TO-BE-ARCHITECTURE, PROBLEMS-ANALYSIS, REFACTORING-PROCESS, MIGRATION-PLAN
+   - Related: TECHNICAL-DEBT, ARCHITECTURE-REVIEW
+
+7. **TO-BE-ARCHITECTURE** - Dokumentacja docelowego stanu architektury
+   - Dependencies: AS-IS-ARCHITECTURE, PROBLEMS-ANALYSIS, BUSINESS-REQUIREMENTS, TECH-VISION
+   - Impacts: REFACTORING-PROCESS, MIGRATION-PLAN, ADR, IMPLEMENTATION-PLAN
+   - Related: HIGH-LEVEL-ARCHITECTURE, SYSTEM-DESIGN
+
+8. **PROBLEMS-ANALYSIS** - Analiza problemów w obecnej architekturze
+   - Dependencies: AS-IS-ARCHITECTURE, CODE-REVIEW, TEST-RESULTS, INCIDENT-REPORTS
+   - Impacts: REFACTORING-PROCESS, TO-BE-ARCHITECTURE, TECH-DEBT-REGISTER, IMPROVEMENT-BACKLOG
+   - Related: ROOT-CAUSE-ANALYSIS, ANTI-PATTERNS
+
+9. **REFACTORING-PROCESS** - Proces refaktoringu i transformacji
+   - Dependencies: TO-BE-ARCHITECTURE, PROBLEMS-ANALYSIS, TEAM-CAPACITY, RISK-ASSESSMENT
+   - Impacts: IMPLEMENTATION-PLAN, MIGRATION-TASKS, QUALITY-GATES, ROLLOUT-SCHEDULE
+   - Related: CHANGE-MANAGEMENT, CODE-QUALITY-PLAN
+
+10. **ANTI-PATTERNS** - Katalog anty-wzorców i strategii naprawczych
+    - Dependencies: AS-IS-ARCHITECTURE, CODE-REVIEW, BEST-PRACTICES-GUIDE
+    - Impacts: PROBLEMS-ANALYSIS, REFACTORING-PROCESS, CODE-QUALITY-GATES, TRAINING-MATERIALS
+    - Related: DESIGN-PATTERNS, CODING-STANDARDS
+
+11. **INTEGRATION-POINTS** - Specyfikacja punktów integracji i kontraktów
+    - Dependencies: TO-BE-ARCHITECTURE, AS-IS-ARCHITECTURE, MODULE-BOUNDARIES
+    - Impacts: API-DOCUMENTATION, CONTRACT-TESTS, INTEGRATION-TESTS, INTERFACE-SPECS
+    - Related: SERVICE-CONTRACTS, API-DESIGN
+
+12. **MODULE-ANALYSIS-ROADMAP** - Roadmapa analizy i transformacji modułów
+    - Dependencies: AS-IS-ARCHITECTURE, TO-BE-ARCHITECTURE, PROBLEMS-ANALYSIS, TEAM-CAPACITY
+    - Impacts: REFACTORING-PROCESS, MODULE-MIGRATION-PLAN, DEPENDENCY-BREAKING-TASKS
+    - Related: TECHNICAL-ROADMAP, SPRINT-PLANNING
+
+### Operations & Rules (2)
+13. **PLAYBOOK-INCIDENT** - Playbook reakcji na incydenty
+    - Dependencies: RUNBOOK, MONITORING-PLAN, BCP, ON-CALL-SCHEDULE
+    - Impacts: INCIDENT-LOG, POST-MORTEM, ESCALATION-PROCEDURE, COMMUNICATION-TEMPLATE
+    - Related: SIRP, DISASTER-RECOVERY
+
+14. **RULES-SPECIFICATION** - Specyfikacja reguł biznesowych
+    - Dependencies: BRD, PRD, DATA-MODEL, BUSINESS-LOGIC
+    - Impacts: RULES-ENGINE-IMPLEMENTATION, RULE-TESTS, AUDIT-LOG, DECISION-TABLES
+    - Related: BUSINESS-RULES, VALIDATION-LOGIC
+
+### Supporting/Meta (2)
+15. **DOCUMENTATION-META** - Meta-szablon definiujący strukturę dokumentacji
+    - Dependencies: PROJECT-CHARTER, DOCUMENTATION-STANDARDS, QUALITY-CRITERIA
+    - Impacts: ALL-OTHER-DOCUMENTS, DOCUMENTATION-QUALITY-REPORT, TEMPLATE-LIBRARY
+    - Related: DOCUMENTATION-PLAN, KNOWLEDGE-MANAGEMENT
+
+16. **SYSTEM-TESTS-FRAMEWORK** - Framework testów systemu (L1)
+    - Dependencies: SYSTEM-REQUIREMENTS, ARCHITECTURE-DOC, QUALITY-ATTRIBUTES-SPEC
+    - Impacts: TEST-IMPLEMENTATION, CI-CD-PIPELINE, TEST-REPORTS, QUALITY-GATES
+    - Related: TEST-PLAN, QA-STRATEGY
+
+## Graf D: Architecture Transformation Workflow
+
+Workflow transformacji architektury - od analizy stanu obecnego do implementacji.
+
+```mermaid
+graph TB
+    CODEBASE["Codebase"]
+    DEPLOYMENT_CONFIGS["Deployment Configs"]
+    SYSTEM_MONITORING["System Monitoring"]
+    EXISTING_DOCS["Existing Docs"]
+
+    AS_IS["AS-IS Architecture"]
+    CODE_REVIEW["Code Review"]
+    TEST_RESULTS["Test Results"]
+    INCIDENT_REPORTS["Incident Reports"]
+
+    PROBLEMS["Problems Analysis"]
+    ANTI_PATTERNS["Anti-Patterns Catalog"]
+
+    BUSINESS_REQ["Business Requirements"]
+    TECH_VISION["Tech Vision"]
+    TO_BE["TO-BE Architecture"]
+
+    INTEGRATION_POINTS["Integration Points"]
+    MODULE_ROADMAP["Module Analysis Roadmap"]
+
+    TEAM_CAPACITY["Team Capacity"]
+    RISK_ASSESSMENT["Risk Assessment"]
+    REFACTORING["Refactoring Process"]
+
+    ADR["Architecture Decision Records"]
+    MIGRATION_PLAN["Migration Plan"]
+    IMPLEMENTATION_PLAN["Implementation Plan"]
+    QUALITY_GATES["Quality Gates"]
+
+    CODEBASE -->|requires| AS_IS
+    DEPLOYMENT_CONFIGS -->|requires| AS_IS
+    SYSTEM_MONITORING -->|requires| AS_IS
+    EXISTING_DOCS -->|requires| AS_IS
+
+    AS_IS -->|blocks| PROBLEMS
+    AS_IS -->|blocks| TO_BE
+    AS_IS -->|blocks| ANTI_PATTERNS
+    AS_IS -->|requires| INTEGRATION_POINTS
+    AS_IS -->|requires| MODULE_ROADMAP
+
+    CODE_REVIEW -->|requires| PROBLEMS
+    TEST_RESULTS -->|requires| PROBLEMS
+    INCIDENT_REPORTS -->|requires| PROBLEMS
+    AS_IS -->|requires| PROBLEMS
+
+    AS_IS -->|requires| ANTI_PATTERNS
+    CODE_REVIEW -->|requires| ANTI_PATTERNS
+
+    PROBLEMS -->|blocks| TO_BE
+    ANTI_PATTERNS -->|influences| PROBLEMS
+    PROBLEMS -->|influences| ANTI_PATTERNS
+
+    BUSINESS_REQ -->|requires| TO_BE
+    TECH_VISION -->|requires| TO_BE
+    PROBLEMS -->|requires| TO_BE
+    AS_IS -->|requires| TO_BE
+
+    TO_BE -->|requires| INTEGRATION_POINTS
+    AS_IS -->|requires| INTEGRATION_POINTS
+
+    TO_BE -->|requires| MODULE_ROADMAP
+    PROBLEMS -->|requires| MODULE_ROADMAP
+    AS_IS -->|requires| MODULE_ROADMAP
+    TEAM_CAPACITY -->|influences| MODULE_ROADMAP
+
+    TO_BE -->|blocks| REFACTORING
+    PROBLEMS -->|blocks| REFACTORING
+    MODULE_ROADMAP -->|blocks| REFACTORING
+    TEAM_CAPACITY -->|requires| REFACTORING
+    RISK_ASSESSMENT -->|requires| REFACTORING
+    ANTI_PATTERNS -->|influences| REFACTORING
+
+    TO_BE -->|blocks| ADR
+    TO_BE -->|blocks| MIGRATION_PLAN
+    REFACTORING -->|blocks| IMPLEMENTATION_PLAN
+    REFACTORING -->|blocks| QUALITY_GATES
+
+    INTEGRATION_POINTS -->|influences| IMPLEMENTATION_PLAN
+
+    classDef current fill:#ffcdd2,stroke:#b71c1c,stroke-width:2px
+    classDef analysis fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    classDef target fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+    classDef process fill:#bbdefb,stroke:#0d47a1,stroke-width:2px
+    classDef output fill:#e1bee7,stroke:#6a1b9a,stroke-width:2px
+
+    class CODEBASE,DEPLOYMENT_CONFIGS,SYSTEM_MONITORING,EXISTING_DOCS,AS_IS current
+    class PROBLEMS,ANTI_PATTERNS,CODE_REVIEW,TEST_RESULTS,INCIDENT_REPORTS analysis
+    class BUSINESS_REQ,TECH_VISION,TO_BE,INTEGRATION_POINTS target
+    class MODULE_ROADMAP,REFACTORING,TEAM_CAPACITY,RISK_ASSESSMENT process
+    class ADR,MIGRATION_PLAN,IMPLEMENTATION_PLAN,QUALITY_GATES output
+```
+
+## Graf E: Sprint Types Workflow
+
+Workflow różnych typów sprintów i ich powiązań.
+
+```mermaid
+graph TB
+    subgraph Sprint_Core["Sprint Core"]
+        SPRINT_CORE["Sprint Core Doc"]
+        SPRINT_PLANNING["Sprint Planning"]
+        TEAM_CAPACITY["Team Capacity"]
+        PRD["PRD"]
+
+        PRD -->|requires| SPRINT_CORE
+        SPRINT_PLANNING -->|requires| SPRINT_CORE
+        TEAM_CAPACITY -->|requires| SPRINT_CORE
+    end
+
+    subgraph Sprint_Discovery["Discovery Sprint"]
+        SPRINT_DISCOVERY["Sprint Discovery Doc"]
+        ROADMAP["Product Roadmap"]
+        RESEARCH_Q["Research Questions"]
+        HYPOTHESIS["Hypothesis"]
+
+        ROADMAP -->|requires| SPRINT_DISCOVERY
+        RESEARCH_Q -->|requires| SPRINT_DISCOVERY
+        HYPOTHESIS -->|requires| SPRINT_DISCOVERY
+    end
+
+    subgraph Sprint_Hardening["Hardening Sprint"]
+        SPRINT_HARDENING["Sprint Hardening Doc"]
+        BUG_BACKLOG["Bug Backlog"]
+        TECH_DEBT["Tech Debt Register"]
+        QUALITY_METRICS["Quality Metrics"]
+
+        BUG_BACKLOG -->|requires| SPRINT_HARDENING
+        TECH_DEBT -->|requires| SPRINT_HARDENING
+        QUALITY_METRICS -->|requires| SPRINT_HARDENING
+    end
+
+    subgraph Sprint_Release["Release Sprint"]
+        SPRINT_RELEASE["Sprint Release Doc"]
+        RELEASE_CHECKLIST["Release Checklist"]
+        DEPLOYMENT_PLAN["Deployment Plan"]
+        ROLLBACK_PLAN["Rollback Plan"]
+
+        RELEASE_CHECKLIST -->|requires| SPRINT_RELEASE
+        DEPLOYMENT_PLAN -->|requires| SPRINT_RELEASE
+        ROLLBACK_PLAN -->|requires| SPRINT_RELEASE
+    end
+
+    subgraph Sprint_Infra["Infrastructure Sprint"]
+        SPRINT_INFRA["Sprint Infra Doc"]
+        INFRA_ROADMAP["Infrastructure Roadmap"]
+        PLATFORM_REQ["Platform Requirements"]
+        DEVOPS_BACKLOG["DevOps Backlog"]
+
+        INFRA_ROADMAP -->|requires| SPRINT_INFRA
+        PLATFORM_REQ -->|requires| SPRINT_INFRA
+        DEVOPS_BACKLOG -->|requires| SPRINT_INFRA
+    end
+
+    SPRINT_CORE -->|related| SPRINT_DISCOVERY
+    SPRINT_CORE -->|related| SPRINT_HARDENING
+    SPRINT_CORE -->|related| SPRINT_RELEASE
+    SPRINT_CORE -->|related| SPRINT_INFRA
+
+    SPRINT_DISCOVERY -->|influences| PRD
+    SPRINT_HARDENING -->|requires| QUALITY_METRICS
+    SPRINT_RELEASE -->|requires| DEPLOYMENT_PLAN
+    SPRINT_INFRA -->|influences| DEPLOYMENT_PLAN
+
+    classDef core fill:#fff3e0,stroke:#e65100,stroke-width:3px
+    classDef discovery fill:#e0f2f1,stroke:#00695c,stroke-width:2px
+    classDef hardening fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    classDef release fill:#e8eaf6,stroke:#283593,stroke-width:2px
+    classDef infra fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+
+    class SPRINT_CORE,SPRINT_PLANNING,TEAM_CAPACITY,PRD core
+    class SPRINT_DISCOVERY,ROADMAP,RESEARCH_Q,HYPOTHESIS discovery
+    class SPRINT_HARDENING,BUG_BACKLOG,TECH_DEBT,QUALITY_METRICS hardening
+    class SPRINT_RELEASE,RELEASE_CHECKLIST,DEPLOYMENT_PLAN,ROLLBACK_PLAN release
+    class SPRINT_INFRA,INFRA_ROADMAP,PLATFORM_REQ,DEVOPS_BACKLOG infra
+```
+
+## Podsumowanie aktualizacji (2025-12-27)
+
+### Dodane dokumenty
+Zaktualizowano graf zależności o 16 nowych szablonów dokumentacji:
+
+**Sprint Documentation (5 templates):**
+- SPRINT-CORE: Główny dokument sprintu (backlog, cel, team)
+- SPRINT-DISCOVERY: Sprint odkrywczy (research, eksperymenty)
+- SPRINT-HARDENING: Sprint stabilizacyjny (bugfixy, performance)
+- SPRINT-RELEASE: Sprint wydaniowy (deployment, rollout)
+- SPRINT-INFRA: Sprint infrastrukturalny (DevOps, platformy)
+
+**Architecture & Analysis (7 templates):**
+- AS-IS-ARCHITECTURE: Dokumentacja obecnego stanu architektury
+- TO-BE-ARCHITECTURE: Dokumentacja docelowej architektury
+- PROBLEMS-ANALYSIS: Analiza problemów architektonicznych
+- REFACTORING-PROCESS: Proces refaktoringu i transformacji
+- ANTI-PATTERNS: Katalog anty-wzorców i strategii naprawczych
+- INTEGRATION-POINTS: Specyfikacja punktów integracji i kontraktów
+- MODULE-ANALYSIS-ROADMAP: Roadmapa analizy i transformacji modułów
+
+**Operations & Rules (2 templates):**
+- PLAYBOOK-INCIDENT: Playbook reakcji na incydenty
+- RULES-SPECIFICATION: Specyfikacja reguł biznesowych
+
+**Supporting/Meta (2 templates):**
+- DOCUMENTATION-META: Meta-szablon struktury dokumentacji
+- SYSTEM-TESTS-FRAMEWORK: Framework testów systemu (L1)
+
+### Nowe grafy wizualizacyjne
+- **Graf D**: Architecture Transformation Workflow - pokazuje przepływ od AS-IS przez PROBLEMS-ANALYSIS i TO-BE do REFACTORING-PROCESS
+- **Graf E**: Sprint Types Workflow - pokazuje różne typy sprintów i ich powiązania
+
+### Statystyki po aktualizacji
+- Total dokumentów: **132** (+16)
+- Total dependencies: **376** (+45)
+- Total impacts: **405** (+56)
+- Total related: **315** (+38)
+- Total połączeń: **1096** (+139)
+
+### Kategorie dokumentów po aktualizacji
+- Przedprodukcyjna: 25 (bez zmian)
+- Produkcyjna: **63** (+16)
+- Branżowa: 13 (bez zmian)
+- Supporting: **33** (+2)
+
+### Kluczowe workflow dodane
+1. **Architecture Transformation**: AS-IS → PROBLEMS → TO-BE → REFACTORING → IMPLEMENTATION
+2. **Sprint Variants**: Core Sprint powiązany z Discovery, Hardening, Release i Infra sprints
+3. **Module Analysis**: Roadmapa transformacji modułów wspierająca refactoring
+
+### Nowe punkty integracji
+- Sprint documentation integruje się z PRD, Planning i Capacity management
+- Architecture docs tworzą kompletny workflow transformacji
+- Testing framework łączy się z CI/CD i Quality Gates
+- Rules specification wspiera automatyzację biznesową
+
+### Impact na istniejące dokumenty
+Nowe templates zwiększają połączenia z istniejącymi dokumentami:
+- **PRD**: Nowe zależności od sprint docs
+- **TDD**: Powiązania z integration points
+- **TEST-PLAN**: Rozszerzenie przez system tests framework
+- **DEPLOYMENT-GUIDE**: Połączenie z sprint release i infra
+- **RUNBOOK**: Powiązanie z incident playbook
+- **ADR**: Wpływ z TO-BE architecture
