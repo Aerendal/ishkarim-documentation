@@ -176,6 +176,7 @@ Pełny katalog dokumentów projektowych – **przedprodukcyjnych, produkcyjnych 
 - 📄 [High-Level Architecture](produkcyjna/high_level_architecture_doc.md)
 - 📄 [Technical Design Document (TDD)](produkcyjna/tdd_doc.md)
 - 📄 [System Context Diagram](produkcyjna/system_context_diagram_doc.md)
+- 📄 [Rules Specification](produkcyjna/rules_specification_doc.md)
 
 ### Wymagane - Testing & Quality
 
@@ -219,6 +220,7 @@ Pełny katalog dokumentów projektowych – **przedprodukcyjnych, produkcyjnych 
 
 - 📄 [Operational Manual](produkcyjna/operational_manual_doc.md)
 - 📄 [Runbook](produkcyjna/runbook_doc.md)
+- 📄 [Playbook - Incident Response](produkcyjna/playbook_incident_doc.md)
 - 📄 [Monitoring & Observability Plan](produkcyjna/monitoring_plan_doc.md)
 - 📄 [Performance Test Report](produkcyjna/performance_test_report_doc.md)
 
@@ -257,6 +259,24 @@ Pełny katalog dokumentów projektowych – **przedprodukcyjnych, produkcyjnych 
 ### Nice-to-have - Accessibility & Testing
 
 - 📄 [Accessibility Compliance Report](produkcyjna/accessibility_report_doc.md)
+
+### Sprint Management
+
+- 📄 [Sprint Template - Core (Delivery)](produkcyjna/sprint_core_doc.md)
+- 📄 [Sprint Template - Discovery](produkcyjna/sprint_discovery_doc.md)
+- 📄 [Sprint Template - Hardening](produkcyjna/sprint_hardening_doc.md)
+- 📄 [Sprint Template - Release](produkcyjna/sprint_release_doc.md)
+- 📄 [Sprint Template - Infrastructure](produkcyjna/sprint_infra_doc.md)
+
+### Architecture Analysis & Refactoring
+
+- 📄 [AS-IS Architecture (Current State)](produkcyjna/as_is_architecture_doc.md)
+- 📄 [TO-BE Architecture (Target State)](produkcyjna/to_be_architecture_doc.md)
+- 📄 [Problems & Errors Analysis](produkcyjna/problems_analysis_doc.md)
+- 📄 [Refactoring Process Plan](produkcyjna/refactoring_process_doc.md)
+- 📄 [Anti-Patterns Catalog](produkcyjna/anti_patterns_doc.md)
+- 📄 [Integration Points Analysis](produkcyjna/integration_points_doc.md)
+- 📄 [Module Analysis & Roadmap](produkcyjna/module_analysis_roadmap_doc.md)
 
 ---
 
@@ -499,6 +519,15 @@ Pełny katalog dokumentów projektowych – **przedprodukcyjnych, produkcyjnych 
 - **Meeting Agendas + Action Item Tracker** — standaryzacja spotkań
 - **Feature Decision Log / Change Impact Analysis** — dokumentacja decyzji i wpływu
 - **API Catalogue / Endpoint Inventory** — ułatwia integracje i automatyzację
+
+---
+
+## Supporting Documentation
+
+### Meta & Framework Documents
+
+- 📄 [Documentation Meta (Documentation about Documentation)](supporting/meta/documentation_meta_doc.md)
+- 📄 [System Tests Framework](supporting/meta/system_tests_framework_doc.md)
 
 ---
 
