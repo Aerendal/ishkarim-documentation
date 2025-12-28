@@ -9,9 +9,9 @@
 [![GitHub topics](https://img.shields.io/github/topics/Aerendal/ishkarim-documentation)](https://github.com/Aerendal/ishkarim-documentation)
 [![Made in Poland](https://img.shields.io/badge/Made_in-Poland_🇵🇱-red.svg)](https://github.com/Aerendal/ishkarim-documentation)
 
-[![Szablony](https://img.shields.io/badge/Szablony-148-blue.svg)](docs/templates/dokumentacja_typy.md)
+[![Szablony](https://img.shields.io/badge/Szablony-148+19_planned-blue.svg)](docs/templates/dokumentacja_typy.md)
 [![Cross-References](https://img.shields.io/badge/Cross--References-100%25-brightgreen.svg)](docs/dependency_graph.md)
-[![Połączenia](https://img.shields.io/badge/Po%C5%82%C4%85czenia-1096-orange.svg)](docs/dependency_graph.md)
+[![Połączenia](https://img.shields.io/badge/Po%C5%82%C4%85czenia-1096+~300_planned-orange.svg)](docs/dependency_graph.md)
 
 Kompleksowy system szablonów dokumentacji z pełnymi Cross-References (wzajemnymi odwołaniami między dokumentami).
 
@@ -452,12 +452,136 @@ tags: [tag1, tag2]
 
 ---
 
+## 🔮 Propozycje Ulepszeń
+
+System posiada **5 szczegółowych propozycji ulepszeń** dodających **+19 nowych szablonów** i **+6 mechanizmów żywej dokumentacji**.
+
+📁 **Lokalizacja:** [docs/proposals/](docs/proposals/)
+
+### Propozycja 1: Research Branch Templates
+
+**+7 nowych szablonów** dla eksploracji konceptów i badań:
+- **Hypothesis Document** - formułowanie hipotez badawczych
+- **Experiment Log** - dziennik eksperymentów
+- **PoC (Proof of Concept)** - walidacja konceptów
+- **Spike Solution** - badanie techniczne time-boxed
+- **Research Findings** - wnioski z badań
+- **Alternative Exploration** - eksploracja alternatyw
+- **Concept Branch** - rozgałęzienia konceptualne
+
+**Problem:** Brak mechanizmów eksploracji konceptów przed podejmowaniem decyzji.
+
+**Rozwiązanie:** Szablony umożliwiające hypothesis-driven development i dokumentację eksperymentów.
+
+**ROI:** Research template usage >50%, faster decision-making (33% reduction w time-to-decision)
+
+📄 [Pełna propozycja](docs/proposals/PROPOZYCJA-1-Research-Branch-Templates.md)
+
+---
+
+### Propozycja 2: Living Documentation Framework
+
+**+6 mechanizmów** transformujących wszystkie 148→167 szablonów w żywą dokumentację:
+
+1. **Extended Lifecycle States** (11 stanów) - Draft → Active → Deprecated → Archived
+2. **Semantic Versioning** - wersjonowanie dokumentów (MAJOR.MINOR.PATCH)
+3. **Dynamic Cross-References** - auto-propagacja zmian
+4. **Auto-Validation** - CI/CD walidacja spójności
+5. **Deprecation Workflow** - zarządzanie przestarzałymi dokumentami
+6. **Migration Guides** - ścieżki migracji przy zmianach
+
+**Problem:** Dokumenty statyczne, brak lifecycle evolution, stale information.
+
+**Rozwiązanie:** Framework zapewniający żywotność i aktualność dokumentacji.
+
+**ROI:** Document freshness >80%, knowledge retention 30%→90%
+
+📄 [Pełna propozycja](docs/proposals/PROPOZYCJA-2-Living-Documentation-Framework.md)
+
+---
+
+### Propozycja 3: Decision Templates Enhancement
+
+**+5 nowych szablonów** decyzyjnych (lightweight alternatives do ADR):
+
+- **Decision Log** - lekki dziennik decyzji (5 min)
+- **Trade-off Analysis** - analiza trade-offów
+- **Option Comparison Matrix** - macierz porównawcza opcji
+- **Go/No-Go Decision** - szybka decyzja go/no-go
+- **Decision Reversal** - dokumentacja odwrócenia decyzji
+
+**Problem:** ADR za ciężki dla codziennych decyzji, brak szablonów dla quick decisions.
+
+**Rozwiązanie:** Spektrum szablonów od 5-minutowych do kompleksowych.
+
+**ROI:** Decision documentation coverage >70%, decision reversal rate <10%
+
+📄 [Pełna propozycja](docs/proposals/PROPOZYCJA-3-Decision-Templates-Enhancement.md)
+
+---
+
+### Propozycja 4: Concept Exploration Workflows
+
+**+4 end-to-end workflows** łączące szablony w kompletne procesy:
+
+1. **Tech Exploration Workflow** - Unknown tech → Validated decision (8 kroków)
+2. **Business Innovation Workflow** - Idea → Validated business case (7 kroków)
+3. **Risk Mitigation Workflow** - Risk → Mitigation plan (6 kroków)
+4. **Parallel Branching Workflow** - Multiple concepts → Best option (9 kroków)
+
+**Problem:** Brak end-to-end processes, dokumenty w izolacji.
+
+**Rozwiązanie:** Kompletne workflows z checkpoints, gates i decision points.
+
+**ROI:** Workflow adoption >60%, complete concept exploration paths
+
+📄 [Pełna propozycja](docs/proposals/PROPOZYCJA-4-Concept-Exploration-Workflows.md)
+
+---
+
+### 📊 Podsumowanie Integrujące
+
+**Impact Summary:**
+- **Total templates:** 148 → 167 (+19 new)
+- **Total connections:** 1,096 → ~1,400 (+300-350)
+- **New mechanisms:** +6 (Living Documentation Framework)
+- **New workflows:** +4 (end-to-end processes)
+
+**Business Value:**
+- **ROI:** 7.5x w Year 1 ($52K → $500K benefits)
+- **Knowledge retention:** 30% → 90%
+- **Decision quality:** Decision reversal rate 20% → <10%
+- **Time-to-decision:** 12 weeks → 8 weeks (33% faster)
+- **Research efficiency:** 50% faster concept validation
+
+**Implementation Roadmap:**
+
+**Priority 1 (Must-have - Month 1-2):**
+- Research Templates (7 szablonów)
+- Decision Log (quick win)
+- Extended Lifecycle States (foundation)
+
+**Priority 2 (Should-have - Month 3-6):**
+- Tech Exploration Workflow
+- Trade-off Analysis
+- Semantic Versioning
+
+**Priority 3 (Nice-to-have - Month 7+):**
+- Parallel Branching Workflow
+- Auto-propagation mechanisms
+- Decision Reversal template
+
+📄 [Pełne podsumowanie integrujące](docs/proposals/PODSUMOWANIE-INTEGRUJACE-Wszystkie-Propozycje.md)
+
+---
+
 ## 🤝 Wkład i Rozwój
 
 ### Historia Projektu
 - **2025-12-27**: Konsolidacja 148 szablonów, dodanie Cross-References (100%), 16 nowych szablonów
 - **2025-12-27**: Graf zależności - 1,096 połączeń, 2 nowe diagramy Mermaid
-- **2025-12-27**: Publikacja na GitHub
+- **2025-12-27**: Publikacja na GitHub, polskie badges, licencja CC-BY-4.0
+- **2025-12-28**: 5 propozycji ulepszeń (+19 szablonów, +6 mechanizmów Living Documentation)
 
 ### Planowane Rozszerzenia
 - [ ] Interaktywna wizualizacja grafu zależności (D3.js/Cytoscape)
@@ -515,4 +639,4 @@ Pod warunkiem:
 ---
 
 **Wygenerowano z:** [Claude Code](https://claude.com/claude-code)
-**Data ostatniej aktualizacji:** 2025-12-27
+**Data ostatniej aktualizacji:** 2025-12-28
