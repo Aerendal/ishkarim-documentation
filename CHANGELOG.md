@@ -19,6 +19,97 @@ a projekt stosuje [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [1.4.0] - 2025-12-28
+
+### Added - Cross-References i Graf Zależności
+
+**Cross-References dla 26 wyekstrahowanych szablonów:**
+- Dodano pełne sekcje "Document Cross-References" do wszystkich 26 szablonów
+- **Sprints (11):** Dependencies, Impacts, Related, Satellites dla każdego dokumentu sprintowego
+- **Roadmaps (6):** Pełne powiązania strategiczne (Vision → Roadmap → PRD → Execution)
+- **Atomic (8):** Satelitarne powiązania (parent docs → atomic instances → feedback)
+- **Migration (1):** Dependencies na AS-IS/TO-BE Architecture, impacts na Implementation/Test Plans
+
+**Graf Zależności - 3 nowe grafy Mermaid:**
+- **Graf F: Sprint Workflow (Szczegółowy)** - kompletny cykl 11 dokumentów sprintowych
+  * Plan → Backlog → DoR/DoD → Execution → Impediments → Review → Retro → Actions → Approval
+  * Cross-sprint feedback loops (action items → next planning)
+- **Graf G: Roadmap & Planning Workflow** - strategiczna warstwa planowania
+  * Roadmap Product → Capacity Plan → Risk Register → Release Checklist → KPI Dashboard → Postmortem
+  * Strategic decision-making layer nad execution documents
+- **Graf H: Atomic Satellites Network** - ekosystem satelitarnych szablonów
+  * Parent docs (PRD/TDD/Sprint/Roadmap) → Create instances → TODO/DoR/DoD/Evidence/Approval
+  * Reusable, lightweight documentation pattern
+
+### Changed
+
+**README.md:**
+- Badge Połączenia: 1,096 → **1,367** (+271, +25%)
+- Statystyki: zaktualizowane wszystkie wzmianki o połączeniach
+- Cross-References breakdown: informs 565 (41%), influences 419 (31%), requires 262 (19%), blocks 121 (9%)
+- Top Documents ranking: **ROADMAP-PROD nowym liderem** (28 zależności)
+  * Top 5: ROADMAP-PROD (28), PROJECT-CHARTER (20), PRD (20), SPRINT-PLAN (18), CAPACITY-PLAN (15)
+- Impact Summary: rozdzielone current (1,367) vs planned (+300-350) connections
+
+**dependency_graph.md:**
+- Dokumenty: 132 → **158** (+26, +20%)
+- Dependencies: 376 → **471** (+95)
+- Impacts: 405 → **509** (+104)
+- Related: 315 → **387** (+72)
+- Total połączeń: 1,096 → **1,367** (+271, +25%)
+- Linie kodu: 743 → 936 (+193 linii, +26%)
+
+**Cross-References w 26 szablonach:**
+- Każdy szablon: 4 sekcje (Dependencies, Impacts, Related, Satellites)
+- Średnio ~100 linii Cross-References na szablon
+- Total dodane: **2,615 linii** szczegółowych powiązań
+- Unikalne zależności (nie copy-paste) dla każdego szablonu
+
+### Statistics
+
+**Pokrycie Cross-References:**
+- Przed: 148/148 (100%)
+- Po: **174/174 (100%)**
+- Wzrost: +26 szablonów z pełnymi CR
+
+**Połączenia w grafie:**
+- Base (148 szablonów): 1,096 połączeń
+- Nowe (26 szablonów): +271 połączeń
+- **Total: 1,367 połączeń**
+- Średnio połączeń/dokument: ~8.7
+
+**Rozkład typów relacji:**
+- informs: 565 (+122, 41% total)
+- influences: 419 (+193, 31% total)
+- requires: 262 (+48, 19% total)
+- blocks: 121 (+47, 9% total)
+
+**Nowe dokumenty w Top 15:**
+- ROADMAP-PROD: #1 (28 deps) - nowy lider!
+- SPRINT-PLAN: #4 (18 deps)
+- CAPACITY-PLAN: #5 (15 deps)
+- RISK-REGISTER: #8 (12 deps)
+- POSTMORTEM: #12 (10 deps)
+
+### Key Insights
+
+**Nowa warstwa strategiczna:**
+- Roadmaps tworzą strategic layer nad execution (Sprints, PRD, TDD)
+- ROADMAP-PROD wyprzedził PRD jako najbardziej referencowany dokument
+- Strategic planning → Capacity → Risk → Execution flow
+
+**Workflow chains:**
+- Sprint cycle: Plan → Execute → Review → Improve → Next Sprint
+- Roadmap cycle: Vision → Roadmap → PRD → Sprints → Release → Postmortem
+- Atomic satellites: Parent → Instance → Feedback → Parent update
+
+**25% wzrost połączeń:**
+- 271 nowych connections z 26 szablonów
+- Bogate powiązania z istniejącymi dokumentami
+- Cross-category dependencies (Roadmaps ↔ Sprints ↔ PRD ↔ Atomic)
+
+---
+
 ## [1.3.0] - 2025-12-28
 
 ### Added - Ekstrakcja Szablonów z Meta-Dokumentów
@@ -175,6 +266,7 @@ a projekt stosuje [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 | Version | Data | Szablony | Połączenia | Cross-Ref Coverage | Główne Zmiany |
 |---------|------|----------|------------|-------------------|---------------|
+| **1.4.0** | 2025-12-28 | 174 (+19 planned) | **1,367** (+~300 planned) | **100%** | Cross-Ref + Graf update |
 | **1.3.0** | 2025-12-28 | 174 (+19 planned) | 1,096 (+~300 planned) | 100% | Ekstrakcja 26 szablonów |
 | **1.2.0** | 2025-12-28 | 148 (+19 planned) | 1,096 (+~300 planned) | 100% | 5 Proposals, Roadmap |
 | **1.1.0** | 2025-12-27 | 148 | 1,096 | 100% | Badges, LICENSE, Topics |
