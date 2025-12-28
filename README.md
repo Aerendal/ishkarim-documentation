@@ -11,14 +11,14 @@
 
 [![Szablony](https://img.shields.io/badge/Szablony-174+19_planned-blue.svg)](docs/templates/dokumentacja_typy.md)
 [![Cross-References](https://img.shields.io/badge/Cross--References-100%25-brightgreen.svg)](docs/dependency_graph.md)
-[![Połączenia](https://img.shields.io/badge/Po%C5%82%C4%85czenia-1096+~300_planned-orange.svg)](docs/dependency_graph.md)
+[![Połączenia](https://img.shields.io/badge/Po%C5%82%C4%85czenia-1367+~300_planned-orange.svg)](docs/dependency_graph.md)
 
 Kompleksowy system szablonów dokumentacji z pełnymi Cross-References (wzajemnymi odwołaniami między dokumentami).
 
 ## 📊 Statystyki
 
 - **174 szablony** z 100% pokryciem Cross-References (+26 wyekstrahowanych)
-- **1,096 połączeń** między dokumentami
+- **1,367 połączeń** między dokumentami (+271 nowych z wyekstrahowanych szablonów)
 - **10 kategorii:** Przedprodukcyjna, Produkcyjna, Branżowa, Supporting, Examples, Specs, Sprints, Roadmaps, Atomic, Migration
 - **26 nowych szablonów** wyekstrahowanych z meta-dokumentów (Sprints, Roadmaps, Atomic, Migration)
 
@@ -259,7 +259,7 @@ Dokumenty efemeryczne towarzyszące głównemu dokumentowi:
 
 ## 📈 Graf Zależności
 
-System zawiera kompletny graf zależności z **1,096 połączeniami** między 132 dokumentami.
+System zawiera kompletny graf zależności z **1,367 połączeniami** między 158 dokumentami.
 
 ### Kluczowe Workflows:
 
@@ -485,20 +485,22 @@ tags: [tag1, tag2]
 | **TOTAL** | **174** | **100%** |
 
 ### Cross-References:
-| Typ Relacji | Liczba |
-|-------------|--------|
-| informs | 443 |
-| influences | 226 |
-| requires | 214 |
-| blocks | 74 |
-| **TOTAL** | **957** |
+| Typ Relacji | Liczba | % |
+|-------------|--------|---|
+| informs | 565 | 41% |
+| influences | 419 | 31% |
+| requires | 262 | 19% |
+| blocks | 121 | 9% |
+| **TOTAL** | **1,367** | **100%** |
 
 ### Top Documents (najczęściej referenced):
-1. **PRD** - 20 zależności
+1. **ROADMAP-PROD** - 28 zależności ⭐ NEW #1
 2. **PROJECT-CHARTER** - 20 zależności
-3. **VISION** - 16 zależności
-4. **TDD** - 16 zależności
-5. **EXEC-SUMMARY** - 15 zależności
+3. **PRD** - 20 zależności
+4. **SPRINT-PLAN** - 18 zależności ⭐ NEW
+5. **CAPACITY-PLAN** - 15 zależności ⭐ NEW
+6. **VISION** - 14 zależności
+7. **TDD** - 14 zależności
 
 ---
 
@@ -595,7 +597,9 @@ System posiada **5 szczegółowych propozycji ulepszeń** dodających **+19 nowy
 - **Current templates:** 174 (148 base + 26 extracted)
 - **Planned templates:** +19 new (Research, Decision, Workflows)
 - **Future total:** 193 templates
-- **Total connections:** 1,096 → ~1,400 (+300-350 planned)
+- **Current connections:** 1,367 (1,096 base + 271 from extracted templates)
+- **Planned connections:** +300-350 (from proposed templates)
+- **Future total connections:** ~1,667-1,717
 - **New mechanisms:** +6 (Living Documentation Framework)
 - **New workflows:** +4 (end-to-end processes)
 
