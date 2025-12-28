@@ -1,6 +1,78 @@
-> Powiązana rozmowa: [zbiór-rozmów-do-przetworzenia-kiedyś-szablony-dokumentacji--szablony-dokumentacji](../../zbiór-rozmów-do-przetworzenia-kiedyś-szablony-dokumentacji--szablony-dokumentacji.md)
+> Powiązana rozmowa: [zbiór-rozmów-do-przetworzenia-kiedyś-szablony-dokumentacji--szablony-dokumentacji.md)
 >
 > Katalog szablonów: [dokumentacja_typy.md](dokumentacja_typy.md)
+
+---
+
+## Document Cross-References
+
+### Dependencies (Co napędza ten dokument)
+```yaml
+dependencies:
+  - id: SPECS-DOC-TYPES-*
+    type: requires
+    reason: "Error Codes validate compliance with Doc Types specifications"
+    sections:
+      - from: "Specs Doc Types required_sections, satellites_required, dependencies"
+        to: "Error codes validation rules (E100-E200, W310)"
+        influence: "Doc Types requirements definiują what error codes check against"
+
+  - id: SPECS-GATES-*
+    type: requires
+    reason: "Error Codes definiują gate blocking conditions referenced w Gates specs"
+    sections:
+      - from: "Specs Gates required_documents, required_rules"
+        to: "Error code E150 (Gate blocked aggregate)"
+        influence: "Gates specifications use error codes jako validation criteria"
+```
+
+### Impacts (Co ten dokument popycha do przodu)
+```yaml
+impacts:
+  - id: ALL-VALIDATION-PROCESSES-*
+    type: blocks
+    reason: "Error Codes definiują validation rules dla all documentation processes"
+    sections:
+      - from: "Error codes E100-S900"
+        to: "CI/CD validation, documentation reviews, gate checks"
+        influence: "Error codes są enforced w validation workflows"
+
+  - id: TODO-GENERATION-*
+    type: influences
+    reason: "Error codes trigger automated TODO generation based on todo_action field"
+    sections:
+      - from: "todo_action field (TODO, BATCH_TODO, RFC, SECURITY_INCIDENT)"
+        to: "Automated TODO/issue creation systems"
+        influence: "Error detection triggers appropriate follow-up actions"
+```
+
+### Related Documents (Powiązane dokumenty)
+```yaml
+related:
+  - id: SATELITARNE-ARTEFAKTY-*
+    type: informs
+    reason: "Error codes reference satellite artifacts (APPROVAL, EVIDENCE, etc.)"
+
+  - id: ALL-PROJECT-DOCS-*
+    type: informs
+    reason: "Error codes validate wszystkie project documents"
+```
+
+### Satellite Documents
+```yaml
+satellites:
+  - type: Evidence
+    path: "satellites/evidence/EVIDENCE-SPECS-ERRORS-*.md"
+    required: false
+    purpose: "Validation reports, error frequency analysis, remediation patterns"
+
+  - type: TODO
+    path: "satellites/todos/TODO-SPECS-ERRORS-*.md"
+    required: false
+    purpose: "Tracking error code additions, validation rule refinements"
+```
+
+---
 
 ```yaml
 version: 1

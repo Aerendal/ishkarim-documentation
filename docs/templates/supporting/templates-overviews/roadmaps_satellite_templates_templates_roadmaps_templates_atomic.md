@@ -4,6 +4,102 @@
 >
 > Katalog szablonów: [dokumentacja_typy.md](dokumentacja_typy.md)
 
+---
+
+## Document Cross-References
+
+### Dependencies (Co napędza ten dokument)
+```yaml
+dependencies:
+  - id: SATELITARNE-ARTEFAKTY-*
+    type: requires
+    reason: "Roadmap templates implement satellite artifacts framework opisany w Satelitarne Artefakty kanwie"
+    sections:
+      - from: "Satelitarne Artefakty atomic templates (TODO, DoR, DoD, Approval, Evidence, etc.)"
+        to: "Roadmap satellite templates implementation"
+        influence: "Atomic templates definiują structure of roadmap-specific satellites"
+
+  - id: SPECS-DOC-TYPES-*
+    type: influences
+    reason: "Roadmap templates follow Doc Types specifications dla ROADMAP_PRODUCT doctype"
+    sections:
+      - from: "Specs Doc Types ROADMAP_PRODUCT specification"
+        to: "roadmap.product.md template"
+        influence: "Doc Types specification definiuje required sections i satellites dla roadmaps"
+
+  - id: INNOVATION-ROADMAP-*
+    type: influences
+    reason: "Innovation Roadmap template influences roadmap template design"
+    sections:
+      - from: "Innovation Roadmap template structure"
+        to: "roadmap.product.md atomic template"
+        influence: "Innovation-specific roadmap informs general roadmap template"
+```
+
+### Impacts (Co ten dokument popycha do przodu)
+```yaml
+impacts:
+  - id: PROJECT-ROADMAP-INSTANCES-*
+    type: blocks
+    reason: "Roadmap templates są used to create actual project roadmaps"
+    sections:
+      - from: "roadmap.product.md, capacity-plan.md, risk-register.md templates"
+        to: "Project-specific roadmap instances"
+        influence: "Templates provide structure dla roadmap creation"
+
+  - id: PROJECT-MGMT-PLAN-*
+    type: influences
+    reason: "Roadmap templates integrate z Project Management Plan processes"
+    sections:
+      - from: "Roadmap templates (milestones, capacity, risks)"
+        to: "Project Mgmt Plan §12 Harmonogram, §15 Plan ryzyka"
+        influence: "Roadmap artifacts feed into project planning"
+
+  - id: INNOVATION-ROADMAP-*
+    type: influences
+    reason: "Roadmap atomic templates mogą be adapted dla Innovation Roadmap instances"
+    sections:
+      - from: "Atomic templates (TODO, DoR, DoD, etc.)"
+        to: "Innovation Roadmap satellite artifacts"
+        influence: "Atomic templates are reusable across different roadmap types"
+```
+
+### Related Documents (Powiązane dokumenty)
+```yaml
+related:
+  - id: SPECS-GATES-*
+    type: informs
+    reason: "Roadmap templates reference gates (checkpoints) definitions"
+
+  - id: FINANCIAL-PLAN-*
+    type: informs
+    reason: "Roadmap capacity-plan.md coordinates z Financial Plan budgeting"
+
+  - id: RISK-OVERVIEW-*
+    type: informs
+    reason: "Roadmap risk-register.md coordinates z Risk Overview"
+```
+
+### Satellite Documents
+```yaml
+satellites:
+  - type: TODO
+    path: "satellites/todos/TODO-ROADMAP-TEMPLATES-*.md"
+    required: false
+    purpose: "Tracking roadmap template improvements, new satellite types addition"
+
+  - type: Evidence
+    path: "satellites/evidence/EVIDENCE-ROADMAP-TEMPLATES-*.md"
+    required: false
+    purpose: "Roadmap template usage examples, effectiveness analysis, user feedback"
+
+  - type: DoD
+    path: "satellites/dod/DOD-ROADMAP-TEMPLATES-*.md"
+    required: false
+    purpose: "Definition of Done: template completeness validation, example roadmaps created, documentation updated"
+```
+
+---
 
 To jest komplet szablonów i artefaktów pomocniczych ("satelitów"), gotowych do skopiowania do struktury Twojego repozytorium. Pliki są przygotowane tak, aby ułatwić zarządzanie roadmapami, planowaniem wydań oraz powiązaną dokumentacją operacyjną i compliance.
 

@@ -2,6 +2,85 @@
 >
 > Katalog szablonów: [dokumentacja_typy.md](dokumentacja_typy.md)
 
+---
+
+## Document Cross-References
+
+### Dependencies (Co napędza ten dokument)
+```yaml
+dependencies:
+  - id: ALL-DOC-TEMPLATES-*
+    type: requires
+    reason: "Specs Doc Types definiuje strukturę i wymagania dla wszystkich typów dokumentów w systemie"
+    conditions:
+      - when: "project.requires_formal_documentation === true"
+        applies: true
+    sections:
+      - from: "N/A (meta-document)"
+        to: "All document templates"
+        influence: "Doc types specification definiuje structure, required sections, satellites, dependencies dla każdego document type"
+```
+
+### Impacts (Co ten dokument popycha do przodu)
+```yaml
+impacts:
+  - id: ALL-TEMPLATES-*
+    type: blocks
+    reason: "Wszystkie szablony dokumentów muszą comply ze specs defined w Doc Types"
+    sections:
+      - from: "doctypes section"
+        to: "All template documents"
+        influence: "Specification definiuje required_meta, required_sections, satellites_required dla każdego typu dokumentu"
+
+  - id: SPECS-GATES-*
+    type: influences
+    reason: "Doc Types specifications są used by Gates specifications"
+    sections:
+      - from: "doctypes section"
+        to: "Specs Gates gates section"
+        influence: "Gates reference doctypes dla required_documents criteria"
+
+  - id: SPECS-ERROR-CODES-*
+    type: influences
+    reason: "Error codes validate compliance with Doc Types specifications"
+    sections:
+      - from: "required_sections, satellites_required"
+        to: "Specs Error Codes validation rules"
+        influence: "Doc Types requirements definiują what error codes validate against"
+```
+
+### Related Documents (Powiązane dokumenty)
+```yaml
+related:
+  - id: SPECS-ERROR-CODES-*
+    type: informs
+    reason: "Error codes enforce Doc Types specifications"
+
+  - id: SPECS-GATES-*
+    type: informs
+    reason: "Gates use Doc Types specifications dla document requirements"
+
+  - id: SATELITARNE-ARTEFAKTY-*
+    type: informs
+    reason: "Satellite artifacts specifications reference Doc Types satellite requirements"
+```
+
+### Satellite Documents
+```yaml
+satellites:
+  - type: Evidence
+    path: "satellites/evidence/EVIDENCE-SPECS-DOC-TYPES-*.md"
+    required: false
+    purpose: "Documentation standards references, template validation results"
+
+  - type: TODO
+    path: "satellites/todos/TODO-SPECS-DOC-TYPES-*.md"
+    required: false
+    purpose: "Tracking specifications updates, new document types addition"
+```
+
+---
+
 ```yaml
 version: 1
 

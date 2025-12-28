@@ -4,6 +4,47 @@
 >
 > Katalog szablonów: [dokumentacja_typy.md](dokumentacja_typy.md)
 
+---
+
+## Document Cross-References
+
+### Dependencies (Required Inputs)
+- **[Doc Types Spec]** `specs_doc_types.md`
+  - Type: `informs`
+  - Reason: Satellite types (TODO, DOR, DOD, etc.) must align with doc types
+  - Sections used: satellites_required field in doc_types.yaml
+
+- **[Gates Spec]** `specs_gates.md`
+  - Type: `informs`
+  - Reason: Satellites (Approval, Evidence) required for gate checkpoints
+
+### Impacts (Downstream Documents)
+- **ALL Templates** `../*.md` + `../examples/*.md`
+  - Type: `informs`
+  - Reason: Defines satellite document patterns used by all templates
+  - Cascade: `false` (informative only)
+
+### Related Documents
+- **[Doc Types Spec]** `specs_doc_types.md` - Defines doctypes that require satellites
+- **[Error Codes Spec]** `specs_error_codes.md` - Defines errors for missing satellites (E160)
+- **[Gates Spec]** `specs_gates.md` - Defines gate requirements that trigger satellite creation
+
+### Satellite Documents
+- **[Changelog]** `satellites/CHANGELOG-SAT-SPEC-001.md` - Version history of this spec
+
+### Conditional Cross-References
+```yaml
+# Universal spec - no domain conditions
+# Applies to ALL document types across ALL domains
+```
+
+### Validation Rules
+- [ ] All satellite kinds (TODO_SECTION, DOR, DOD, etc.) defined
+- [ ] Each satellite kind has description and purpose
+- [ ] Front-matter schema specified (YAML format)
+- [ ] Storage convention documented (docs/project/satellites/)
+
+---
 
 Dokument podsumowuje koncepcję **satelitów dokumentu** — lekkich, atomowych artefaktów towarzyszących głównym dokumentom projektowym (PRD, TDD, Business Case, Feasibility itp.). Zawiera definicje, zasady użycia, rekomendowaną strukturę przechowywania oraz gotowe szablony front‑matter dla najczęściej stosowanych artefaktów.
 
