@@ -169,37 +169,3 @@ codes:
 # - E200 generuje RFC/Decision, nie TODO.
 # - Warnings grupujemy (BATCH_TODO), żeby nie spamować backlogu.
 ```
-
----
-
-## Document Cross-References
-
-### Dependencies (Required Inputs)
-- **[Doc Types Spec]** `specs_doc_types.md`
-  - Type: `requires`
-  - Reason: Error messages reference doc types and sections
-
-- **[Gates Spec]** `specs_gates.md`
-  - Type: `requires`
-  - Reason: E150 (Gate blocked) references gate definitions
-
-### Impacts (Downstream Documents)
-- **Validation System** `scripts/validate_documents.py`
-  - Type: `defines`
-  - Reason: Validation script uses these error codes for reporting
-  - Cascade: `true`
-
-### Related Documents
-- **[Doc Types Spec]** `specs_doc_types.md`
-- **[Gates Spec]** `specs_gates.md`
-- **[Satellites Spec]** `satelitarne_artefakty_dokumentacyjne_kanwa_opisowa.md`
-
-### Satellite Documents
-- **[Changelog]** `satellites/CHANGELOG-ERRORS-SPEC-001.md`
-
-### Validation Rules
-- [ ] All error codes unique (E100, E110, E120, etc.)
-- [ ] All codes have severity (BLOCKER, ERROR, WARN)
-- [ ] All codes have todo_action (TODO, RFC, BATCH_TODO, NONE, SECURITY_INCIDENT)
-- [ ] All message_templates use valid placeholders
-- [ ] All remediation_templates actionable

@@ -8,41 +8,79 @@
 
 ## Document Cross-References
 
-### Dependencies (Required Inputs)
-- **[Doc Types Spec]** `specs_doc_types.md`
-  - Type: `informs`
-  - Reason: Satellite types (TODO, DOR, DOD, etc.) must align with doc types
-  - Sections used: satellites_required field in doc_types.yaml
-
-- **[Gates Spec]** `specs_gates.md`
-  - Type: `informs`
-  - Reason: Satellites (Approval, Evidence) required for gate checkpoints
-
-### Impacts (Downstream Documents)
-- **ALL Templates** `../*.md` + `../examples/*.md`
-  - Type: `informs`
-  - Reason: Defines satellite document patterns used by all templates
-  - Cascade: `false` (informative only)
-
-### Related Documents
-- **[Doc Types Spec]** `specs_doc_types.md` - Defines doctypes that require satellites
-- **[Error Codes Spec]** `specs_error_codes.md` - Defines errors for missing satellites (E160)
-- **[Gates Spec]** `specs_gates.md` - Defines gate requirements that trigger satellite creation
-
-### Satellite Documents
-- **[Changelog]** `satellites/CHANGELOG-SAT-SPEC-001.md` - Version history of this spec
-
-### Conditional Cross-References
+### Dependencies (Co napędza ten dokument)
 ```yaml
-# Universal spec - no domain conditions
-# Applies to ALL document types across ALL domains
+dependencies:
+  - id: SPECS-DOC-TYPES-*
+    type: influences
+    reason: "Satelitarne Artefakty framework wspiera Doc Types satellite requirements"
+    conditions:
+      - when: "project.requires_formal_documentation === true"
+        applies: true
+    sections:
+      - from: "Specs Doc Types satellites_required"
+        to: "§4 Najważniejsze typy satelitów, §7 Front-matter templates"
+        influence: "Doc Types specifications inform satellite artifact structure"
 ```
 
-### Validation Rules
-- [ ] All satellite kinds (TODO_SECTION, DOR, DOD, etc.) defined
-- [ ] Each satellite kind has description and purpose
-- [ ] Front-matter schema specified (YAML format)
-- [ ] Storage convention documented (docs/project/satellites/)
+### Impacts (Co ten dokument popycha do przodu)
+```yaml
+impacts:
+  - id: ALL-PROJECT-DOCUMENTS-*
+    type: blocks
+    reason: "Satelitarne Artefakty framework definiuje how to create satellite artifacts dla wszystkich project documents"
+    sections:
+      - from: "§2 Co to są satelity, §3 Zestawy satelitów, §4 Typy satelitów"
+        to: "All project documents satellite artifacts (TODO, DoR, DoD, Evidence, Approval, etc.)"
+        influence: "Framework defines structure, naming conventions, and usage patterns dla satellite artifacts"
+
+  - id: ROADMAPS-TEMPLATES-*
+    type: influences
+    reason: "Roadmap templates implement satellite artifacts based on this framework"
+    sections:
+      - from: "§7 Front-matter templates (TODO, DoR, DoD, Approval, Evidence)"
+        to: "Roadmap atomic templates"
+        influence: "Atomic templates follow satellite framework structure"
+
+  - id: SPECS-DOC-TYPES-*
+    type: influences
+    reason: "Doc Types specifications reference satellite requirements defined here"
+    sections:
+      - from: "§3 Zestawy satelitów (minimalny, standard, pełny)"
+        to: "Specs Doc Types satellites_required field"
+        influence: "Satellite framework informs Doc Types satellite requirements"
+```
+
+### Related Documents (Powiązane dokumenty)
+```yaml
+related:
+  - id: SPECS-ERROR-CODES-*
+    type: informs
+    reason: "Error codes validate satellite artifacts compliance"
+
+  - id: ALL-TEMPLATES-*
+    type: informs
+    reason: "All document templates use satellite artifacts framework"
+```
+
+### Satellite Documents
+```yaml
+satellites:
+  - type: TODO
+    path: "satellites/todos/TODO-SATELITARNE-FRAMEWORK-*.md"
+    required: false
+    purpose: "Tracking framework improvements, new satellite types addition"
+
+  - type: Evidence
+    path: "satellites/evidence/EVIDENCE-SATELITARNE-FRAMEWORK-*.md"
+    required: false
+    purpose: "Satellite framework usage examples, effectiveness analysis, user feedback"
+
+  - type: DoD
+    path: "satellites/dod/DOD-SATELITARNE-FRAMEWORK-*.md"
+    required: false
+    purpose: "Definition of Done: framework documentation complete, templates validated, examples created"
+```
 
 ---
 
@@ -182,43 +220,3 @@ tags: []
 ---
 
 > Jeśli potwierdzisz, wygeneruję wskazane pliki w `templates/` i manifest — lub od razu zainicjuję Issue skeletony w Twoim systemie (jeśli chcesz).
-
----
-
-## Document Cross-References
-
-### Dependencies (Required Inputs)
-- **[Doc Types Spec]** `specs_doc_types.md`
-  - Type: `informs`
-  - Reason: Satellite types (TODO, DOR, DOD, etc.) must align with doc types
-  - Sections used: satellites_required field in doc_types.yaml
-
-- **[Gates Spec]** `specs_gates.md`
-  - Type: `informs`
-  - Reason: Satellites (Approval, Evidence) required for gate checkpoints
-
-### Impacts (Downstream Documents)
-- **ALL Templates** `../*.md` + `../examples/*.md`
-  - Type: `informs`
-  - Reason: Defines satellite document patterns used by all templates
-  - Cascade: `false` (informative only)
-
-### Related Documents
-- **[Doc Types Spec]** `specs_doc_types.md` - Defines doctypes that require satellites
-- **[Error Codes Spec]** `specs_error_codes.md` - Defines errors for missing satellites (E160)
-- **[Gates Spec]** `specs_gates.md` - Defines gate requirements that trigger satellite creation
-
-### Satellite Documents
-- **[Changelog]** `satellites/CHANGELOG-SAT-SPEC-001.md` - Version history of this spec
-
-### Conditional Cross-References
-```yaml
-# Universal spec - no domain conditions
-# Applies to ALL document types across ALL domains
-```
-
-### Validation Rules
-- [ ] All satellite kinds (TODO_SECTION, DOR, DOD, etc.) defined
-- [ ] Each satellite kind has description and purpose
-- [ ] Front-matter schema specified (YAML format)
-- [ ] Storage convention documented (docs/project/satellites/)
