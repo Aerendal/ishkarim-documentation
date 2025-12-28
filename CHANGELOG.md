@@ -19,6 +19,41 @@ a projekt stosuje [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
+## [1.3.0] - 2025-12-28
+
+### Added - Ekstrakcja Szablonów z Meta-Dokumentów
+- **26 nowych szablonów** wyekstrahowanych do dedykowanych katalogów:
+  - **Sprints (11):** sprint-plan, sprint-backlog, sprint-dor, sprint-dod, sprint-impediments, sprint-review, sprint-retro, sprint-action-items, sprint-scope-change, sprint-metrics, sprint-approval
+  - **Roadmaps (6):** roadmap-product, capacity-plan, risk-register, release-checklist, postmortem-template, kpi-dashboard-spec
+  - **Atomic (8):** TODO-template, DoR-template, DoD-template, Approval-template, Evidence-template, risk-item-template, release-checklist-atom, postmortem-atom
+  - **Migration (1):** migration_plan_doc
+
+### Changed
+- **README.md:** Zaktualizowane statystyki 148 → 174 szablony
+- **README.md:** Dodane 4 nowe sekcje kategorii (Sprints, Roadmaps, Atomic, Migration)
+- **README.md:** Zaktualizowana struktura katalogów z nowymi kategoriami
+- **README.md:** Zaktualizowana tabela rozkładu według kategorii (10 kategorii)
+- **dokumentacja_typy.md:** Dodane 4 nowe sekcje z linkami do wyekstrahowanych szablonów
+- **Propozycje:** Impact Summary zaktualizowany (Current: 174, Planned: +19, Future: 193)
+
+### Fixed
+- Wypełnione 4 puste katalogi: sprints/, roadmaps/, atomic/, migration/
+- Szablony wyekstrahowane z meta-dokumentów do właściwych lokalizacji
+
+### Statistics
+- **Before:** 148 szablonów (4 puste katalogi)
+- **After:** 174 szablony (wszystkie katalogi wypełnione)
+- **Increase:** +26 szablonów (+17.6%)
+- **Categories:** 6 → 10 (+4 nowe)
+- **Total lines added:** 733 (templates) + ~300 (documentation updates)
+
+### Source Files
+- Sprints: Wyekstrahowane z `supporting/templates-overviews/sprinty_pliki_satelitarne_i_szablony_templates_sprints.md`
+- Roadmaps/Atomic: Wyekstrahowane z `supporting/templates-overviews/roadmaps_satellite_templates_templates_roadmaps_templates_atomic.md`
+- Migration: Skopiowane z `produkcyjna/migration_plan_doc.md`
+
+---
+
 ## [1.2.0] - 2025-12-28
 
 ### Added
@@ -140,6 +175,7 @@ a projekt stosuje [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 | Version | Data | Szablony | Połączenia | Cross-Ref Coverage | Główne Zmiany |
 |---------|------|----------|------------|-------------------|---------------|
+| **1.3.0** | 2025-12-28 | 174 (+19 planned) | 1,096 (+~300 planned) | 100% | Ekstrakcja 26 szablonów |
 | **1.2.0** | 2025-12-28 | 148 (+19 planned) | 1,096 (+~300 planned) | 100% | 5 Proposals, Roadmap |
 | **1.1.0** | 2025-12-27 | 148 | 1,096 | 100% | Badges, LICENSE, Topics |
 | **1.0.0** | 2025-12-27 | 148 | 1,096 | 100% | Konsolidacja, CR, Graf, README |

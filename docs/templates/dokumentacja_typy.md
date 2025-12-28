@@ -531,6 +531,74 @@ Pełny katalog dokumentów projektowych – **przedprodukcyjnych, produkcyjnych 
 
 ---
 
+## Sprints — Szablony Satelitarne (11 szablonów) ⭐ WYEKSTRAHOWANE
+
+Szablony satelitarne dla zarządzania sprintami.
+
+**Lokalizacja:** `templates/sprints/`
+
+### Szablony podstawowe
+- 📄 [sprint-plan.md](sprints/sprint-plan.md) - Plan sprintu z celami, zakresem i capacity
+- 📄 [sprint-backlog.md](sprints/sprint-backlog.md) - Lista itemów sprintu z ownerami i estymacją
+- 📄 [sprint-dor.md](sprints/sprint-dor.md) - Definition of Ready
+- 📄 [sprint-dod.md](sprints/sprint-dod.md) - Definition of Done
+- 📄 [sprint-review.md](sprints/sprint-review.md) - Sprint Review - podsumowanie dostarczonych elementów
+- 📄 [sprint-retro.md](sprints/sprint-retro.md) - Retrospektywa sprintu
+
+### Szablony rozszerzone
+- 📄 [sprint-impediments.md](sprints/sprint-impediments.md) - Rejestr blokerów i impedimentów
+- 📄 [sprint-action-items.md](sprints/sprint-action-items.md) - Action items z retrospektywy
+- 📄 [sprint-scope-change.md](sprints/sprint-scope-change.md) - Change Request dla zmian scope
+- 📄 [sprint-metrics.md](sprints/sprint-metrics.md) - Metryki sprintu (velocity, jakość)
+- 📄 [sprint-approval.md](sprints/sprint-approval.md) - Formalne zatwierdzenie sprintu
+
+---
+
+## Roadmaps — Planowanie i Roadmapy (6 szablonów) ⭐ WYEKSTRAHOWANE
+
+Szablony roadmap produktowych i planowania.
+
+**Lokalizacja:** `templates/roadmaps/`
+
+- 📄 [roadmap-product.md](roadmaps/roadmap-product.md) - Główny szablon roadmapy produktowej
+- 📄 [capacity-plan.md](roadmaps/capacity-plan.md) - Plan zasobów i capacity planning
+- 📄 [risk-register.md](roadmaps/risk-register.md) - Rejestr ryzyk na poziomie roadmapy
+- 📄 [release-checklist.md](roadmaps/release-checklist.md) - Checklist wydania (pre-freeze, release, post-release)
+- 📄 [postmortem-template.md](roadmaps/postmortem-template.md) - Szablon postmortem incydentów
+- 📄 [kpi-dashboard-spec.md](roadmaps/kpi-dashboard-spec.md) - Specyfikacja KPI i dashboardów
+
+---
+
+## Atomic — Atomowe Szablony Satelitarne (8 szablonów) ⭐ WYEKSTRAHOWANE
+
+Atomowe szablony satelitarne - małe, reużywalne artefakty dokumentacyjne.
+
+**Lokalizacja:** `templates/atomic/`
+
+### Podstawowe atomic templates
+- 📄 [TODO-template.md](atomic/TODO-template.md) - Atomowy szablon zadań
+- 📄 [DoR-template.md](atomic/DoR-template.md) - Definition of Ready
+- 📄 [DoD-template.md](atomic/DoD-template.md) - Definition of Done
+- 📄 [Approval-template.md](atomic/Approval-template.md) - Szablon zatwierdzenia
+- 📄 [Evidence-template.md](atomic/Evidence-template.md) - Szablon dowodów/artefaktów
+
+### Rozszerzone atomic templates
+- 📄 [risk-item-template.md](atomic/risk-item-template.md) - Pojedynczy item ryzyka
+- 📄 [release-checklist-atom.md](atomic/release-checklist-atom.md) - Atomowa wersja checklisty wydania
+- 📄 [postmortem-atom.md](atomic/postmortem-atom.md) - Atomowa wersja postmortem
+
+---
+
+## Migration — Migracja Systemów (1 szablon) ⭐ WYEKSTRAHOWANY
+
+Szablon planowania migracji systemów.
+
+**Lokalizacja:** `templates/migration/`
+
+- 📄 [migration_plan_doc.md](migration/migration_plan_doc.md) - Plan migracji systemu/platformy
+
+---
+
 ## TODO — szablony zadań
 
 Dodano komplet szablonów TODO do powiązania z dokumentami.

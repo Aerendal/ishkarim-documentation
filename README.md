@@ -9,7 +9,7 @@
 [![GitHub topics](https://img.shields.io/github/topics/Aerendal/ishkarim-documentation)](https://github.com/Aerendal/ishkarim-documentation)
 [![Made in Poland](https://img.shields.io/badge/Made_in-Poland_🇵🇱-red.svg)](https://github.com/Aerendal/ishkarim-documentation)
 
-[![Szablony](https://img.shields.io/badge/Szablony-148+19_planned-blue.svg)](docs/templates/dokumentacja_typy.md)
+[![Szablony](https://img.shields.io/badge/Szablony-174+19_planned-blue.svg)](docs/templates/dokumentacja_typy.md)
 [![Cross-References](https://img.shields.io/badge/Cross--References-100%25-brightgreen.svg)](docs/dependency_graph.md)
 [![Połączenia](https://img.shields.io/badge/Po%C5%82%C4%85czenia-1096+~300_planned-orange.svg)](docs/dependency_graph.md)
 
@@ -17,10 +17,10 @@ Kompleksowy system szablonów dokumentacji z pełnymi Cross-References (wzajemny
 
 ## 📊 Statystyki
 
-- **148 szablonów** z 100% pokryciem Cross-References
+- **174 szablony** z 100% pokryciem Cross-References (+26 wyekstrahowanych)
 - **1,096 połączeń** między dokumentami
-- **5 kategorii:** Przedprodukcyjna, Produkcyjna, Branżowa, Supporting, Examples
-- **16 nowych szablonów** (Sprint Management, Analiza Architektury)
+- **10 kategorii:** Przedprodukcyjna, Produkcyjna, Branżowa, Supporting, Examples, Specs, Sprints, Roadmaps, Atomic, Migration
+- **26 nowych szablonów** wyekstrahowanych z meta-dokumentów (Sprints, Roadmaps, Atomic, Migration)
 
 ---
 
@@ -142,6 +142,48 @@ Dokumenty wspomagające:
 - Templates Overviews
 - Reference Materials
 - Summaries
+
+### Sprints (11 szablonów) ⭐ WYEKSTRAHOWANE
+
+Szablony satelitarne dla zarządzania sprintami:
+- **sprint-plan.md** - Plan sprintu z celami i capacity
+- **sprint-backlog.md** - Backlog itemów sprintu
+- **sprint-dor.md** - Definition of Ready
+- **sprint-dod.md** - Definition of Done
+- **sprint-impediments.md** - Rejestr blokerów
+- **sprint-review.md** - Sprint Review
+- **sprint-retro.md** - Retrospektywa
+- **sprint-action-items.md** - Action items z retro
+- **sprint-scope-change.md** - Change requests
+- **sprint-metrics.md** - Metryki sprintu
+- **sprint-approval.md** - Formalne zatwierdzenie
+
+### Roadmaps (6 szablonów) ⭐ WYEKSTRAHOWANE
+
+Szablony roadmap i planowania:
+- **roadmap-product.md** - Roadmapa produktowa
+- **capacity-plan.md** - Plan zasobów
+- **risk-register.md** - Rejestr ryzyk
+- **release-checklist.md** - Checklist wydania
+- **postmortem-template.md** - Postmortem incydentów
+- **kpi-dashboard-spec.md** - Specyfikacja KPI
+
+### Atomic (8 szablonów) ⭐ WYEKSTRAHOWANE
+
+Atomowe szablony satelitarne:
+- **TODO-template.md** - Szablon zadań
+- **DoR-template.md** - Definition of Ready
+- **DoD-template.md** - Definition of Done
+- **Approval-template.md** - Zatwierdzenia
+- **Evidence-template.md** - Dowody/artefakty
+- **risk-item-template.md** - Item ryzyka
+- **release-checklist-atom.md** - Atomowa checklist
+- **postmortem-atom.md** - Atomowy postmortem
+
+### Migration (1 szablon) ⭐ WYEKSTRAHOWANY
+
+Szablon migracji:
+- **migration_plan_doc.md** - Plan migracji systemu
 
 ### Examples (13 szablonów)
 
@@ -388,20 +430,24 @@ Dla dokumentów krytycznych rozważ utworzenie dokumentów satelitarnych:
 ### Struktura Katalogów
 ```
 docs/templates/
-├── przedprodukcyjna/   # Przed realizacją
-├── produkcyjna/        # Podczas realizacji
-├── branzowa/           # Specyficzne dla branż
+├── przedprodukcyjna/   # Przed realizacją (30)
+├── produkcyjna/        # Podczas realizacji (63)
+├── branzowa/           # Specyficzne dla branż (16)
 │   ├── medycyna/
 │   ├── finanse/
 │   ├── administracja/
 │   └── militaria/
-├── supporting/         # Dokumenty wspomagające
+├── supporting/         # Dokumenty wspomagające (16)
 │   ├── meta/
 │   ├── reference/
 │   ├── summaries/
 │   └── templates-overviews/
-├── examples/           # Pełne przykłady
-└── specs/              # Specyfikacje (Doc Types, Error Codes, Gates)
+├── examples/           # Pełne przykłady (13)
+├── specs/              # Specyfikacje (4)
+├── sprints/            # Szablony satelitarne sprintów (11) ⭐
+├── roadmaps/           # Roadmapy i planowanie (6) ⭐
+├── atomic/             # Atomowe szablony satelitarne (8) ⭐
+└── migration/          # Migracja systemów (1) ⭐
 ```
 
 ### Front-Matter (YAML)
@@ -426,13 +472,17 @@ tags: [tag1, tag2]
 ### Rozkład według Kategorii:
 | Kategoria | Szablony | % |
 |-----------|----------|---|
-| Produkcyjna | 63 | 42.6% |
-| Przedprodukcyjna | 30 | 20.3% |
-| Branżowa | 16 | 10.8% |
-| Supporting | 16 | 10.8% |
-| Examples | 13 | 8.8% |
-| Specs | 4 | 2.7% |
-| **TOTAL** | **148** | **100%** |
+| Produkcyjna | 63 | 36.2% |
+| Przedprodukcyjna | 30 | 17.2% |
+| Branżowa | 16 | 9.2% |
+| Supporting | 16 | 9.2% |
+| Examples | 13 | 7.5% |
+| Sprints | 11 | 6.3% |
+| Atomic | 8 | 4.6% |
+| Roadmaps | 6 | 3.4% |
+| Specs | 4 | 2.3% |
+| Migration | 1 | 0.6% |
+| **TOTAL** | **174** | **100%** |
 
 ### Cross-References:
 | Typ Relacji | Liczba |
@@ -542,8 +592,10 @@ System posiada **5 szczegółowych propozycji ulepszeń** dodających **+19 nowy
 ### 📊 Podsumowanie Integrujące
 
 **Impact Summary:**
-- **Total templates:** 148 → 167 (+19 new)
-- **Total connections:** 1,096 → ~1,400 (+300-350)
+- **Current templates:** 174 (148 base + 26 extracted)
+- **Planned templates:** +19 new (Research, Decision, Workflows)
+- **Future total:** 193 templates
+- **Total connections:** 1,096 → ~1,400 (+300-350 planned)
 - **New mechanisms:** +6 (Living Documentation Framework)
 - **New workflows:** +4 (end-to-end processes)
 
@@ -581,7 +633,8 @@ System posiada **5 szczegółowych propozycji ulepszeń** dodających **+19 nowy
 - **2025-12-27**: Konsolidacja 148 szablonów, dodanie Cross-References (100%), 16 nowych szablonów
 - **2025-12-27**: Graf zależności - 1,096 połączeń, 2 nowe diagramy Mermaid
 - **2025-12-27**: Publikacja na GitHub, polskie badges, licencja CC-BY-4.0
-- **2025-12-28**: 5 propozycji ulepszeń (+19 szablonów, +6 mechanizmów Living Documentation)
+- **2025-12-28**: 5 propozycji ulepszeń (+19 szablonów planowanych, +6 mechanizmów Living Documentation)
+- **2025-12-28**: Ekstrakcja 26 szablonów z meta-dokumentów (Sprints, Roadmaps, Atomic, Migration) → **174 szablony total**
 
 ### Planowane Rozszerzenia
 - [ ] Interaktywna wizualizacja grafu zależności (D3.js/Cytoscape)
