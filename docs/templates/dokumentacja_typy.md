@@ -561,6 +561,96 @@ Dodano komplet szablonów TODO do powiązania z dokumentami.
 
 ---
 
+## 🔮 Propozycje Ulepszeń
+
+System posiada **5 szczegółowych propozycji ulepszeń** dodających **+19 nowych szablonów** i **+6 mechanizmów żywej dokumentacji**.
+
+📁 **Lokalizacja:** [../proposals/](../proposals/)
+
+### Propozycja 1: Research Branch Templates (+7 szablonów)
+
+📄 [PROPOZYCJA-1-Research-Branch-Templates.md](../proposals/PROPOZYCJA-1-Research-Branch-Templates.md)
+
+Nowe szablony dla eksploracji konceptów i badań:
+- **Hypothesis Document** - formułowanie hipotez badawczych
+- **Experiment Log** - dziennik eksperymentów
+- **PoC (Proof of Concept)** - walidacja konceptów
+- **Spike Solution** - badanie techniczne time-boxed
+- **Research Findings** - wnioski z badań
+- **Alternative Exploration** - eksploracja alternatyw
+- **Concept Branch** - rozgałęzienia konceptualne
+
+**Problem:** Brak mechanizmów eksploracji konceptów przed podejmowaniem decyzji.
+**ROI:** Research template usage >50%, time-to-decision reduction 33%
+
+---
+
+### Propozycja 2: Living Documentation Framework (+6 mechanizmów)
+
+📄 [PROPOZYCJA-2-Living-Documentation-Framework.md](../proposals/PROPOZYCJA-2-Living-Documentation-Framework.md)
+
+Mechanizmy transformujące wszystkie 148→167 szablonów w żywą dokumentację:
+1. **Extended Lifecycle States** (11 stanów) - Draft → Active → Deprecated → Archived
+2. **Semantic Versioning** - wersjonowanie dokumentów (MAJOR.MINOR.PATCH)
+3. **Dynamic Cross-References** - auto-propagacja zmian
+4. **Auto-Validation** - CI/CD walidacja spójności
+5. **Deprecation Workflow** - zarządzanie przestarzałymi dokumentami
+6. **Migration Guides** - ścieżki migracji przy zmianach
+
+**Problem:** Dokumenty statyczne, brak lifecycle evolution.
+**ROI:** Document freshness >80%, knowledge retention 30%→90%
+
+---
+
+### Propozycja 3: Decision Templates Enhancement (+5 szablonów)
+
+📄 [PROPOZYCJA-3-Decision-Templates-Enhancement.md](../proposals/PROPOZYCJA-3-Decision-Templates-Enhancement.md)
+
+Nowe szablony decyzyjne (lightweight alternatives do ADR):
+- **Decision Log** - lekki dziennik decyzji (5 min)
+- **Trade-off Analysis** - analiza trade-offów
+- **Option Comparison Matrix** - macierz porównawcza opcji
+- **Go/No-Go Decision** - szybka decyzja go/no-go
+- **Decision Reversal** - dokumentacja odwrócenia decyzji
+
+**Problem:** ADR za ciężki dla codziennych decyzji.
+**ROI:** Decision documentation coverage >70%, reversal rate <10%
+
+---
+
+### Propozycja 4: Concept Exploration Workflows (+4 workflows)
+
+📄 [PROPOZYCJA-4-Concept-Exploration-Workflows.md](../proposals/PROPOZYCJA-4-Concept-Exploration-Workflows.md)
+
+End-to-end workflows łączące szablony w kompletne procesy:
+1. **Tech Exploration Workflow** - Unknown tech → Validated decision (8 kroków)
+2. **Business Innovation Workflow** - Idea → Validated business case (7 kroków)
+3. **Risk Mitigation Workflow** - Risk → Mitigation plan (6 kroków)
+4. **Parallel Branching Workflow** - Multiple concepts → Best option (9 kroków)
+
+**Problem:** Brak end-to-end processes, dokumenty w izolacji.
+**ROI:** Workflow adoption >60%, complete exploration paths
+
+---
+
+### 📊 Podsumowanie Integrujące
+
+📄 [PODSUMOWANIE-INTEGRUJACE-Wszystkie-Propozycje.md](../proposals/PODSUMOWANIE-INTEGRUJACE-Wszystkie-Propozycje.md)
+
+**Impact Summary:**
+- Total templates: 148 → 167 (+19 new)
+- Total connections: 1,096 → ~1,400 (+300-350)
+- ROI: 7.5x Year 1 ($52K → $500K benefits)
+- Knowledge retention: 30% → 90%
+- Time-to-decision: 12 weeks → 8 weeks (33% faster)
+
+**Implementation Roadmap:**
+- **P1 (Month 1-2):** Research Templates, Decision Log, Extended Lifecycle
+- **P2 (Month 3-6):** Tech Exploration Workflow, Trade-off Analysis
+- **P3 (Month 7+):** Parallel Branching, Auto-propagation
+
+---
+
 ## Uwagi
 
 Każdy dokument z osobnym plikiem zawiera: **cel, zawartość, czego nie zawiera, objętość, kategoria, odbiorcy**.
