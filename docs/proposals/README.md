@@ -259,7 +259,7 @@ Gap Identified → Proposal Created → Review → Approve/Reject → Implement 
 ### Dependencies (Co napędza te dokumenty)
 
 **Proposals CREATED FROM:**
-- Gap analysis (TEMPLATE-GAP-ANALYSIS.md)
+- Template gap analysis and consolidation (completed 2025-12-28)
 - User feedback (E-081, E-082, E-083 interviews)
 - System evolution needs (as project grows)
 
@@ -272,9 +272,8 @@ Gap Identified → Proposal Created → Review → Approve/Reject → Implement 
 
 ### Related Documents
 
-- **[../TEMPLATE-GAP-ANALYSIS.md](../TEMPLATE-GAP-ANALYSIS.md)** — Gap analysis driving proposals
-- **[../TEMPLATE-CONSOLIDATION-STRATEGY.md](../TEMPLATE-CONSOLIDATION-STRATEGY.md)** — Unification strategy
 - **[../templates/](../templates/)** — Target for approved proposals (where new templates go)
+- **[../templates/README.md](../templates/README.md)** — Template system documentation (174 templates, complete & production-ready)
 
 ---
 
@@ -384,8 +383,7 @@ If contributing: Write proposals in Polish for consistency.
 ### Related
 
 - **[../templates/](../templates/)** — Target for approved proposals
-- **[../TEMPLATE-GAP-ANALYSIS.md](../TEMPLATE-GAP-ANALYSIS.md)** — Gap identification
-- **[../TEMPLATE-CONSOLIDATION-STRATEGY.md](../TEMPLATE-CONSOLIDATION-STRATEGY.md)** — Template unification
+- **[../templates/README.md](../templates/README.md)** — Template system (174 templates, complete)
 
 ---
 

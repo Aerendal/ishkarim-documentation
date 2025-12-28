@@ -254,7 +254,7 @@ Parent Doc (e.g., PRD)
 
 **Templates CREATED FROM:**
 - User needs (E-081, E-082, E-083 interviews)
-- Gap analysis (TEMPLATE-GAP-ANALYSIS.md)
+- Gap analysis and consolidation (completed 2025-12-28)
 - Best practices (industry standards, PMBOK, TOGAF)
 
 ### Impacts (Co system szablonów umożliwia)
@@ -449,12 +449,10 @@ ishkarim graph --output dependency_graph.md
 
 - **[../README.md](../README.md)** — Master docs/ README (project instances)
 - **[../dependency_graph.md](../dependency_graph.md)** — 1,367 connections between 158 docs
-- **[../TEMPLATE-CONSOLIDATION-STRATEGY.md](../TEMPLATE-CONSOLIDATION-STRATEGY.md)** — Consolidation strategy
 
 ### Proposals
 
 - **[../proposals/](../proposals/)** — System enhancement proposals (4 active)
-- **[../TEMPLATE-GAP-ANALYSIS.md](../TEMPLATE-GAP-ANALYSIS.md)** — Gap analysis
 
 ### Examples
 

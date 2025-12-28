@@ -60,17 +60,7 @@ Bezpośrednio w `docs/` znajdują się pliki systemowe:
 - **Zawartość:** Stan początkowy (95.4%) → remediacja → stan końcowy (100%)
 - **Rezultat:** 50 plików created/modified, 0 critical gaps
 
-### 3. **TEMPLATE-CONSOLIDATION-STRATEGY.md**
-- **Cel:** Strategia konsolidacji 3 źródeł szablonów
-- **Problem:** Canvas Obsidian (50+ templates) + Ishkarim templates/ (5) + Error-Driven pairs/ (120)
-- **Rozwiązanie:** Unifikacja do templates/ jako single source of truth
-
-### 4. **TEMPLATE-GAP-ANALYSIS.md**
-- **Cel:** Analiza luk w pokryciu szablonami
-- **Zawartość:** Identyfikacja brakujących typów dokumentów
-- **Use:** Planning template system extensions
-
-### 5. **PRE-IMPLEMENTATION-DOCUMENTATION-GAPS.md**
+### 3. **PRE-IMPLEMENTATION-DOCUMENTATION-GAPS.md**
 - **Cel:** Luki przedimplementacyjne wymagające uzupełnienia
 - **Use:** Checklist before starting implementation phase
 
@@ -104,7 +94,6 @@ Bezpośrednio w `docs/` znajdują się pliki systemowe:
 1. `templates/` — Browse 174 reusable templates
 2. `proposals/` — Przeczytaj PROPOZYCJA-1 do PROPOZYCJA-4 (enhancement ideas)
 3. `templates/specs/` — specs_doc_types.md, specs_error_codes.md, specs_gates.md
-4. `TEMPLATE-CONSOLIDATION-STRATEGY.md` — Understand template unification strategy
 
 ### Dla audytorów/walidatorów (Auditors):
 
