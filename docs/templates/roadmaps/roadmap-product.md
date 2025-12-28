@@ -15,6 +15,224 @@ approvers: ["CEO","CPO"]
 
 # Product Roadmap — H1 2026
 
+## Document Cross-References
+
+### Dependencies
+```yaml
+dependencies:
+  - id: VISION-*
+    type: requires
+    reason: "Vision Document provides strategic context and long-term product direction"
+    conditions:
+      - when: "project.has_vision_doc === true"
+        applies: true
+    sections:
+      - from: "Vision §13 Strategic Business Goals"
+        to: "§1 Context & Strategic goal"
+        influence: "Strategic goals drive roadmap priorities and focus areas"
+      - from: "Vision §10 Product Strategy"
+        to: "§2 Roadmap swimlanes"
+        influence: "Product strategy defines roadmap horizons and themes"
+
+  - id: BIZ-CASE-*
+    type: requires
+    reason: "Business Case provides ROI justification and prioritization basis"
+    conditions:
+      - when: "project.has_business_case === true"
+        applies: true
+    sections:
+      - from: "Business Case §15 Success Metrics"
+        to: "§8 KPIs & success metrics"
+        influence: "Business metrics become roadmap success metrics"
+      - from: "Business Case §8 Financial Analysis"
+        to: "§7 Capacity & Budget summary"
+        influence: "Financial projections inform roadmap budget allocation"
+
+  - id: PRD-*
+    type: influences
+    reason: "PRD requirements inform roadmap epic definitions and scope"
+    conditions:
+      - when: "project.starts_with_prd === true"
+        applies: true
+    sections:
+      - from: "PRD §5 Functional Requirements"
+        to: "§4 Epics / Feature sets"
+        influence: "PRD requirements are grouped into roadmap epics"
+      - from: "PRD §11 Success Metrics"
+        to: "§8 KPIs & success metrics"
+        influence: "PRD success metrics align with roadmap KPIs"
+
+  - id: MODULE-ANALYSIS-ROADMAP-*
+    type: influences
+    reason: "Module Analysis Roadmap provides technical decomposition and dependencies"
+    conditions:
+      - when: "project.is_complex_platform === true"
+        applies: true
+    sections:
+      - from: "Module Analysis Roadmap §4 Module Dependencies"
+        to: "§5 Dependencies & Blockers"
+        influence: "Technical module dependencies affect roadmap sequencing"
+
+  - id: INNOVATION-ROADMAP-*
+    type: influences
+    reason: "Innovation Roadmap identifies emerging tech and R&D opportunities"
+    conditions:
+      - when: "project.has_innovation_track === true"
+        applies: true
+    sections:
+      - from: "Innovation Roadmap §3 Tech Experiments"
+        to: "§4 Epics / Feature sets"
+        influence: "Innovation experiments may become product features"
+```
+
+### Impacts
+```yaml
+impacts:
+  - id: PRD-*
+    type: blocks
+    reason: "PRD cannot be detailed without roadmap prioritization and scope definition"
+    conditions:
+      - when: "roadmap_first_approach === true"
+        applies: true
+    sections:
+      - from: "§4 Epics / Feature sets"
+        to: "PRD §5 Functional Requirements"
+        influence: "Roadmap epics define which requirements are in scope for PRD"
+      - from: "§3 Milestones & Releases"
+        to: "PRD §10 Milestones & Timeline"
+        influence: "Roadmap milestones become PRD delivery milestones"
+
+  - id: CAPACITY-PLAN-*
+    type: blocks
+    reason: "Capacity planning requires roadmap milestones and effort estimates"
+    conditions:
+      - when: "always"
+        applies: true
+    sections:
+      - from: "§3 Milestones & Releases"
+        to: "Capacity Plan §3 Demand by milestone"
+        influence: "Roadmap milestones define capacity planning periods"
+      - from: "§4 Epics / Feature sets"
+        to: "Capacity Plan §3 Demand by milestone"
+        influence: "Epic effort estimates drive capacity demand"
+
+  - id: RISK-REGISTER-*
+    type: blocks
+    reason: "Risk register tracks roadmap-level risks and blockers"
+    conditions:
+      - when: "always"
+        applies: true
+    sections:
+      - from: "§6 Risks"
+        to: "Risk Register §1 Risk table"
+        influence: "Roadmap risks are detailed in risk register"
+      - from: "§5 Dependencies & Blockers"
+        to: "Risk Register §1 Risk table"
+        influence: "Dependencies and blockers become risk items"
+
+  - id: RELEASE-PLAN-*
+    type: blocks
+    reason: "Release planning requires roadmap milestones and release scope"
+    conditions:
+      - when: "always"
+        applies: true
+    sections:
+      - from: "§3 Milestones & Releases"
+        to: "Release Plan §2 Release Schedule"
+        influence: "Roadmap milestones define release dates and scope"
+      - from: "§4 Epics / Feature sets"
+        to: "Release Plan §3 Release Scope"
+        influence: "Epics are decomposed into release deliverables"
+
+  - id: SPRINT-CORE-*
+    type: influences
+    reason: "Sprint planning derives work from roadmap epics"
+    conditions:
+      - when: "project.uses_agile === true"
+        applies: true
+    sections:
+      - from: "§4 Epics / Feature sets"
+        to: "Sprint Core §3 Sprint Backlog"
+        influence: "Roadmap epics are broken into sprint stories"
+
+  - id: KPI-DASHBOARD-SPEC-*
+    type: blocks
+    reason: "KPI dashboard tracks roadmap progress and success metrics"
+    conditions:
+      - when: "project.requires_kpi_tracking === true"
+        applies: true
+    sections:
+      - from: "§8 KPIs & success metrics"
+        to: "KPI Dashboard §2 Metrics"
+        influence: "Roadmap KPIs define dashboard metrics"
+      - from: "§3 Milestones & Releases"
+        to: "KPI Dashboard §2 Metrics"
+        influence: "Milestone progress tracking becomes dashboard metric"
+
+  - id: RELEASE-CHECKLIST-*
+    type: influences
+    reason: "Release checklist ensures roadmap milestones meet quality gates"
+    conditions:
+      - when: "always"
+        applies: true
+    sections:
+      - from: "§9 Checkpoints & Gates"
+        to: "Release Checklist §1 Pre-freeze"
+        influence: "Roadmap quality gates become release checklist items"
+```
+
+### Related
+```yaml
+related:
+  - id: TDD-*
+    type: informs
+    reason: "TDD design must support roadmap technical requirements"
+
+  - id: TEST-PLAN-*
+    type: informs
+    reason: "Test planning aligns with roadmap release schedule"
+
+  - id: RESOURCE-REQUIREMENTS-*
+    type: informs
+    reason: "Roadmap epics inform team composition and skill requirements"
+
+  - id: TIMELINE-*
+    type: informs
+    reason: "Roadmap milestones become detailed project timeline"
+
+  - id: STAKEHOLDER-MAP-*
+    type: informs
+    reason: "Roadmap communication plan requires stakeholder identification"
+
+  - id: RTM-*
+    type: informs
+    reason: "Requirements traceability tracks roadmap epic delivery"
+```
+
+### Satellites
+```yaml
+satellites:
+  - type: TODO
+    path: "satellites/todos/TODO-ROADMAP-PROD-*.md"
+    required: false
+    purpose: "Track roadmap review meetings, stakeholder approvals, dependency resolution"
+
+  - type: Evidence
+    path: "satellites/evidence/EVIDENCE-ROADMAP-PROD-*.md"
+    required: true
+    purpose: "Store strategic planning sessions, exec approvals, roadmap reviews, prioritization workshops"
+
+  - type: Approval
+    path: "satellites/approvals/APPROVAL-ROADMAP-PROD-*.md"
+    required: true
+    purpose: "CEO/CPO approval required before roadmap publication"
+
+  - type: DoR
+    path: "satellites/dor/DOR-ROADMAP-PROD-*.md"
+    required: true
+    purpose: "Prerequisites: vision validated, business case approved, capacity estimated, key risks identified"
+```
+
 ## 0. Meta
 - **Project:** NAZWA_PROJEKTU
 - **Owner:** Head of Product

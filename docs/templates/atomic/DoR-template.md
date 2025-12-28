@@ -10,6 +10,27 @@ related: ["DOC-<id>"]
 
 # Definition of Ready (DoR)
 
+## Document Cross-References
+
+**Dependencies:**
+- Parent document (PRD-*, TDD-*, SPRINT-*) defines scope for DoR
+- Architectural Design Records may define technical readiness criteria
+- Team agreements and process documentation
+
+**Impacts:**
+- Gates creation of TODO items from backlog
+- Blocks Sprint planning if stories don't meet DoR
+- Informs PRD/TDD refinement process
+- Prevents premature work on incomplete requirements
+
+**Related:**
+- DoD-template (complementary exit criteria)
+- TODO-template (tasks must pass DoR before starting)
+- Approval-template (DoR compliance may require approval)
+
+**Satellites:**
+- None (DoR is atomic definition document)
+
 ## Purpose
 - Kryteria wejścia przed rozpoczęciem prac
 
