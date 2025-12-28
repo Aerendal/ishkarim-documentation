@@ -2,6 +2,19 @@
 
 Analiza zależności między dokumentami na podstawie sekcji Cross-References.
 
+**158 dokumentów | 1367 połączeń | 8 grafów wizualizacyjnych**
+
+## Spis treści grafów
+
+- **Graf A**: Przedprodukcyjna - workflow dokumentów przedprodukcyjnych
+- **Graf B**: Produkcyjna - workflow dokumentów produkcyjnych
+- **Graf C**: Pełny Graf - top 30 najważniejszych dokumentów z połączeniami
+- **Graf D**: Architecture Transformation Workflow - transformacja architektury
+- **Graf E**: Sprint Types Workflow - różne typy sprintów
+- **Graf F**: Sprint Workflow (Szczegółowy) - pełny cycle dokumentacji sprintowej ⭐ NOWY
+- **Graf G**: Roadmap & Planning Workflow - strategiczne planowanie ⭐ NOWY
+- **Graf H**: Atomic Satellites Network - satelitarne dokumenty atomowe ⭐ NOWY
+
 ## Graf A: Przedprodukcyjna
 
 Workflow dokumentów przedprodukcyjnych (przed realizacją projektu).
@@ -364,135 +377,60 @@ graph TB
 
 ## Statystyki
 
-- Total dokumentów: 132
-- Total dependencies: 376
-- Total impacts: 405
-- Total related: 315
-- Total połączeń: 1096
+- Total dokumentów: 158 (132 + 26 nowych)
+- Total dependencies: 471 (+95)
+- Total impacts: 509 (+104)
+- Total related: 387 (+72)
+- Total połączeń: 1367 (+271)
 - Dokumenty bez dependencies: 18
 - Dokumenty bez impacts: 18
 
-### Najczęściej wymagane dokumenty (top 10):
-  - **PRD** (Product Requirements Document PRD): 20 razy
+### Najczęściej wymagane dokumenty (top 15):
+  - **ROADMAP-PROD** (Product Roadmap): 28 razy (nowy lider!)
+  - **SPRINT-PLAN** (Sprint Plan): 25 razy (nowy!)
+  - **PRD** (Product Requirements Document PRD): 23 razy
   - **PROJECT-CHARTER** (Project Charter): 20 razy
+  - **SPRINT-DOD** (Sprint Definition of Done): 18 razy (nowy!)
+  - **RELEASE-CHECKLIST** (Release Checklist): 17 razy (nowy!)
   - **VISION-DOCUMENT** (Vision Document Extended): 16 razy
   - **TDD** (Technical Design Document TDD): 16 razy
+  - **SPRINT-REVIEW** (Sprint Review): 14 razy (nowy!)
+  - **CAPACITY-PLAN** (Capacity Plan): 12 razy (nowy!)
   - **HIGH-LEVEL-ARCHITECTURE** (High-Level Architecture): 12 razy
   - **BUSINESS-CASE** (Business Case): 11 razy
   - **SECURITY-PLAN** (Security Plan): 11 razy
+  - **RISK-REGISTER** (Risk Register): 10 razy (nowy!)
   - **MARKET-ANALYSIS** (Market Analysis): 10 razy
-  - **BRD** (Basic Requirements Document BRD): 9 razy
-  - **DEPLOYMENT-GUIDE** (Deployment Guide): 8 razy
 
-### Najczęściej blokujące dokumenty (top 10):
+### Najczęściej blokujące dokumenty (top 15):
+  - **ROADMAP-PROD** (Product Roadmap): 10 impacts (nowy lider!)
+  - **POSTMORTEM** (Postmortem Report): 8 impacts (nowy!)
   - **MARKET-ANALYSIS** (Market Analysis): 8 impacts
   - **TIMELINE** (Timeline & Milestones): 8 impacts
+  - **SPRINT-PLAN** (Sprint Plan): 7 impacts (nowy!)
+  - **SPRINT-BACKLOG** (Sprint Backlog): 7 impacts (nowy!)
   - **PRD** (Product Requirements Document PRD): 7 impacts
+  - **KPI-DASHBOARD** (KPI Dashboard Spec): 7 impacts (nowy!)
+  - **RELEASE-CHECKLIST** (Release Checklist): 6 impacts (nowy!)
+  - **CAPACITY-PLAN** (Capacity Plan): 6 impacts (nowy!)
+  - **RISK-REGISTER** (Risk Register): 6 impacts (nowy!)
   - **SECURITY-PLAN** (Security Plan): 6 impacts
   - **RISK-OVERVIEW-TECH** (Risk Overview Techniczny): 6 impacts
   - **SIRP** (Security Incident Response Plan SIRP): 6 impacts
-  - **LEGAL-REGISTER** (Legal & Regulatory Register): 5 impacts
-  - **TDD** (Technical Design Document TDD): 5 impacts
-  - **RESOURCE-REQUIREMENTS** (Resource Requirements): 5 impacts
-  - **VENDOR-MANAGEMENT-PLAN** (Vendor Management Plan): 5 impacts
+  - **MIGRATION-PLAN** (Migration Plan): 5 impacts (nowy!)
 
 ### Typy relacji:
-  - **informs**: 443
-  - **influences**: 226
-  - **requires**: 214
-  - **blocks**: 74
+  - **informs**: 575 (+132)
+  - **influences**: 298 (+72)
+  - **requires**: 310 (+96)
+  - **blocks**: 109 (+35)
 
 ### Kategorie dokumentów:
-  - Przedprodukcyjna: 25
-  - Produkcyjna: 63
+  - Przedprodukcyjna: 26 (+1 - Roadmap Product)
+  - Produkcyjna: 80 (+17 - Sprints, Roadmaps, Migration)
   - Branżowa: 13
-  - Supporting: 33
-
-## Nowe dokumenty dodane (16 templates)
-
-### Sprint Documentation (5)
-1. **SPRINT-CORE** - Główny dokument sprintu
-   - Dependencies: PRD, SPRINT-PLANNING, TEAM-CAPACITY
-   - Impacts: SPRINT-BOARD, DAILY-STANDUP, SPRINT-RETRO, BURNDOWN-CHART
-   - Related: SPRINT-DISCOVERY, SPRINT-HARDENING, SPRINT-RELEASE, SPRINT-INFRA
-
-2. **SPRINT-DISCOVERY** - Sprint odkrywczy
-   - Dependencies: PRODUCT-ROADMAP, RESEARCH-QUESTIONS, HYPOTHESIS
-   - Impacts: EXPERIMENT-RESULTS, PROTOTYPE, LEARNINGS-DOC, PIVOT-DECISION
-   - Related: SPRINT-CORE, INNOVATION-ROADMAP
-
-3. **SPRINT-HARDENING** - Sprint stabilizacyjny
-   - Dependencies: BUG-BACKLOG, TECH-DEBT-REGISTER, QUALITY-METRICS
-   - Impacts: BUGFIX-LOG, STABILITY-REPORT, PERFORMANCE-BASELINE, REFACTORING-TASKS
-   - Related: SPRINT-CORE, TEST-PLAN
-
-4. **SPRINT-RELEASE** - Sprint wydaniowy
-   - Dependencies: RELEASE-CHECKLIST, DEPLOYMENT-PLAN, ROLLBACK-PLAN
-   - Impacts: RELEASE-NOTES, DEPLOYMENT-LOG, GO-LIVE-REPORT, POST-DEPLOYMENT-METRICS
-   - Related: SPRINT-CORE, RELEASE-MANAGEMENT-PLAN
-
-5. **SPRINT-INFRA** - Sprint infrastrukturalny
-   - Dependencies: INFRASTRUCTURE-ROADMAP, PLATFORM-REQUIREMENTS, DEVOPS-BACKLOG
-   - Impacts: INFRASTRUCTURE-CHANGES, CI-CD-IMPROVEMENTS, PLATFORM-UPGRADES, TOOLING-UPDATES
-   - Related: SPRINT-CORE, DEPLOYMENT-GUIDE
-
-### Architecture & Analysis (7)
-6. **AS-IS-ARCHITECTURE** - Dokumentacja aktualnego stanu architektury
-   - Dependencies: CODEBASE, DEPLOYMENT-CONFIGS, SYSTEM-MONITORING, EXISTING-DOCS
-   - Impacts: TO-BE-ARCHITECTURE, PROBLEMS-ANALYSIS, REFACTORING-PROCESS, MIGRATION-PLAN
-   - Related: TECHNICAL-DEBT, ARCHITECTURE-REVIEW
-
-7. **TO-BE-ARCHITECTURE** - Dokumentacja docelowego stanu architektury
-   - Dependencies: AS-IS-ARCHITECTURE, PROBLEMS-ANALYSIS, BUSINESS-REQUIREMENTS, TECH-VISION
-   - Impacts: REFACTORING-PROCESS, MIGRATION-PLAN, ADR, IMPLEMENTATION-PLAN
-   - Related: HIGH-LEVEL-ARCHITECTURE, SYSTEM-DESIGN
-
-8. **PROBLEMS-ANALYSIS** - Analiza problemów w obecnej architekturze
-   - Dependencies: AS-IS-ARCHITECTURE, CODE-REVIEW, TEST-RESULTS, INCIDENT-REPORTS
-   - Impacts: REFACTORING-PROCESS, TO-BE-ARCHITECTURE, TECH-DEBT-REGISTER, IMPROVEMENT-BACKLOG
-   - Related: ROOT-CAUSE-ANALYSIS, ANTI-PATTERNS
-
-9. **REFACTORING-PROCESS** - Proces refaktoringu i transformacji
-   - Dependencies: TO-BE-ARCHITECTURE, PROBLEMS-ANALYSIS, TEAM-CAPACITY, RISK-ASSESSMENT
-   - Impacts: IMPLEMENTATION-PLAN, MIGRATION-TASKS, QUALITY-GATES, ROLLOUT-SCHEDULE
-   - Related: CHANGE-MANAGEMENT, CODE-QUALITY-PLAN
-
-10. **ANTI-PATTERNS** - Katalog anty-wzorców i strategii naprawczych
-    - Dependencies: AS-IS-ARCHITECTURE, CODE-REVIEW, BEST-PRACTICES-GUIDE
-    - Impacts: PROBLEMS-ANALYSIS, REFACTORING-PROCESS, CODE-QUALITY-GATES, TRAINING-MATERIALS
-    - Related: DESIGN-PATTERNS, CODING-STANDARDS
-
-11. **INTEGRATION-POINTS** - Specyfikacja punktów integracji i kontraktów
-    - Dependencies: TO-BE-ARCHITECTURE, AS-IS-ARCHITECTURE, MODULE-BOUNDARIES
-    - Impacts: API-DOCUMENTATION, CONTRACT-TESTS, INTEGRATION-TESTS, INTERFACE-SPECS
-    - Related: SERVICE-CONTRACTS, API-DESIGN
-
-12. **MODULE-ANALYSIS-ROADMAP** - Roadmapa analizy i transformacji modułów
-    - Dependencies: AS-IS-ARCHITECTURE, TO-BE-ARCHITECTURE, PROBLEMS-ANALYSIS, TEAM-CAPACITY
-    - Impacts: REFACTORING-PROCESS, MODULE-MIGRATION-PLAN, DEPENDENCY-BREAKING-TASKS
-    - Related: TECHNICAL-ROADMAP, SPRINT-PLANNING
-
-### Operations & Rules (2)
-13. **PLAYBOOK-INCIDENT** - Playbook reakcji na incydenty
-    - Dependencies: RUNBOOK, MONITORING-PLAN, BCP, ON-CALL-SCHEDULE
-    - Impacts: INCIDENT-LOG, POST-MORTEM, ESCALATION-PROCEDURE, COMMUNICATION-TEMPLATE
-    - Related: SIRP, DISASTER-RECOVERY
-
-14. **RULES-SPECIFICATION** - Specyfikacja reguł biznesowych
-    - Dependencies: BRD, PRD, DATA-MODEL, BUSINESS-LOGIC
-    - Impacts: RULES-ENGINE-IMPLEMENTATION, RULE-TESTS, AUDIT-LOG, DECISION-TABLES
-    - Related: BUSINESS-RULES, VALIDATION-LOGIC
-
-### Supporting/Meta (2)
-15. **DOCUMENTATION-META** - Meta-szablon definiujący strukturę dokumentacji
-    - Dependencies: PROJECT-CHARTER, DOCUMENTATION-STANDARDS, QUALITY-CRITERIA
-    - Impacts: ALL-OTHER-DOCUMENTS, DOCUMENTATION-QUALITY-REPORT, TEMPLATE-LIBRARY
-    - Related: DOCUMENTATION-PLAN, KNOWLEDGE-MANAGEMENT
-
-16. **SYSTEM-TESTS-FRAMEWORK** - Framework testów systemu (L1)
-    - Dependencies: SYSTEM-REQUIREMENTS, ARCHITECTURE-DOC, QUALITY-ATTRIBUTES-SPEC
-    - Impacts: TEST-IMPLEMENTATION, CI-CD-PIPELINE, TEST-REPORTS, QUALITY-GATES
-    - Related: TEST-PLAN, QA-STRATEGY
+  - Supporting: 31 (-2, przesunięte do produkcyjnej)
+  - Atomic: 8 (nowa kategoria - satelity)
 
 ## Graf D: Architecture Transformation Workflow
 
@@ -676,68 +614,323 @@ graph TB
     class SPRINT_INFRA,INFRA_ROADMAP,PLATFORM_REQ,DEVOPS_BACKLOG infra
 ```
 
-## Podsumowanie aktualizacji (2025-12-27)
+## Graf F: Sprint Workflow (Szczegółowy)
+
+Pełny workflow dokumentacji sprintowej - od planowania przez wykonanie do retrospektywy.
+
+```mermaid
+graph TB
+    ROADMAP_PROD["Product Roadmap"]
+    PRD["PRD"]
+    PREV_SPRINT["Previous Sprint"]
+
+    SPRINT_PLAN["Sprint Plan"]
+    SPRINT_DOR["Sprint DoR"]
+    SPRINT_DOD["Sprint DoD"]
+
+    SPRINT_BACKLOG["Sprint Backlog"]
+    TODO_PRD["TODO-PRD-*"]
+    TODO_TDD["TODO-TDD-*"]
+
+    SPRINT_IMPEDIMENTS["Impediments Log"]
+    SPRINT_METRICS["Sprint Metrics"]
+    SPRINT_SCOPE_CHANGE["Scope Change Request"]
+
+    SPRINT_REVIEW["Sprint Review"]
+    SPRINT_RETRO["Sprint Retro"]
+    SPRINT_ACTION_ITEMS["Action Items"]
+    SPRINT_APPROVAL["Sprint Approval"]
+
+    NEXT_SPRINT["Next Sprint Plan"]
+
+    ROADMAP_PROD -->|requires| SPRINT_PLAN
+    PRD -->|requires| SPRINT_PLAN
+    PREV_SPRINT -->|influences| SPRINT_PLAN
+
+    SPRINT_PLAN -->|requires| SPRINT_DOR
+    SPRINT_PLAN -->|requires| SPRINT_DOD
+    SPRINT_PLAN -->|blocks| SPRINT_BACKLOG
+
+    SPRINT_DOR -->|blocks| SPRINT_BACKLOG
+    TODO_PRD -->|influences| SPRINT_BACKLOG
+    TODO_TDD -->|influences| SPRINT_BACKLOG
+
+    SPRINT_BACKLOG -->|influences| SPRINT_IMPEDIMENTS
+    SPRINT_BACKLOG -->|informs| SPRINT_METRICS
+
+    SPRINT_IMPEDIMENTS -->|informs| SPRINT_REVIEW
+    SPRINT_IMPEDIMENTS -->|influences| SPRINT_SCOPE_CHANGE
+
+    SPRINT_SCOPE_CHANGE -->|blocks| SPRINT_BACKLOG
+    SPRINT_SCOPE_CHANGE -->|influences| SPRINT_PLAN
+
+    SPRINT_METRICS -->|informs| SPRINT_REVIEW
+    SPRINT_METRICS -->|informs| SPRINT_RETRO
+
+    SPRINT_PLAN -->|requires| SPRINT_REVIEW
+    SPRINT_BACKLOG -->|requires| SPRINT_REVIEW
+    SPRINT_DOD -->|requires| SPRINT_REVIEW
+
+    SPRINT_REVIEW -->|informs| SPRINT_RETRO
+    SPRINT_REVIEW -->|blocks| SPRINT_APPROVAL
+    SPRINT_REVIEW -->|influences| SPRINT_ACTION_ITEMS
+
+    SPRINT_IMPEDIMENTS -->|influences| SPRINT_RETRO
+    SPRINT_RETRO -->|blocks| SPRINT_ACTION_ITEMS
+    SPRINT_RETRO -->|informs| SPRINT_APPROVAL
+
+    SPRINT_DOD -->|blocks| SPRINT_APPROVAL
+    SPRINT_APPROVAL -->|informs| NEXT_SPRINT
+
+    SPRINT_REVIEW -->|informs| NEXT_SPRINT
+    SPRINT_ACTION_ITEMS -->|informs| NEXT_SPRINT
+
+    classDef planning fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef execution fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef tracking fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    classDef closure fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef external fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+
+    class SPRINT_PLAN,SPRINT_DOR,SPRINT_DOD planning
+    class SPRINT_BACKLOG,TODO_PRD,TODO_TDD execution
+    class SPRINT_IMPEDIMENTS,SPRINT_METRICS,SPRINT_SCOPE_CHANGE tracking
+    class SPRINT_REVIEW,SPRINT_RETRO,SPRINT_ACTION_ITEMS,SPRINT_APPROVAL closure
+    class ROADMAP_PROD,PRD,PREV_SPRINT,NEXT_SPRINT external
+```
+
+## Graf G: Roadmap & Planning Workflow
+
+Workflow planowania strategicznego i roadmapowego - od roadmapy przez capacity planning do realizacji.
+
+```mermaid
+graph TB
+    VISION["Vision Document"]
+    BIZ_CASE["Business Case"]
+
+    ROADMAP_PROD["Product Roadmap"]
+
+    CAPACITY_PLAN["Capacity Plan"]
+    RISK_REGISTER["Risk Register"]
+    KPI_DASHBOARD["KPI Dashboard Spec"]
+
+    RELEASE_CHECKLIST["Release Checklist"]
+    SPRINT_PLAN["Sprint Plan"]
+
+    POSTMORTEM["Postmortem Report"]
+
+    ROADMAP_UPDATE["Roadmap Updates"]
+
+    VISION -->|requires| ROADMAP_PROD
+    BIZ_CASE -->|requires| ROADMAP_PROD
+
+    ROADMAP_PROD -->|blocks| CAPACITY_PLAN
+    ROADMAP_PROD -->|blocks| RISK_REGISTER
+    ROADMAP_PROD -->|blocks| KPI_DASHBOARD
+
+    CAPACITY_PLAN -->|influences| ROADMAP_PROD
+    RISK_REGISTER -->|influences| ROADMAP_PROD
+
+    ROADMAP_PROD -->|influences| SPRINT_PLAN
+    ROADMAP_PROD -->|influences| RELEASE_CHECKLIST
+
+    KPI_DASHBOARD -->|influences| ROADMAP_PROD
+
+    RELEASE_CHECKLIST -->|influences| POSTMORTEM
+    POSTMORTEM -->|influences| RISK_REGISTER
+    POSTMORTEM -->|influences| ROADMAP_UPDATE
+
+    SPRINT_PLAN -->|informs| KPI_DASHBOARD
+
+    classDef strategic fill:#e1f5ff,stroke:#01579b,stroke-width:3px
+    classDef planning fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    classDef execution fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    classDef feedback fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+
+    class VISION,BIZ_CASE,ROADMAP_PROD strategic
+    class CAPACITY_PLAN,RISK_REGISTER,KPI_DASHBOARD planning
+    class SPRINT_PLAN,RELEASE_CHECKLIST execution
+    class POSTMORTEM,ROADMAP_UPDATE feedback
+```
+
+## Graf H: Atomic Satellites Network
+
+Satelitarne dokumenty atomowe wspierające główne dokumenty projektowe.
+
+```mermaid
+graph TB
+    subgraph Parent_Docs["Parent Documents"]
+        PRD["PRD"]
+        TDD["TDD"]
+        SPRINT_PLAN["Sprint Plan"]
+        ROADMAP["Roadmap"]
+        RELEASE["Release Checklist"]
+    end
+
+    subgraph Atomic_Satellites["Atomic Satellites"]
+        TODO["TODO Template"]
+        DOR["DoR Template"]
+        DOD["DoD Template"]
+        APPROVAL["Approval Template"]
+        EVIDENCE["Evidence Template"]
+        RISK_ITEM["Risk Item Template"]
+        REL_ATOM["Release Checklist Atom"]
+        POST_ATOM["Postmortem Atom"]
+    end
+
+    PRD -.->|generates| TODO
+    TDD -.->|generates| TODO
+    SPRINT_PLAN -.->|generates| TODO
+
+    PRD -.->|requires| DOR
+    SPRINT_PLAN -.->|requires| DOR
+
+    PRD -.->|requires| DOD
+    SPRINT_PLAN -.->|requires| DOD
+
+    PRD -.->|requires| APPROVAL
+    TDD -.->|requires| APPROVAL
+    ROADMAP -.->|requires| APPROVAL
+
+    TODO -.->|produces| EVIDENCE
+    RELEASE -.->|requires| EVIDENCE
+
+    PRD -.->|identifies| RISK_ITEM
+    TDD -.->|identifies| RISK_ITEM
+
+    RELEASE -.->|uses| REL_ATOM
+
+    RELEASE -.->|triggers| POST_ATOM
+
+    TODO -->|validated by| DOR
+    TODO -->|completed per| DOD
+    APPROVAL -.->|references| EVIDENCE
+    POST_ATOM -.->|generates| TODO
+
+    classDef parent fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef atomic fill:#ffecb3,stroke:#ff6f00,stroke-width:1px,stroke-dasharray: 5 5
+
+    class PRD,TDD,SPRINT_PLAN,ROADMAP,RELEASE parent
+    class TODO,DOR,DOD,APPROVAL,EVIDENCE,RISK_ITEM,REL_ATOM,POST_ATOM atomic
+```
+
+## Podsumowanie aktualizacji (2025-12-28)
 
 ### Dodane dokumenty
-Zaktualizowano graf zależności o 16 nowych szablonów dokumentacji:
+Zaktualizowano graf zależności o **26 nowych szablonów dokumentacji**:
 
-**Sprint Documentation (5 templates):**
-- SPRINT-CORE: Główny dokument sprintu (backlog, cel, team)
-- SPRINT-DISCOVERY: Sprint odkrywczy (research, eksperymenty)
-- SPRINT-HARDENING: Sprint stabilizacyjny (bugfixy, performance)
-- SPRINT-RELEASE: Sprint wydaniowy (deployment, rollout)
-- SPRINT-INFRA: Sprint infrastrukturalny (DevOps, platformy)
+**Sprint Documentation (11 templates):**
+- SPRINT-PLAN: Główny plan sprintu z celem, zakresem i capacity
+- SPRINT-BACKLOG: Lista zadań do wykonania w sprincie
+- SPRINT-DOR: Definition of Ready - kryteria gotowości zadań
+- SPRINT-DOD: Definition of Done - kryteria zakończenia
+- SPRINT-IMPEDIMENTS: Log blokerów i przeszkód
+- SPRINT-REVIEW: Review realizacji sprintu ze stakeholderami
+- SPRINT-RETRO: Retrospektywa procesu i improvements
+- SPRINT-ACTION-ITEMS: Action items z review i retro
+- SPRINT-SCOPE-CHANGE: Change requests dla scope'u sprintu
+- SPRINT-METRICS: Velocity, burndown, quality metrics
+- SPRINT-APPROVAL: Formalne zatwierdzenie i sign-off sprintu
 
-**Architecture & Analysis (7 templates):**
-- AS-IS-ARCHITECTURE: Dokumentacja obecnego stanu architektury
-- TO-BE-ARCHITECTURE: Dokumentacja docelowej architektury
-- PROBLEMS-ANALYSIS: Analiza problemów architektonicznych
-- REFACTORING-PROCESS: Proces refaktoringu i transformacji
-- ANTI-PATTERNS: Katalog anty-wzorców i strategii naprawczych
-- INTEGRATION-POINTS: Specyfikacja punktów integracji i kontraktów
-- MODULE-ANALYSIS-ROADMAP: Roadmapa analizy i transformacji modułów
+**Roadmap & Planning (6 templates):**
+- ROADMAP-PRODUCT: Product Roadmap z milestones i epics
+- CAPACITY-PLAN: Plan capacity i FTE demand przez milestones
+- RISK-REGISTER: Rejestr ryzyk roadmapowych
+- RELEASE-CHECKLIST: Checklist wydania (pre-freeze, release, post)
+- POSTMORTEM-TEMPLATE: Postmortem po incydentach/release
+- KPI-DASHBOARD-SPEC: Specyfikacja KPI i dashboardów
 
-**Operations & Rules (2 templates):**
-- PLAYBOOK-INCIDENT: Playbook reakcji na incydenty
-- RULES-SPECIFICATION: Specyfikacja reguł biznesowych
+**Atomic Satellites (8 templates):**
+- TODO-TEMPLATE: Atomowe zadania do wykonania
+- DOR-TEMPLATE: Definition of Ready (atomowy)
+- DOD-TEMPLATE: Definition of Done (atomowy)
+- APPROVAL-TEMPLATE: Formalne zatwierdzenia
+- EVIDENCE-TEMPLATE: Dowody i artefakty
+- RISK-ITEM-TEMPLATE: Pojedyncze ryzyka
+- RELEASE-CHECKLIST-ATOM: Atomowy checklist release
+- POSTMORTEM-ATOM: Atomowy postmortem
 
-**Supporting/Meta (2 templates):**
-- DOCUMENTATION-META: Meta-szablon struktury dokumentacji
-- SYSTEM-TESTS-FRAMEWORK: Framework testów systemu (L1)
+**Migration (1 template):**
+- MIGRATION-PLAN-DOC: Plan migracji systemów i danych
 
 ### Nowe grafy wizualizacyjne
-- **Graf D**: Architecture Transformation Workflow - pokazuje przepływ od AS-IS przez PROBLEMS-ANALYSIS i TO-BE do REFACTORING-PROCESS
-- **Graf E**: Sprint Types Workflow - pokazuje różne typy sprintów i ich powiązania
+- **Graf F**: Sprint Workflow (Szczegółowy) - pełny flow 11 dokumentów sprintowych od planowania do approval
+- **Graf G**: Roadmap & Planning Workflow - strategiczny workflow od Vision przez Roadmap do execution
+- **Graf H**: Atomic Satellites Network - satelitarne dokumenty atomowe wspierające parent documents
 
 ### Statystyki po aktualizacji
-- Total dokumentów: **132** (+16)
-- Total dependencies: **376** (+45)
-- Total impacts: **405** (+56)
-- Total related: **315** (+38)
-- Total połączeń: **1096** (+139)
+- Total dokumentów: **158** (+26, wzrost o 20%)
+- Total dependencies: **471** (+95, wzrost o 25%)
+- Total impacts: **509** (+104, wzrost o 26%)
+- Total related: **387** (+72, wzrost o 23%)
+- Total połączeń: **1367** (+271, wzrost o 25%)
 
 ### Kategorie dokumentów po aktualizacji
-- Przedprodukcyjna: 25 (bez zmian)
-- Produkcyjna: **63** (+16)
+- Przedprodukcyjna: **26** (+1 - Roadmap Product)
+- Produkcyjna: **80** (+17 - Sprints, Roadmaps, Migration)
 - Branżowa: 13 (bez zmian)
-- Supporting: **33** (+2)
+- Supporting: **31** (-2, przesunięte do produkcyjnej)
+- **Atomic: 8** (nowa kategoria satelitów)
 
 ### Kluczowe workflow dodane
-1. **Architecture Transformation**: AS-IS → PROBLEMS → TO-BE → REFACTORING → IMPLEMENTATION
-2. **Sprint Variants**: Core Sprint powiązany z Discovery, Hardening, Release i Infra sprints
-3. **Module Analysis**: Roadmapa transformacji modułów wspierająca refactoring
+1. **Sprint Cycle**: PLAN → BACKLOG → EXECUTION → REVIEW → RETRO → ACTION ITEMS → APPROVAL → NEXT SPRINT
+2. **Strategic Planning**: VISION → ROADMAP → CAPACITY/RISK/KPI → SPRINT EXECUTION → POSTMORTEM → ROADMAP UPDATE
+3. **Atomic Satellites**: Parent docs (PRD, TDD, Sprint) generują TODO/DoR/DoD/Approval/Evidence satellites
+4. **Migration Workflow**: AS-IS → TO-BE → MIGRATION PLAN → IMPLEMENTATION → TESTING → ROLLBACK READINESS
 
-### Nowe punkty integracji
-- Sprint documentation integruje się z PRD, Planning i Capacity management
-- Architecture docs tworzą kompletny workflow transformacji
-- Testing framework łączy się z CI/CD i Quality Gates
-- Rules specification wspiera automatyzację biznesową
+### Nowe dokumenty w TOP rankingu
+**ROADMAP-PROD** jest nowym liderem (28 dependencies)! Inne nowe dokumenty w top 15:
+- SPRINT-PLAN (#2 z 25 deps)
+- SPRINT-DOD (#5 z 18 deps)
+- RELEASE-CHECKLIST (#6 z 17 deps)
+- SPRINT-REVIEW (#9 z 14 deps)
+- CAPACITY-PLAN (#10 z 12 deps)
+- RISK-REGISTER (#14 z 10 deps)
 
 ### Impact na istniejące dokumenty
-Nowe templates zwiększają połączenia z istniejącymi dokumentami:
-- **PRD**: Nowe zależności od sprint docs
-- **TDD**: Powiązania z integration points
-- **TEST-PLAN**: Rozszerzenie przez system tests framework
-- **DEPLOYMENT-GUIDE**: Połączenie z sprint release i infra
-- **RUNBOOK**: Powiązanie z incident playbook
-- **ADR**: Wpływ z TO-BE architecture
+Nowe templates znacząco zwiększają połączenia z istniejącymi dokumentami:
+- **PRD**: Teraz 23 dependencies (było 20) - nowe od Sprint Plan, Roadmap
+- **TDD**: Połączenia z Sprint Backlog (TODO-TDD) i Migration Plan
+- **TEST-PLAN**: Wpływ z Release Checklist i Migration testing
+- **DEPLOYMENT-GUIDE**: Zależności od Release Checklist i Migration phases
+- **RUNBOOK**: Połączenia z Postmortem i Release Checklist
+- **MONITORING-PLAN**: Wpływ z KPI Dashboard i Postmortem
+
+### Nowe punkty integracji
+- **Sprint → Roadmap**: Sprint metrics wpływają na roadmap timeline i priorities
+- **Roadmap → Capacity**: Roadmap milestones definiują capacity demand
+- **Risk Register → Postmortem**: Materialized risks trigger postmortems
+- **KPI Dashboard → Roadmap**: Underperforming KPIs force roadmap adjustments
+- **Atomic Satellites → Parents**: TODO/DoR/DoD/Evidence wspierają wszystkie główne docs
+
+### Nowe kategorie dokumentacji
+
+#### Sprints (11 docs)
+Kompletny zestaw dokumentacji sprintowej dla zespołów Agile. Pokrywa pełny cycle: planning → execution → review → retrospective → approval.
+
+**Kluczowe połączenia:**
+- Input: ROADMAP-PROD, PRD (wymagania)
+- Output: SPRINT-METRICS, SPRINT-ACTION-ITEMS (feedback loop)
+- Satelity: TODO, DoR, DoD, Approval, Evidence
+
+#### Roadmaps (6 docs)
+Strategic planning layer łączący Vision/Business Case z execution (Sprints, Releases).
+
+**Kluczowe połączenia:**
+- Input: VISION, BUSINESS-CASE
+- Output: SPRINT-PLAN, RELEASE-CHECKLIST, CAPACITY-PLAN
+- Feedback: POSTMORTEM, KPI-DASHBOARD
+
+#### Atomic Satellites (8 docs)
+Lekkie, reusable templates wspierające główne dokumenty jako satellites.
+
+**Pattern użycia:**
+- Każdy parent doc (PRD, TDD, Sprint, Roadmap) może mieć własne TODO/DoR/DoD/Approval/Evidence satellites
+- Path: `satellites/{type}/{PARENT-DOC-ID}-{TYPE}-*.md`
+- Umożliwiają granular tracking bez przeładowania parent docs
+
+#### Migration (1 doc)
+Specjalistyczny dokument dla migration projects, łączący AS-IS → TO-BE z execution plan.
+
+**Kluczowe połączenia:**
+- Input: AS-IS-ARCHITECTURE, TO-BE-ARCHITECTURE, REFACTORING-PROCESS
+- Output: IMPLEMENTATION-PLAN, TEST-PLAN, DEPLOYMENT-GUIDE, ROLLBACK-PLAN
