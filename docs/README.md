@@ -26,7 +26,7 @@ docs/
 ├── satellites/           (43 files) - Supporting artifacts (evidence, approvals, todos)
 ├── proposals/            (5 files)  - System enhancement proposals
 ├── canvases/             (1 file)   - Visual documentation
-└── templates/            (174 files)- Reusable templates framework
+└── templates/            (184 files)- Reusable templates framework (173 templates + 11 READMEs)
 ```
 
 ### Mapowanie folderów do faz projektu
@@ -40,7 +40,7 @@ docs/
 | **Cross-cutting** | [satellites/](satellites/) | ✅ Active | Evidence (32), Approvals (6), TODOs (3), QA (1), Decisions (1) |
 | **Meta** | [proposals/](proposals/) | 💡 Proposals | 5 enhancement proposals for template system |
 | **Visualization** | [canvases/](canvases/) | ✅ Active | Project-Overview.canvas (Obsidian visual graph) |
-| **Templates** | [templates/](templates/) | ✅ Complete | 174 reusable templates (10 categories) |
+| **Templates** | [templates/](templates/) | ✅ Complete | 173 reusable templates (10 categories) |
 
 ---
 

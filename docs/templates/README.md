@@ -43,7 +43,7 @@ templates/
 | **[specs/](specs/)** | 4 | System foundation | Doc types, error codes, gates, satellites |
 | **[migration/](migration/)** | 1 | System migration | Migration planning (AS-IS → TO-BE) |
 
-**Total:** 174 template files (168 templates + 4 specs + 2 meta)
+**Total:** 184 total .md files (173 templates + 11 READMEs)
 
 ---
 
@@ -160,7 +160,8 @@ Parent Doc (e.g., PRD)
 
 ### Coverage
 
-- **Liczba szablonów:** 174 (complete template system)
+- **Liczba szablonów:** 173 (complete template system)
+- **Total plików .md:** 184 (173 templates + 11 READMEs)
 - **Pokrycie lifecycle:** 100% (discovery → design → execution → production)
 - **Dependency connections:** 1,367 (w dependency_graph.md)
 - **Template categories:** 10 głównych folderów
@@ -397,7 +398,7 @@ System "Archivista Żywego Zapisu" (in development):
 ## 📈 Success Criteria
 
 **Template system healthy when:**
-- [x] 174 templates covering full lifecycle ✅
+- [x] 173 templates covering full lifecycle ✅
 - [x] All 10 folder READMEs exist ✅
 - [x] Specs define all doc types ✅
 - [x] Examples demonstrate best practices ✅
