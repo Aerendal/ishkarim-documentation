@@ -1,9 +1,178 @@
 ---
 id: API-SPEC-001
-title: "API-SPEC-001: API Specifications"
+title: "API-SPEC-001: Internal API Specifications"
 type: api-spec
-status: draft
+domain: architecture
+status: approved
+created: 2025-12-26
+updated: 2025-12-29
+owner: Tech Lead
 parent: TDD-001-V2
+decision_date: 2025-12-26
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: draft
+  status_changed_date: "2025-12-26"
+  status_reason: "API contracts approved - all 6 components can proceed with implementation"
+  next_review_date: "2026-06-26"
+  review_frequency: "semi-annual"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: "2025-12-26"
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+  note: "Central API contract - long-lived with semi-annual reviews"
+
+# Version Metadata (Semantic Versioning)
+version: "1.0.0"
+version_metadata:
+  major: 1
+  minor: 0
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  note: "API contracts approved and frozen - components can implement against stable interfaces"
+
+version_history:
+  - version: "1.0.0"
+    date: "2025-12-26"
+    author: "Tech Lead"
+    type: "major"
+    summary: "API contracts approved - all component interfaces defined"
+    breaking: false
+    changes:
+      - "Zdefiniowano ParserAPI (parse_document, parse_string, extract_frontmatter, parse_sections, detect_references)"
+      - "Zdefiniowano ValidatorAPI (validate_document, load_schema, check_required_sections, detect_placeholders, check_evidence_notes, check_storytelling, check_alternatives, check_postmortem)"
+      - "Zdefiniowano GraphBuilderAPI (build_graph, add_document, remove_document, detect_cycles, calculate_hierarchy, find_path, get_subgraph)"
+      - "Zdefiniowano GapEngineAPI (detect_all_gaps, detect_graph_gaps, detect_validator_gaps, generate_remediation, prioritize_gaps, generate_todo_list)"
+      - "Zdefiniowano GateManagerAPI (check_gate, evaluate_dor, evaluate_dod)"
+      - "Zdefiniowano StorageAPI (get_document, search_documents, save_document, rebuild_index, get_provenance)"
+      - "Zdefiniowano GUI Signal/Slot interface (MainWindow signals: document_selected, gap_selected, remediation_requested)"
+      - "Zdefiniowano BaseDomain ABC (validate_domain_rules, get_templates)"
+      - "Określono performance targets dla każdego API"
+      - "Zdefiniowano error codes i APIError hierarchy"
+    impacts:
+      - id: "COMP-001-parser"
+        impact_type: "unblocked"
+        description: "Parser może implementować ParserAPI zgodnie z kontraktem"
+      - id: "COMP-002-validator"
+        impact_type: "unblocked"
+        description: "Validator może implementować ValidatorAPI zgodnie z kontraktem"
+      - id: "COMP-003-graph"
+        impact_type: "unblocked"
+        description: "Graph Builder może implementować GraphBuilderAPI zgodnie z kontraktem"
+      - id: "COMP-004-gap-engine"
+        impact_type: "unblocked"
+        description: "Gap Engine może implementować GapEngineAPI zgodnie z kontraktem"
+      - id: "COMP-005-gui"
+        impact_type: "unblocked"
+        description: "GUI może implementować MainWindow interface zgodnie z kontraktem"
+      - id: "COMP-006-storage"
+        impact_type: "unblocked"
+        description: "Storage może implementować StorageAPI zgodnie z kontraktem"
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending:
+    - id: "DATA-MODEL-001"
+      change_type: "requires"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Tech Lead"
+      acknowledged_date: "2025-12-26"
+      note: "API używa data models (Document, Gap, Section, etc.) - jeśli DATA-MODEL-001 nie istnieje, należy utworzyć"
+  downstream_impacts_pending:
+    - id: "COMP-001-parser"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Parser implementuje ParserAPI - może rozpocząć implementację"
+    - id: "COMP-002-validator"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Validator implementuje ValidatorAPI - może rozpocząć implementację"
+    - id: "COMP-003-graph"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Graph Builder implementuje GraphBuilderAPI - może rozpocząć implementację"
+    - id: "COMP-004-gap-engine"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Gap Engine implementuje GapEngineAPI - może rozpocząć implementację"
+    - id: "COMP-005-gui"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "GUI implementuje MainWindow interface - może rozpocząć implementację"
+    - id: "COMP-006-storage"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Storage implementuje StorageAPI - może rozpocząć implementację"
+
+# Document Health
+document_health:
+  status: "warning"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 180
+      days_since_modified: 3
+      note: "API specs have longer freshness threshold (180 days) - reviewed semi-annually"
+
+    - name: "Dependency Validity"
+      status: "warning"
+      invalid_dependencies:
+        - "DATA-MODEL-001 (not found - may need to be created)"
+      all_dependencies_valid: false
+      note: "DATA-MODEL-001 referenced ale nie znaleziony - należy utworzyć lub usunąć dependency"
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Tech Lead"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "healthy"
+      missing_sections: []
+      completeness: "100%"
+      note: "All 8 API contracts defined (Parser, Validator, Graph, Gap, Gate, Storage, GUI, Domain)"
+
+    - name: "Upstream Changes Pending"
+      status: "warning"
+      pending_changes: 1
+      note: "Awaiting DATA-MODEL-001 definition (or removal if not needed)"
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+      note: "Evidence E-157 supports API design evaluation"
+
+# Deprecation
+deprecation: null
 
 dependencies:
   - id: "DATA-MODEL-001"
