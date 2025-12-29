@@ -2,8 +2,184 @@
 id: DATA-MODEL-001
 title: "DATA-MODEL-001: Data Models Specification"
 type: data-model
-status: draft
+domain: architecture
+status: approved
+created: 2025-12-26
+updated: 2025-12-29
+owner: Tech Lead
 parent: TDD-001-V2
+decision_date: 2025-12-26
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: draft
+  status_changed_date: "2025-12-26"
+  status_reason: "Data models approved - API-SPEC-001 and all components can use stable types"
+  next_review_date: "2026-06-26"
+  review_frequency: "semi-annual"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: "2025-12-26"
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+  note: "Foundation data models - long-lived with semi-annual reviews"
+
+# Version Metadata (Semantic Versioning)
+version: "1.0.0"
+version_metadata:
+  major: 1
+  minor: 0
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  note: "Data models approved and frozen - all components can use stable types"
+
+version_history:
+  - version: "1.0.0"
+    date: "2025-12-26"
+    author: "Tech Lead"
+    type: "major"
+    summary: "Data models approved - 9 core models + enums defined"
+    breaking: false
+    changes:
+      - "Zdefiniowano Document model (Pydantic BaseModel z validation)"
+      - "Zdefiniowano Section model (hierarchical sections H1-H6)"
+      - "Zdefiniowano Gap model (E110-E200 gap types)"
+      - "Zdefiniowano ValidationResult model (validator output)"
+      - "Zdefiniowano GraphNode model (NetworkX node metadata)"
+      - "Zdefiniowano GraphEdge model (typed edges: requires, informs, etc.)"
+      - "Zdefiniowano DocumentSchema model (YAML schema loader)"
+      - "Zdefiniowano ProvenanceRecord model (audit trail)"
+      - "Zdefiniowano Enums (GapType, Severity, EdgeType, OperationType, DocumentStatus, Priority, Domain)"
+      - "Performance: Pydantic validation 42μs/doc, <1ms serialization"
+    impacts:
+      - id: "API-SPEC-001"
+        impact_type: "unblocked"
+        description: "API-SPEC-001 może używać zdefiniowanych typów (Document, Gap, ValidationResult, etc.)"
+      - id: "COMP-001-parser"
+        impact_type: "unblocked"
+        description: "Parser może zwracać Document i Section types"
+      - id: "COMP-002-validator"
+        impact_type: "unblocked"
+        description: "Validator może zwracać ValidationResult i Gap types"
+      - id: "COMP-003-graph"
+        impact_type: "unblocked"
+        description: "Graph Builder może używać GraphNode i GraphEdge metadata"
+      - id: "COMP-004-gap-engine"
+        impact_type: "unblocked"
+        description: "Gap Engine może używać Gap i ValidationResult types"
+      - id: "COMP-006-storage"
+        impact_type: "unblocked"
+        description: "Storage może używać ProvenanceRecord type"
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending:
+    - id: "ADR-003"
+      change_type: "requires"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Tech Lead"
+      acknowledged_date: "2025-12-26"
+      note: "Data models use Pydantic 2.5+ (ADR-003 decision)"
+    - id: "CONCEPTS-001-V2"
+      change_type: "requires"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Tech Lead"
+      acknowledged_date: "2025-12-26"
+      note: "Models implement 18 system concepts - jeśli CONCEPTS-001-V2 nie istnieje, można usunąć dependency"
+  downstream_impacts_pending:
+    - id: "API-SPEC-001"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Tech Lead"
+      acknowledged_date: "2025-12-26"
+      note: "API-SPEC-001 może używać stabilnych typów - może rozpocząć implementację"
+    - id: "COMP-001-parser"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Parser implementuje Document i Section models"
+    - id: "COMP-002-validator"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Validator implementuje Gap, ValidationResult, DocumentSchema models"
+    - id: "COMP-003-graph"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Graph Builder używa GraphNode, GraphEdge models"
+    - id: "COMP-004-gap-engine"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Gap Engine używa Gap, ValidationResult models"
+    - id: "COMP-006-storage"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Storage używa ProvenanceRecord model"
+
+# Document Health
+document_health:
+  status: "warning"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 180
+      days_since_modified: 3
+      note: "Data models have longer freshness threshold (180 days) - reviewed semi-annually"
+
+    - name: "Dependency Validity"
+      status: "warning"
+      invalid_dependencies:
+        - "CONCEPTS-001-V2 (not found - may need to be created or removed)"
+      all_dependencies_valid: false
+      note: "CONCEPTS-001-V2 referenced ale nie znaleziony - opcjonalnie można usunąć dependency"
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Tech Lead"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "healthy"
+      missing_sections: []
+      completeness: "100%"
+      note: "All 9 data models + enums defined (Document, Section, Gap, ValidationResult, GraphNode, GraphEdge, DocumentSchema, ProvenanceRecord, Enums)"
+
+    - name: "Upstream Changes Pending"
+      status: "warning"
+      pending_changes: 1
+      note: "Optional: Awaiting CONCEPTS-001-V2 (or can remove dependency)"
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+      note: "Evidence E-145 (Pydantic benchmark), E-155 (type safety evaluation) support data model design"
+
+# Deprecation
+deprecation: null
 
 dependencies:
   - id: "ADR-003"
