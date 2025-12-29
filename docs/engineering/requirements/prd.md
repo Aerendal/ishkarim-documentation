@@ -3,14 +3,116 @@ id: PRD-001-V2
 title: "Product Requirements Document - System Zarządzania Dokumentacją (Proof System)"
 type: prd
 domain: requirements
-status: req-freeze
+status: approved
 created: 2025-12-26
-updated: 2025-12-26
+updated: 2025-12-29
 owner: "Zespół Produktowy"
 phase: requirements
 priority: critical
 requirements_frozen_date: 2025-12-26
 frozen_by: ["Product Owner", "Tech Lead"]
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: req-freeze
+  status_changed_date: "2025-12-29"
+  status_reason: "Migracja do Living Documentation Framework - req-freeze mapowany na approved"
+  next_review_date: "2026-01-29"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: "2025-12-26"
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+
+# Version Metadata (Semantic Versioning)
+version: "2.0.0"
+version_metadata:
+  major: 2
+  minor: 0
+  patch: 0
+  breaking_changes: true
+  backward_compatible_with: []
+  breaking_changes_from: "1.x.x"
+
+version_history:
+  - version: "2.0.0"
+    date: "2025-12-26"
+    author: "Zespół Produktowy"
+    type: "major"
+    summary: "Wersja V2 - kompletny PRD z zamrożonymi wymaganiami (95 FR)"
+    breaking: true
+    changes:
+      - "Dodano 95 wymagań funkcjonalnych (FR-001 do FR-095)"
+      - "Dodano 15 wymagań niefunkcjonalnych (NFR)"
+      - "Zdefiniowano 3 persony użytkowników"
+      - "Zamrożono wymagania (REQ-FREEZE gate passed)"
+    impacts:
+      - id: "TDD-001-V2"
+        impact_type: "unblocked"
+        description: "Design może rozpocząć się po zamrożeniu wymagań"
+      - id: "TEST-PLAN-001"
+        impact_type: "requires_update"
+        description: "Plan testów wymaga aktualizacji o 95 FR"
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending: []
+  downstream_impacts_pending:
+    - id: "TDD-001-V2"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Tech Lead"
+      acknowledged_date: "2025-12-26"
+      action_taken: "Design started based on frozen requirements"
+
+# Document Health
+document_health:
+  status: "healthy"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 90
+      days_since_modified: 3
+
+    - name: "Dependency Validity"
+      status: "healthy"
+      invalid_dependencies: []
+      all_dependencies_valid: true
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Zespół Produktowy"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "healthy"
+      missing_sections: []
+      completeness: "100%"
+
+    - name: "Upstream Changes Pending"
+      status: "healthy"
+      pending_changes: 0
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+      satellite_coverage: "100%"
+
+# Deprecation
+deprecation: null
 
 gate_history:
   - gate: REQ-FREEZE
