@@ -84,8 +84,11 @@ gates:
 
   # === Concept Exploration Workflow Gates (PROPOZYCJA-4) ===
 
+  # Tech Exploration Workflow Gates
   GATE-HYPOTHESIS_REVIEW:
-    description: "Hypothesis validation checkpoint (Tech Exploration / Business Innovation)"
+    description: "Hypothesis validation checkpoint (Tech Exploration)"
+    workflow: WF-TECH-EXPLORATION
+    phase: discovery
     required_documents:
       - {doctype: HYPOTHESIS-DOC, min_status: approved}
     required_rules:
@@ -94,34 +97,176 @@ gates:
     required_satellites:
       - {kind: APPROVAL, for_doctypes: [HYPOTHESIS-DOC]}
     approvers: ["Research Lead", "Product Owner"]
+    decision_options: ["Proceed to Spike/PoC", "Reject hypothesis"]
 
   GATE-VALIDATION_GATE:
     description: "Research validation checkpoint (Tech Exploration)"
+    workflow: WF-TECH-EXPLORATION
+    phase: analysis
     required_documents:
       - {doctype: RESEARCH-FINDINGS, min_status: approved}
+    required_rules:
+      - RULE-RF-VALIDATION-THRESHOLD
     required_satellites:
       - {kind: EVIDENCE, for_doctypes: [RESEARCH-FINDINGS]}
       - {kind: APPROVAL, for_doctypes: [RESEARCH-FINDINGS]}
     approvers: ["Tech Lead", "Product Owner"]
+    decision_options: ["Proceed to ADR", "More Research", "Pivot"]
 
+  GATE-DECISION_APPROVAL:
+    description: "Architecture decision approval (Tech Exploration)"
+    workflow: WF-TECH-EXPLORATION
+    phase: decision
+    required_documents:
+      - {doctype: ADR, min_status: approved}
+    required_satellites:
+      - {kind: APPROVAL, for_doctypes: [ADR]}
+      - {kind: EVIDENCE, for_doctypes: [ADR]}
+    approvers: ["Tech Lead", "Architect", "Product Owner"]
+    decision_options: ["Proceed to TDD", "Re-evaluate"]
+
+  # Business Innovation Workflow Gates
+  GATE-HYPOTHESIS_VALIDATION:
+    description: "Business hypothesis validation (Business Innovation)"
+    workflow: WF-BUSINESS-INNOVATION
+    phase: ideation
+    required_documents:
+      - {doctype: HYPOTHESIS-DOC, min_status: approved}
+    required_rules:
+      - RULE-HYP-TESTABLE
+      - RULE-HYP-SUCCESS-CRITERIA
+      - RULE-HYP-CUSTOMER-VALIDATION
+    required_satellites:
+      - {kind: APPROVAL, for_doctypes: [HYPOTHESIS-DOC]}
+    approvers: ["Product Owner", "Business Lead"]
+    decision_options: ["Proceed to Market Research", "Pivot"]
+
+  GATE-MARKET_VALIDATION:
+    description: "Market & customer validation (Business Innovation)"
+    workflow: WF-BUSINESS-INNOVATION
+    phase: validation
+    required_documents:
+      - {doctype: RESEARCH-FINDINGS, min_status: approved}
+      - {doctype: MARKET-ANALYSIS, min_status: approved}
+    required_rules:
+      - RULE-MARKET-TAM-MIN
+      - RULE-CUSTOMER-VALIDATION-THRESHOLD
+    required_satellites:
+      - {kind: EVIDENCE, for_doctypes: [RESEARCH-FINDINGS, MARKET-ANALYSIS]}
+      - {kind: APPROVAL, for_doctypes: [RESEARCH-FINDINGS, MARKET-ANALYSIS]}
+    approvers: ["Product Owner", "Business Lead", "Investor (if applicable)"]
+    decision_options: ["Proceed to Feasibility", "Pivot to different segment"]
+
+  GATE-FEASIBILITY_CHECK:
+    description: "Feasibility assessment (Business Innovation)"
+    workflow: WF-BUSINESS-INNOVATION
+    phase: validation
+    required_documents:
+      - {doctype: FEASIBILITY, min_status: approved}
+    required_rules:
+      - RULE-FEASIBILITY-TECHNICAL
+      - RULE-FEASIBILITY-ECONOMIC
+      - RULE-FEASIBILITY-LEGAL
+    required_satellites:
+      - {kind: APPROVAL, for_doctypes: [FEASIBILITY]}
+      - {kind: EVIDENCE, for_doctypes: [FEASIBILITY]}
+    approvers: ["CTO", "CFO", "Legal"]
+    decision_options: ["Proceed to Go/No-Go", "Re-scope", "Terminate"]
+
+  # Risk Mitigation Workflow Gates
   GATE-OPTIONS_IDENTIFIED:
     description: "Alternative options identified (Risk Mitigation)"
+    workflow: WF-RISK-MITIGATION
+    phase: exploration
     required_documents:
       - {doctype: ALTERNATIVE-EXPLORATION, min_status: approved}
     required_rules:
       - RULE-ALT-MIN-3-OPTIONS
     required_satellites:
       - {kind: APPROVAL, for_doctypes: [ALTERNATIVE-EXPLORATION]}
-    approvers: ["Decision Owner"]
+    approvers: ["Risk Owner", "Decision Owner"]
+    decision_options: ["Proceed to Analysis", "More Research"]
+
+  GATE-DECISION_REVIEW:
+    description: "Trade-off analysis review (Risk Mitigation)"
+    workflow: WF-RISK-MITIGATION
+    phase: analysis
+    required_documents:
+      - {doctype: TRADE-OFF-ANALYSIS, min_status: approved}
+    required_rules:
+      - RULE-TRADEOFF-CLEAR-WINNER
+    required_satellites:
+      - {kind: APPROVAL, for_doctypes: [TRADE-OFF-ANALYSIS]}
+    approvers: ["Risk Owner", "Tech Lead", "Business Owner"]
+    decision_options: ["Proceed to Decision", "Re-evaluate weights"]
+
+  GATE-APPROVAL:
+    description: "Mitigation approach approval (Risk Mitigation)"
+    workflow: WF-RISK-MITIGATION
+    phase: decision
+    required_documents:
+      - {doctype: ADR, min_status: approved}
+    optional_documents:
+      - {doctype: DECISION-LOG, min_status: approved}
+    required_satellites:
+      - {kind: APPROVAL, for_doctypes: [ADR]}
+    approvers: ["CTO", "Risk Owner", "Compliance (if applicable)"]
+    decision_options: ["Proceed to Implementation", "Reconsider"]
+
+  # Parallel Branching Workflow Gates
+  GATE-BRANCH_CREATION:
+    description: "Concept branch creation (Parallel Branching)"
+    workflow: WF-PARALLEL-BRANCHING
+    phase: fork
+    required_documents:
+      - {doctype: HYPOTHESIS-DOC, min_status: approved}
+      - {doctype: CONCEPT-BRANCH, min_status: approved, min_count: 2}
+    required_rules:
+      - RULE-BRANCH-CLEAR-DIVERGENCE
+      - RULE-BRANCH-RESOURCES-ALLOCATED
+    required_satellites:
+      - {kind: APPROVAL, for_doctypes: [CONCEPT-BRANCH]}
+    approvers: ["Research Lead", "Resource Manager"]
+    decision_options: ["Proceed with parallel exploration"]
+
+  GATE-MID_POINT_REVIEW:
+    description: "Mid-point progress check (Parallel Branching)"
+    workflow: WF-PARALLEL-BRANCHING
+    phase: exploration
+    timing: "Week 2-3 (mid-point)"
+    required_documents:
+      - {doctype: EXPERIMENT-LOG, min_status: in-progress, per_branch: true}
+    required_rules:
+      - RULE-BRANCH-PROGRESS-CHECK
+    approvers: ["Research Lead"]
+    decision_options: ["Continue all branches", "Kill underperforming branch"]
+
+  GATE-RESULTS_REVIEW:
+    description: "Branch results review (Parallel Branching)"
+    workflow: WF-PARALLEL-BRANCHING
+    phase: comparison
+    required_documents:
+      - {doctype: RESEARCH-FINDINGS, min_status: approved}
+      - {doctype: TRADE-OFF-ANALYSIS, min_status: approved}
+    required_rules:
+      - RULE-BRANCH-FAIR-COMPARISON
+    required_satellites:
+      - {kind: EVIDENCE, for_doctypes: [RESEARCH-FINDINGS]}
+      - {kind: APPROVAL, for_doctypes: [RESEARCH-FINDINGS, TRADE-OFF-ANALYSIS]}
+    approvers: ["Research Lead", "CTO"]
+    decision_options: ["Proceed to Merge/Kill"]
 
   GATE-MERGE_KILL_DECISION:
     description: "Concept branch merge/kill decision (Parallel Branching)"
+    workflow: WF-PARALLEL-BRANCHING
+    phase: merge_kill
     required_documents:
       - {doctype: RESEARCH-FINDINGS, min_status: approved}
       - {doctype: ADR, min_status: approved}
     required_satellites:
       - {kind: APPROVAL, for_doctypes: [RESEARCH-FINDINGS, ADR]}
     approvers: ["Research Lead", "CTO"]
+    decision_options: ["Merge Branch X", "Kill Branch Y/Z", "Hybrid (X+Y)"]
 
 # Uwaga: Gate-centric reporting
 # Walidator powinien generować raport: które gate'y są zablokowane i przez jakie root-cause błędy.
