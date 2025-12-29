@@ -4,6 +4,7 @@
 python-frontmatter==1.1.0  # Markdown front-matter parsing
 PyYAML==6.0.1              # YAML parsing
 GitPython==3.1.40          # Git operations (for impact propagation)
+watchdog==3.0.0            # File system monitoring (for bidirectional sync)
 
 # Optional dependencies for better terminal output
 rich==13.7.0               # Beautiful terminal formatting
