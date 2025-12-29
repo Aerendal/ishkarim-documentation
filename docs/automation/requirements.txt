@@ -1,0 +1,15 @@
+# Living Documentation Framework - Python Dependencies
+
+# Core dependencies
+python-frontmatter==1.1.0  # Markdown front-matter parsing
+PyYAML==6.0.1              # YAML parsing
+GitPython==3.1.40          # Git operations (for impact propagation)
+
+# Optional dependencies for better terminal output
+rich==13.7.0               # Beautiful terminal formatting
+
+# Development dependencies
+pytest==7.4.3              # Testing framework
+pytest-cov==4.1.0          # Coverage reporting
+black==23.12.1             # Code formatting
+mypy==1.7.1                # Type checking

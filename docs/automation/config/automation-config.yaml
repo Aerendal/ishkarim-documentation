@@ -1,0 +1,67 @@
+# Living Documentation Framework - Automation Configuration
+
+# Health Check Thresholds
+health_check:
+  freshness_thresholds:
+    prd: 90          # days
+    tdd: 90
+    adr: 365         # ADRs are long-lived, reviewed annually
+    vision: 180      # Vision reviewed semi-annually
+    business-case: 90
+    default: 90
+
+  severity_levels:
+    critical:
+      - "required_sections_missing"
+      - "owner_unassigned"
+      - "broken_dependencies"
+    warning:
+      - "stale_document"
+      - "missing_satellites"
+      - "pending_upstream_changes"
+    info:
+      - "all_healthy"
+
+# Impact Propagation Rules
+impact_propagation:
+  version_bump_triggers:
+    major:
+      - "breaking_change"
+      - "scope_pivoted"
+      - "section_removed"
+      - "dependency_removed"
+    minor:
+      - "section_added"
+      - "dependency_added"
+      - "scope_expanded"
+    patch:
+      - "typo_fix"
+      - "formatting_change"
+      - "clarification"
+
+  severity_mapping:
+    major: "high"
+    minor: "medium"
+    patch: "low"
+
+# GitHub Integration
+github:
+  create_issues: true
+  issue_labels:
+    - "living-documentation"
+    - "health-check"
+  assignees: []  # Empty = use document owner
+
+# Notification Channels (Future)
+notifications:
+  email:
+    enabled: false
+    smtp_server: "smtp.example.com"
+    smtp_port: 587
+    from: "ishkarim-bot@example.com"
+    to: []
+
+  slack:
+    enabled: false
+    webhook_url: ""
+    channel: "#living-documentation"
