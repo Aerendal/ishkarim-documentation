@@ -5,11 +5,124 @@ type: adr
 domain: architecture
 status: approved
 created: 2025-12-26
-updated: 2025-12-26
+updated: 2025-12-29
 decision_date: 2025-12-22
 author: ["Tech Lead"]
 reviewers: ["Senior Dev", "Product Owner"]
 parent: TDD-001-V2
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: draft
+  status_changed_date: "2025-12-22"
+  status_reason: "Decision approved after hybrid storage prototype - Markdown + SQLite selected"
+  next_review_date: "2026-12-22"
+  review_frequency: "annual"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: "2025-12-22"
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+  note: "ADRs are typically long-lived - reviewed annually or when triggered"
+
+# Version Metadata (Semantic Versioning)
+version: "1.0.0"
+version_metadata:
+  major: 1
+  minor: 0
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  note: "ADR approved - establishes hybrid storage architecture"
+
+version_history:
+  - version: "1.0.0"
+    date: "2025-12-22"
+    author: "Tech Lead"
+    type: "major"
+    summary: "Decision approved: Hybrid storage (Markdown files + SQLite index)"
+    breaking: false
+    changes:
+      - "Evaluated 4 options: Files Only, Database Only, Hybrid, PostgreSQL"
+      - "Selected Hybrid (Markdown source of truth + SQLite rebuildable cache)"
+      - "Rejected Files Only (8s search vs 60ms target)"
+      - "Rejected Database Only (not Git-friendly, not human-readable)"
+      - "Rejected PostgreSQL (contradicts local-first requirement)"
+    impacts:
+      - id: "COMP-006-storage"
+        impact_type: "unblocked"
+        description: "Storage component can proceed with hybrid architecture"
+      - id: "COMP-001-parser"
+        impact_type: "informs"
+        description: "Parser output format depends on storage schema"
+      - id: "TDD-001-V2"
+        impact_type: "informs"
+        description: "Architecture includes hybrid storage"
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending: []
+  downstream_impacts_pending:
+    - id: "COMP-006-storage"
+      notified_date: "2025-12-22"
+      acknowledged: true
+      acknowledged_by: "Storage Developer"
+      acknowledged_date: "2025-12-22"
+    - id: "COMP-001-parser"
+      notified_date: "2025-12-22"
+      acknowledged: true
+      acknowledged_by: "Parser Developer"
+      acknowledged_date: "2025-12-22"
+
+# Document Health
+document_health:
+  status: "healthy"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 365
+      days_since_modified: 7
+      note: "ADRs have longer freshness threshold (365 days)"
+
+    - name: "Dependency Validity"
+      status: "healthy"
+      invalid_dependencies: []
+      all_dependencies_valid: true
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Tech Lead"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "healthy"
+      missing_sections: []
+      completeness: "100%"
+
+    - name: "Upstream Changes Pending"
+      status: "healthy"
+      pending_changes: 0
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+      note: "Evidence E-146, E-155, E-156, E-157, E-158, E-159 support decision"
+
+# Deprecation
+deprecation: null
 
 # Bramki wejścia
 dependencies:

@@ -2,9 +2,141 @@
 id: ADR-004
 title: "ADR-004: Graph Visualization"
 type: adr
+domain: architecture
 status: approved
+created: 2025-12-26
+updated: 2025-12-29
 decision_date: 2025-12-19
+author: ["Tech Lead"]
 parent: TDD-001-V2
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: draft
+  status_changed_date: "2025-12-19"
+  status_reason: "Decision approved after prototyping - NetworkX + Cytoscape.js selected"
+  next_review_date: "2026-12-19"
+  review_frequency: "annual"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: "2025-12-19"
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+  note: "ADRs are typically long-lived - reviewed annually or when triggered"
+
+# Version Metadata (Semantic Versioning)
+version: "1.0.0"
+version_metadata:
+  major: 1
+  minor: 0
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  note: "ADR approved - establishes graph analysis and visualization libraries"
+
+version_history:
+  - version: "1.0.0"
+    date: "2025-12-19"
+    author: "Tech Lead"
+    type: "major"
+    summary: "Decision approved: NetworkX + Cytoscape.js for graph processing and viz"
+    breaking: false
+    changes:
+      - "Evaluated 4 options: D3.js, vis.js, Cytoscape.js, igraph"
+      - "Selected NetworkX 3.2+ (Python algorithms) + Cytoscape.js 3.26+ (JS viz)"
+      - "Rejected D3.js (too low-level, need custom layouts)"
+      - "Rejected vis.js (less maintained, last release 2021)"
+    impacts:
+      - id: "COMP-003-graph"
+        impact_type: "unblocked"
+        description: "Graph component can proceed with NetworkX + Cytoscape.js"
+      - id: "TDD-001-V2"
+        impact_type: "informs"
+        description: "Architecture includes dual graph libraries (Python + JS)"
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending: []
+  downstream_impacts_pending:
+    - id: "COMP-003-graph"
+      notified_date: "2025-12-19"
+      acknowledged: true
+      acknowledged_by: "Graph Developer"
+      acknowledged_date: "2025-12-19"
+
+# Document Health
+document_health:
+  status: "healthy"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 365
+      days_since_modified: 10
+      note: "ADRs have longer freshness threshold (365 days)"
+
+    - name: "Dependency Validity"
+      status: "healthy"
+      invalid_dependencies: []
+      all_dependencies_valid: true
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Tech Lead"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "healthy"
+      missing_sections: []
+      completeness: "100%"
+
+    - name: "Upstream Changes Pending"
+      status: "healthy"
+      pending_changes: 0
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+      note: "Evidence E-143, E-148, E-165 support decision"
+
+# Deprecation
+deprecation: null
+
+dependencies:
+  - id: "TDD-001-V2"
+    type: requires
+    reason: "Graph visualization requirements defined in TDD"
+  - id: "ADR-001"
+    type: related
+    reason: "QtWebEngine (from PySide6) needed to embed Cytoscape.js"
+
+impacts:
+  - id: "COMP-003-graph"
+    type: blocks
+    until: "ADR-004.status == approved"
+    reason: "Graph implementation needs library choices"
+  - id: "TDD-001-V2"
+    type: informs
+    reason: "Architecture updated with graph libraries"
+
+context_snapshot:
+  date: "2025-12-19"
+  requirements:
+    - "Python library: Rich algorithms (cycle detection, DAG)"
+    - "Visualization: Interactive (zoom, pan, drag), handles 1000+ nodes"
+    - "Performance: < 2s build dla 100 nodes (NFR-002)"
 
 evidence_ids:
   - "E-143"  # NetworkX benchmark (800ms dla 100 nodes)
