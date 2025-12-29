@@ -598,4 +598,144 @@ doctypes:
     dependencies: []
     outputs:
       unlock_gates: []
+
+  # Research Templates (PROPOZYCJA-1 - implemented 2025-12-29)
+
+  HYPOTHESIS_DOC:
+    group: research
+    domain: innovation
+    description: "Hypothesis Document - formalizacja testable hypothesis"
+    file_extensions: [".md"]
+    required_meta: [id, doctype, status, version, owner, project, hypothesis_type]
+    required_sections:
+      - {id: SEC-HYP-CONTEXT, title: "Kontekst i motywacja"}
+      - {id: SEC-HYP-STATEMENT, title: "Stwierdzenie hipotezy (H0/H1)"}
+      - {id: SEC-HYP-ASSUMPTIONS, title: "Założenia"}
+      - {id: SEC-HYP-SUCCESS-CRITERIA, title: "Kryteria sukcesu/porażki"}
+      - {id: SEC-HYP-METHODOLOGY, title: "Metodologia walidacji"}
+      - {id: SEC-HYP-RESOURCES, title: "Wymagane zasoby"}
+      - {id: SEC-HYP-TIMELINE, title: "Timeboxing"}
+    satellites_required: [TODO_SECTION, EVIDENCE, CHANGELOG]
+    dependencies: []
+    outputs:
+      creates_artifacts: [EXPERIMENT_LOG, POC_DOC]
+
+  EXPERIMENT_LOG:
+    group: research
+    domain: innovation
+    description: "Experiment Log - tracking eksperymentów z timestamped observations"
+    file_extensions: [".md"]
+    required_meta: [id, doctype, status, version, owner, project, experiment_id, hypothesis_id]
+    required_sections:
+      - {id: SEC-EXP-HYPOTHESIS, title: "Link do hipotezy"}
+      - {id: SEC-EXP-SETUP, title: "Setup eksperymentu"}
+      - {id: SEC-EXP-PROCEDURE, title: "Procedura wykonania"}
+      - {id: SEC-EXP-OBSERVATIONS, title: "Obserwacje (timestamped)"}
+      - {id: SEC-EXP-DATA, title: "Dane i metryki"}
+      - {id: SEC-EXP-ANALYSIS, title: "Analiza wyników"}
+      - {id: SEC-EXP-CONCLUSION, title: "Wnioski"}
+      - {id: SEC-EXP-NEXT-STEPS, title: "Kolejne kroki"}
+    satellites_required: [EVIDENCE, CHANGELOG]
+    dependencies:
+      - {doctype: HYPOTHESIS_DOC, min_status: approved}
+    outputs:
+      creates_artifacts: [RESEARCH_FINDINGS, ADR]
+
+  POC_DOC:
+    group: research
+    domain: engineering
+    description: "Proof of Concept - validation criteria i decision framework"
+    file_extensions: [".md"]
+    required_meta: [id, doctype, status, version, owner, project, poc_type]
+    required_sections:
+      - {id: SEC-POC-OBJECTIVE, title: "Cel PoC"}
+      - {id: SEC-POC-SCOPE, title: "Zakres (In/Out)"}
+      - {id: SEC-POC-APPROACH, title: "Podejście techniczne"}
+      - {id: SEC-POC-SUCCESS-CRITERIA, title: "Kryteria akceptacji"}
+      - {id: SEC-POC-IMPLEMENTATION, title: "Implementacja (high-level)"}
+      - {id: SEC-POC-RESULTS, title: "Wyniki i metryki"}
+      - {id: SEC-POC-GAPS, title: "Zidentyfikowane luki/ryzyka"}
+      - {id: SEC-POC-RECOMMENDATION, title: "Rekomendacja (Proceed/Pivot/Stop)"}
+      - {id: SEC-POC-NEXT-STEPS, title: "Następne kroki"}
+    satellites_required: [TODO_SECTION, EVIDENCE, APPROVAL, CHANGELOG]
+    dependencies: []
+    outputs:
+      informs_decisions: [ADR, TDD]
+
+  SPIKE_SOLUTION:
+    group: research
+    domain: multi
+    description: "Spike Solution - timeboxed research dla quick questions (max 2-5 dni)"
+    file_extensions: [".md"]
+    required_meta: [id, doctype, status, version, owner, project, spike_type, timebox]
+    required_sections:
+      - {id: SEC-SPIKE-QUESTION, title: "Pytanie badawcze"}
+      - {id: SEC-SPIKE-WHY, title: "Dlaczego teraz (business value)"}
+      - {id: SEC-SPIKE-APPROACH, title: "Podejście"}
+      - {id: SEC-SPIKE-FINDINGS, title: "Odkrycia"}
+      - {id: SEC-SPIKE-ANSWER, title: "Odpowiedź na pytanie"}
+      - {id: SEC-SPIKE-ACTIONS, title: "Akcje wynikowe"}
+    satellites_required: [CHANGELOG]
+    dependencies: []
+    outputs:
+      creates_artifacts: [ADR, USER_STORY, TECH_TASK]
+
+  RESEARCH_FINDINGS:
+    group: research
+    domain: knowledge
+    description: "Research Findings - agregacja wyników z wielu eksperymentów"
+    file_extensions: [".md"]
+    required_meta: [id, doctype, status, version, owner, project, research_area]
+    required_sections:
+      - {id: SEC-RF-SUMMARY, title: "Executive summary wyników"}
+      - {id: SEC-RF-EXPERIMENTS, title: "Przeprowadzone eksperymenty (lista)"}
+      - {id: SEC-RF-KEY-FINDINGS, title: "Kluczowe odkrycia"}
+      - {id: SEC-RF-PATTERNS, title: "Wzorce i trendy"}
+      - {id: SEC-RF-SURPRISES, title: "Niespodzianki i anomalie"}
+      - {id: SEC-RF-IMPLICATIONS, title: "Implikacje dla projektu"}
+      - {id: SEC-RF-RECOMMENDATIONS, title: "Rekomendacje"}
+      - {id: SEC-RF-FUTURE-RESEARCH, title: "Przyszłe badania"}
+    satellites_required: [EVIDENCE, APPROVAL, CHANGELOG]
+    dependencies:
+      - {doctype: EXPERIMENT_LOG, min_status: completed, multiple: true}
+    outputs:
+      informs_decisions: [ADR, PRD, TDD, BUSINESS_CASE]
+
+  ALTERNATIVE_EXPLORATION:
+    group: research
+    domain: decision_support
+    description: "Alternative Exploration - systematyczne porównanie 3-5 alternatyw"
+    file_extensions: [".md"]
+    required_meta: [id, doctype, status, version, owner, project, problem_id]
+    required_sections:
+      - {id: SEC-ALT-PROBLEM, title: "Problem do rozwiązania"}
+      - {id: SEC-ALT-CONSTRAINTS, title: "Ograniczenia i kryteria"}
+      - {id: SEC-ALT-OPTIONS, title: "Zidentyfikowane alternatywy (min 3)"}
+      - {id: SEC-ALT-ANALYSIS, title: "Analiza każdej opcji"}
+      - {id: SEC-ALT-COMPARISON, title: "Porównanie (matrix)"}
+      - {id: SEC-ALT-RECOMMENDATION, title: "Rekomendacja z uzasadnieniem"}
+      - {id: SEC-ALT-REJECTED, title: "Odrzucone opcje i dlaczego"}
+    satellites_required: [TODO_SECTION, EVIDENCE, APPROVAL, CHANGELOG]
+    dependencies: []
+    outputs:
+      creates_artifacts: [ADR, POC_DOC]
+
+  CONCEPT_BRANCH:
+    group: research
+    domain: innovation_management
+    description: "Concept Branch - fork-merge pattern dla parallel research"
+    file_extensions: [".md"]
+    required_meta: [id, doctype, status, version, owner, project, parent_concept, branch_id]
+    required_sections:
+      - {id: SEC-CB-DIVERGENCE, title: "Punkt rozwidlenia (fork point)"}
+      - {id: SEC-CB-RATIONALE, title: "Dlaczego nowa gałąź"}
+      - {id: SEC-CB-APPROACH, title: "Alternatywne podejście"}
+      - {id: SEC-CB-PROGRESS, title: "Progress tracking"}
+      - {id: SEC-CB-LEARNINGS, title: "Learnings vs parent branch"}
+      - {id: SEC-CB-DECISION, title: "Merge/Kill/Continue decision"}
+    satellites_required: [TODO_SECTION, CHANGELOG]
+    dependencies:
+      - {doctype: HYPOTHESIS_DOC, min_status: approved, parent: true}
+    outputs:
+      creates_artifacts: [ADR, RESEARCH_FINDINGS]
 ```
