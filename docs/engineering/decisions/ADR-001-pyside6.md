@@ -5,9 +5,114 @@ type: adr
 domain: architecture
 status: approved
 created: 2025-12-26
+updated: 2025-12-29
 decision_date: 2025-12-18
 author: ["Tech Lead"]
 parent: TDD-001-V2
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: draft
+  status_changed_date: "2025-12-18"
+  status_reason: "Decision approved after evaluation - PySide6 selected"
+  next_review_date: "2026-12-18"
+  review_frequency: "annual"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: "2025-12-18"
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+  note: "ADRs are typically long-lived - reviewed annually or when triggered"
+
+# Version Metadata (Semantic Versioning)
+version: "1.0.0"
+version_metadata:
+  major: 1
+  minor: 0
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  note: "ADR approved - establishes GUI framework choice"
+
+version_history:
+  - version: "1.0.0"
+    date: "2025-12-18"
+    author: "Tech Lead"
+    type: "major"
+    summary: "Decision approved: PySide6 selected as GUI framework"
+    breaking: false
+    changes:
+      - "Evaluated 3 options: Tkinter, PyQt6, PySide6"
+      - "Selected PySide6 (LGPL, QtWebEngine, professional look)"
+      - "Rejected Tkinter (90s look, no web view)"
+      - "Rejected PyQt6 (GPL license issues)"
+    impacts:
+      - id: "COMP-005-gui"
+        impact_type: "unblocked"
+        description: "GUI component design can proceed with PySide6"
+      - id: "TDD-001-V2"
+        impact_type: "informs"
+        description: "Architecture includes PySide6 as GUI framework"
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending: []
+  downstream_impacts_pending:
+    - id: "COMP-005-gui"
+      notified_date: "2025-12-18"
+      acknowledged: true
+      acknowledged_by: "GUI Developer"
+      acknowledged_date: "2025-12-18"
+
+# Document Health
+document_health:
+  status: "healthy"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 365
+      days_since_modified: 11
+      note: "ADRs have longer freshness threshold (365 days)"
+
+    - name: "Dependency Validity"
+      status: "healthy"
+      invalid_dependencies: []
+      all_dependencies_valid: true
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Tech Lead"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "healthy"
+      missing_sections: []
+      completeness: "100%"
+
+    - name: "Upstream Changes Pending"
+      status: "healthy"
+      pending_changes: 0
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+      note: "Evidence E-144, E-160, E-161 support decision"
+
+# Deprecation
+deprecation: null
 
 dependencies:
   - id: "PRD-001-V2"
