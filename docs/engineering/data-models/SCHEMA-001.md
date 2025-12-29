@@ -2,8 +2,130 @@
 id: SCHEMA-001
 title: "SCHEMA-001: Document Type Schemas"
 type: schema
-status: draft
+domain: architecture
+status: approved
+created: 2025-12-26
+updated: 2025-12-29
+owner: Tech Lead
 parent: TDD-001-V2
+decision_date: 2025-12-26
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: draft
+  status_changed_date: "2025-12-26"
+  status_reason: "Schemas approved - Validator can enforce validation rules for all document types"
+  next_review_date: "2026-06-26"
+  review_frequency: "semi-annual"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: "2025-12-26"
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+  note: "Schema definitions - long-lived with semi-annual reviews, versioned for breaking changes"
+
+# Version Metadata (Semantic Versioning)
+version: "1.0.0"
+version_metadata:
+  major: 1
+  minor: 0
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  note: "Schemas approved and frozen - Validator can enforce stable validation rules"
+
+version_history:
+  - version: "1.0.0"
+    date: "2025-12-26"
+    author: "Tech Lead"
+    type: "major"
+    summary: "Schemas approved - 6 document type schemas defined (PRD, TDD, ADR, Component, RFC, Vision)"
+    breaking: false
+    changes:
+      - "Zdefiniowano PRD schema (9 required sections, min_evidence_notes: 10, REQ-FREEZE gate)"
+      - "Zdefiniowano TDD schema (8 required sections, min_evidence_notes: 15, DESIGN-COMPLETE gate)"
+      - "Zdefiniowano ADR schema (4 required sections: Context, Decision, Consequences, Alternatives)"
+      - "Zdefiniowano Component schema (7 sections including Public Interface, Performance, Testing)"
+      - "Zdefiniowano RFC schema (6 sections: Summary, Motivation, Proposal, Drawbacks, Alternatives, Unresolved Questions)"
+      - "Zdefiniowano Vision schema (5 required sections: Vision Statement, Target Users, Value Proposition, Roadmap, Success Criteria)"
+      - "Określono gap detection config (E110-E200) dla każdego typu dokumentu"
+      - "Określono quality gates (REQ-FREEZE, DESIGN-COMPLETE, ADR-APPROVED)"
+      - "Określono schema loading strategy (YAML → Pydantic DocumentSchema)"
+    impacts:
+      - id: "COMP-002-validator"
+        impact_type: "unblocked"
+        description: "Validator może ładować i wymuszać schematy dla wszystkich typów dokumentów"
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending:
+    - id: "DATA-MODEL-001"
+      change_type: "requires"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Tech Lead"
+      acknowledged_date: "2025-12-26"
+      note: "Schemas validate against DocumentSchema Pydantic model"
+    - id: "COMP-002-validator"
+      change_type: "requires"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Validator loads and enforces these schemas"
+  downstream_impacts_pending: []
+
+# Document Health
+document_health:
+  status: "healthy"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 180
+      days_since_modified: 3
+      note: "Schemas have longer freshness threshold (180 days) - reviewed semi-annually"
+
+    - name: "Dependency Validity"
+      status: "healthy"
+      invalid_dependencies: []
+      all_dependencies_valid: true
+      note: "All dependencies valid (DATA-MODEL-001, COMP-002-validator)"
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Tech Lead"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "healthy"
+      missing_sections: []
+      completeness: "100%"
+      note: "All 6 document type schemas defined (PRD, TDD, ADR, Component, RFC, Vision)"
+
+    - name: "Upstream Changes Pending"
+      status: "healthy"
+      pending_changes: 0
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+      note: "Evidence E-156 supports schema design evaluation"
+
+# Deprecation
+deprecation: null
 
 dependencies:
   - id: "DATA-MODEL-001"
