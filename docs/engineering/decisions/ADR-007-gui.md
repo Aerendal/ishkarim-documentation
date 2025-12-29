@@ -2,9 +2,142 @@
 id: ADR-007
 title: "ADR-007: GUI Architecture Pattern"
 type: adr
+domain: architecture
 status: approved
+created: 2025-12-26
+updated: 2025-12-29
 decision_date: 2025-12-21
+author: ["Tech Lead"]
 parent: TDD-001-V2
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: draft
+  status_changed_date: "2025-12-21"
+  status_reason: "Decision approved after prototype - Model-View pattern selected"
+  next_review_date: "2026-12-21"
+  review_frequency: "annual"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: "2025-12-21"
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+  note: "ADRs are typically long-lived - reviewed annually or when triggered"
+
+# Version Metadata (Semantic Versioning)
+version: "1.0.0"
+version_metadata:
+  major: 1
+  minor: 0
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  note: "ADR approved - establishes GUI architecture pattern"
+
+version_history:
+  - version: "1.0.0"
+    date: "2025-12-21"
+    author: "Tech Lead"
+    type: "major"
+    summary: "Decision approved: Model-View pattern (Qt's natural pattern)"
+    breaking: false
+    changes:
+      - "Evaluated 3 options: MVC, MVVM, Model-View"
+      - "Selected Model-View (Qt Signal/Slot = implicit controller)"
+      - "Rejected MVC (explicit controller redundant with Qt Signal/Slot)"
+      - "Rejected MVVM (overkill for desktop app, designed for WPF/XAML)"
+    impacts:
+      - id: "COMP-005-gui"
+        impact_type: "unblocked"
+        description: "GUI component can proceed with Model-View pattern"
+      - id: "TDD-001-V2"
+        impact_type: "informs"
+        description: "Architecture uses Model-View pattern"
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending: []
+  downstream_impacts_pending:
+    - id: "COMP-005-gui"
+      notified_date: "2025-12-21"
+      acknowledged: true
+      acknowledged_by: "GUI Developer"
+      acknowledged_date: "2025-12-21"
+
+# Document Health
+document_health:
+  status: "healthy"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 365
+      days_since_modified: 8
+      note: "ADRs have longer freshness threshold (365 days)"
+
+    - name: "Dependency Validity"
+      status: "healthy"
+      invalid_dependencies: []
+      all_dependencies_valid: true
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Tech Lead"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "healthy"
+      missing_sections: []
+      completeness: "100%"
+
+    - name: "Upstream Changes Pending"
+      status: "healthy"
+      pending_changes: 0
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+      note: "Evidence E-150, E-166 support decision"
+
+# Deprecation
+deprecation: null
+
+dependencies:
+  - id: "TDD-001-V2"
+    type: requires
+    reason: "GUI architecture requirements defined in TDD"
+  - id: "ADR-001"
+    type: related
+    reason: "PySide6 framework (from ADR-001) enables Model-View pattern"
+
+impacts:
+  - id: "COMP-005-gui"
+    type: blocks
+    until: "ADR-007.status == approved"
+    reason: "GUI implementation needs architecture pattern choice"
+  - id: "TDD-001-V2"
+    type: informs
+    reason: "Architecture updated with Model-View pattern"
+
+context_snapshot:
+  date: "2025-12-21"
+  requirements:
+    - "Separation of concerns (business logic ≠ UI code)"
+    - "Testable (unit test business logic without GUI)"
+    - "Maintainable (standard pattern, not custom)"
+    - "Qt-idiomatic (leverage framework, don't fight it)"
 
 evidence_ids:
   - "E-150"  # Architecture prototype (Model-View working)
