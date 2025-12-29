@@ -1,0 +1,143 @@
+name: Living Documentation - Auto Health Check & Impact Propagation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**/*.md'
+      - '!docs/templates/**'  # Exclude templates
+  schedule:
+    # Daily health check at 9 AM UTC
+    - cron: '0 9 * * *'
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  health-check:
+    name: Document Health Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          cd docs
+          pip install -r automation/requirements.txt
+
+      - name: Run health check
+        id: health
+        run: |
+          cd docs
+          python automation/scripts/health_check.py --format json > health-report.json
+          python automation/scripts/health_check.py --format markdown > health-report.md
+
+      - name: Upload health report
+        uses: actions/upload-artifact@v4
+        with:
+          name: health-report
+          path: docs/health-report.*
+
+      - name: Check for critical issues
+        run: |
+          cd docs
+          CRITICAL=$(python automation/scripts/health_check.py --critical-only --format json | jq '.critical_count')
+          echo "Critical issues: $CRITICAL"
+
+          if [ "$CRITICAL" -gt 0 ]; then
+            echo "::warning::Found $CRITICAL documents with critical health issues"
+          fi
+
+  impact-propagation:
+    name: Impact Propagation Check
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'  # Only on pushes, not scheduled
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Fetch last 2 commits to detect changes
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          cd docs
+          pip install -r automation/requirements.txt
+
+      - name: Run impact propagation check
+        id: impact
+        run: |
+          cd docs
+          python automation/scripts/impact_propagation.py --check-all --since-hours 24 --format json > impact-report.json
+
+      - name: Send Slack notification (if critical)
+        if: env.SLACK_WEBHOOK_URL != ''
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          cd docs
+          CRITICAL=$(cat impact-report.json | jq '[.impact_reports[] | select(.severity == "critical")] | length')
+
+          if [ "$CRITICAL" -gt 0 ]; then
+            python automation/scripts/notification_sender.py \
+              --channel slack \
+              --webhook "$SLACK_WEBHOOK_URL" \
+              --message "🚨 **$CRITICAL critical document impacts detected!** Check GitHub Actions for details." \
+              --severity critical
+          fi
+
+      - name: Upload impact report
+        uses: actions/upload-artifact@v4
+        with:
+          name: impact-report
+          path: docs/impact-report.json
+
+  deprecation-check:
+    name: Deprecation & Sunset Check
+    runs-on: ubuntu-latest
+    if: github.event.schedule == '0 9 * * *'  # Only on daily schedule
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          cd docs
+          pip install -r automation/requirements.txt
+
+      - name: Check for upcoming sunsets
+        run: |
+          cd docs
+          python automation/scripts/deprecation_workflow.py --check-sunsets > sunset-warnings.txt
+          cat sunset-warnings.txt
+
+      - name: Create GitHub issue for sunsets (if any)
+        if: env.GITHUB_TOKEN != ''
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd docs
+          SUNSET_COUNT=$(cat sunset-warnings.txt | grep -c "📄" || true)
+
+          if [ "$SUNSET_COUNT" -gt 0 ]; then
+            ISSUE_BODY=$(cat sunset-warnings.txt)
+            python automation/scripts/notification_sender.py \
+              --channel github \
+              --message "$ISSUE_BODY"
+          fi

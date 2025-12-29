@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Documentation - Health Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.2/dist/vis-network.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/vis-network@9.1.2/dist/dist/vis-network.min.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>📊 Living Documentation Dashboard</h1>
+            <div class="header-info">
+                <span id="last-update">Last update: Loading...</span>
+                <button id="refresh-btn" onclick="loadDashboard()">🔄 Refresh</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Health Summary Section -->
+        <section class="dashboard-section">
+            <h2>📈 Health Summary</h2>
+            <div class="stats-grid">
+                <div class="stat-card healthy">
+                    <div class="stat-value" id="healthy-count">-</div>
+                    <div class="stat-label">Healthy Documents</div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-value" id="warning-count">-</div>
+                    <div class="stat-label">Warnings</div>
+                </div>
+                <div class="stat-card critical">
+                    <div class="stat-value" id="critical-count">-</div>
+                    <div class="stat-label">Critical Issues</div>
+                </div>
+                <div class="stat-card total">
+                    <div class="stat-value" id="total-count">-</div>
+                    <div class="stat-label">Total Documents</div>
+                </div>
+            </div>
+
+            <!-- Health Score Chart -->
+            <div class="chart-container">
+                <canvas id="healthScoreChart"></canvas>
+            </div>
+        </section>
+
+        <!-- Deprecation Warnings Section -->
+        <section class="dashboard-section">
+            <h2>⚠️ Deprecation Warnings</h2>
+            <div id="deprecation-warnings" class="warning-list">
+                <p class="loading">Loading deprecation warnings...</p>
+            </div>
+        </section>
+
+        <!-- Impact Graph Section -->
+        <section class="dashboard-section">
+            <h2>🔗 Document Impact Graph</h2>
+            <div class="graph-controls">
+                <label>
+                    <input type="checkbox" id="show-deprecated" checked>
+                    Show deprecated documents
+                </label>
+                <label>
+                    <input type="checkbox" id="show-satellites" checked>
+                    Show satellite documents
+                </label>
+            </div>
+            <div id="impact-graph" class="graph-container"></div>
+        </section>
+
+        <!-- Recent Changes Section -->
+        <section class="dashboard-section">
+            <h2>🕐 Recent Changes (Last 24h)</h2>
+            <div id="recent-changes" class="changes-list">
+                <p class="loading">Loading recent changes...</p>
+            </div>
+        </section>
+
+        <!-- Health Issues Details -->
+        <section class="dashboard-section">
+            <h2>🔍 Health Issues Details</h2>
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="freshness">Freshness</button>
+                <button class="filter-btn" data-filter="dependencies">Dependencies</button>
+                <button class="filter-btn" data-filter="cross-references">Cross-References</button>
+                <button class="filter-btn" data-filter="owner">Owner</button>
+            </div>
+            <div id="health-issues" class="issues-list">
+                <p class="loading">Loading health issues...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Living Documentation Framework - Phase 2 Automation</p>
+            <p>Auto-refresh: <span id="auto-refresh-status">Every 15 minutes</span></p>
+        </div>
+    </footer>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,181 @@
+# Living Documentation Framework - Configuration
+# Phase 2 Automation Settings
+
+# Health Check Configuration
+health_check:
+  # Freshness thresholds (days)
+  freshness_warning: 30   # Warn if not modified in 30 days
+  freshness_critical: 90  # Critical if not modified in 90 days
+
+  # Dependency check settings
+  check_dependencies: true
+  check_cross_references: true
+  check_satellites: true
+
+  # Required checks
+  required_checks:
+    - freshness
+    - dependency_validity
+    - cross_reference_consistency
+    - owner_assignment
+    - required_sections
+    - upstream_changes
+    - satellite_completeness
+
+# Impact Propagation Configuration
+impact_propagation:
+  # Enable/disable impact propagation
+  enabled: true
+
+  # Check interval (hours)
+  check_interval_hours: 24
+
+  # Severity thresholds
+  severity_rules:
+    major_version_bump: "critical"
+    minor_version_bump: "high"
+    patch_version_bump: "medium"
+    new_document: "low"
+
+  # Notification rules
+  notify_on_severity:
+    critical: ["slack", "github"]
+    high: ["slack"]
+    medium: ["email"]
+    low: []
+
+  # Auto-apply changes (dangerous!)
+  auto_apply: false  # Keep false for safety
+
+# Deprecation Workflow Configuration
+deprecation:
+  # Default sunset period (days)
+  default_sunset_days: 90
+
+  # Warning periods (days before sunset)
+  warning_periods:
+    first_warning: 60  # 60 days before sunset
+    second_warning: 30  # 30 days before sunset
+    final_warning: 7   # 7 days before sunset
+
+  # Auto-archive on sunset
+  auto_archive: false  # Manual archiving recommended
+
+  # Deprecation banner template
+  banner_template: |
+    ---
+    ⚠️ **DEPRECATION NOTICE**
+
+    This document is deprecated as of {deprecated_date}.
+
+    **Reason:** {reason}
+
+    **Sunset Date:** {sunset_date} ({days_remaining} days remaining)
+
+    **Migration Target:** [{migration_target}](../{migration_target}.md)
+
+    **Action Required:**
+    - [ ] Review and migrate to new document
+    - [ ] Update all references
+    - [ ] Notify stakeholders
+
+    ---
+
+# Notification Configuration
+notifications:
+  # Slack settings
+  slack:
+    enabled: true
+    webhook_url_env: "SLACK_WEBHOOK_URL"  # Environment variable name
+    channel: "#documentation"
+    username: "Living Docs Bot"
+    icon_emoji: ":books:"
+
+  # Email settings
+  email:
+    enabled: false  # Disable until SMTP configured
+    smtp_server_env: "SMTP_SERVER"
+    smtp_port_env: "SMTP_PORT"
+    from_email_env: "FROM_EMAIL"
+    from_password_env: "FROM_PASSWORD"
+
+    # Daily digest settings
+    daily_digest:
+      enabled: true
+      send_time: "09:00"  # UTC
+      recipients: []  # Add emails here
+
+  # GitHub Issues settings
+  github:
+    enabled: true
+    token_env: "GITHUB_TOKEN"
+    repo_env: "GITHUB_REPO"
+    auto_create_issues: true
+    labels: ["documentation", "automated", "living-docs"]
+
+# Dashboard Configuration
+dashboard:
+  # Enable web dashboard
+  enabled: true
+
+  # Refresh interval (minutes)
+  refresh_interval: 15
+
+  # Display settings
+  show_health_summary: true
+  show_impact_graph: true
+  show_deprecation_warnings: true
+  show_recent_changes: true
+
+  # Chart settings
+  max_graph_nodes: 100  # Limit graph size for performance
+
+# GitHub Actions Configuration
+github_actions:
+  # Enable automated workflows
+  enabled: true
+
+  # Workflows to run
+  workflows:
+    health_check_daily: true
+    impact_propagation_on_push: true
+    deprecation_check_weekly: true
+
+  # Workflow schedule (cron)
+  schedules:
+    health_check: "0 9 * * *"      # Daily at 9 AM UTC
+    deprecation_check: "0 10 * * 1"  # Weekly Monday 10 AM UTC
+
+# Document Types Configuration
+document_types:
+  # Which document types to monitor
+  monitored_types:
+    - PRD
+    - TDD
+    - ADR
+    - BUSINESS_CASE
+    - FEASIBILITY
+    - HYPOTHESIS_DOC
+    - POC_DOC
+    - RESEARCH_FINDINGS
+
+  # Exclude from health checks
+  excluded_types:
+    - TEMPLATE
+    - EXAMPLE
+    - README
+
+# Advanced Settings
+advanced:
+  # Cache settings
+  cache_enabled: true
+  cache_directory: "automation/config"
+  cache_ttl_hours: 24
+
+  # Performance settings
+  max_concurrent_checks: 10
+  timeout_seconds: 30
+
+  # Debug mode
+  debug_mode: false
+  verbose_logging: false

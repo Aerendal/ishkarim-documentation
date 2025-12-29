@@ -20,6 +20,115 @@ Automatyczne sprawdzanie zdrowia dokumentów - 7 kontroli:
 
 Parser dokumentów markdown z YAML front-matter i Living Documentation metadata.
 
+### 3. Impact Propagation (`impact_propagation.py`)
+
+Automatyczne wykrywanie zmian w dokumentach i propagacja impact do downstream documents:
+
+- **Change Detection** - wykrywa zmiany w dokumentach (MD5 checksums)
+- **Severity Calculation** - ocena severity na podstawie version bumps (low/medium/high/critical)
+- **Downstream Notification** - powiadamia downstream documents o zmianach upstream
+- **Impact Reports** - generuje raporty impact dla stakeholders
+- **Auto-notification** - integracja z Slack/Email/GitHub
+
+### 4. Deprecation Workflow (`deprecation_workflow.py`)
+
+Zarządzanie cyklem życia deprecated documents:
+
+- **Deprecation Banners** - automatyczne dodawanie warning banners
+- **Sunset Countdown** - tracking dni do sunset (default: 90 dni)
+- **Migration Guides** - generowanie migration guides
+- **Stakeholder Notification** - powiadamianie downstream documents
+- **Sunset Warnings** - alerty w okresach: 60, 30, 7 dni przed sunset
+
+### 5. Notification Sender (`notification_sender.py`)
+
+Multi-channel notification system:
+
+- **Slack Integration** - webhook-based notifications z severity emojis
+- **Email (SMTP)** - email notifications i daily digests
+- **GitHub Issues** - auto-tworzenie issues dla critical impacts
+- **Severity-based routing** - critical→Slack, medium→email, low→digest
+
+### 6. GitHub Actions Workflow (`.github/workflows/living-docs.yml`)
+
+Automated CI/CD workflow z 3 jobs:
+
+- **health-check** - Daily at 9 AM UTC + on push to docs/**/*.md
+- **impact-propagation** - On every push, detects changes i propaguje impact
+- **deprecation-check** - Weekly Monday 10 AM UTC, sprawdza approaching sunsets
+
+### 7. Health Dashboard (`dashboard/`)
+
+Interactive web dashboard z real-time monitoring:
+
+- **Health Summary** - stats cards (healthy/warning/critical/total)
+- **Health Chart** - doughnut chart z distribution
+- **Impact Graph** - interactive vis.js network graph (hierarchical layout)
+- **Deprecation Warnings** - lista documents approaching sunset
+- **Recent Changes** - last 24h changes timeline
+- **Health Issues Details** - filterable list (freshness/dependencies/cross-refs/owner)
+- **Auto-refresh** - co 15 minut
+
+---
+
+## 🏗️ Architektura
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    Living Documentation Framework                │
+└─────────────────────────────────────────────────────────────────┘
+                                  │
+          ┌───────────────────────┼───────────────────────┐
+          ▼                       ▼                       ▼
+    ┌──────────┐          ┌──────────────┐        ┌────────────┐
+    │  Health  │          │   Impact     │        │Deprecation │
+    │  Check   │          │ Propagation  │        │  Workflow  │
+    └──────────┘          └──────────────┘        └────────────┘
+          │                       │                       │
+          └───────────────────────┼───────────────────────┘
+                                  ▼
+                        ┌──────────────────┐
+                        │  Notification    │
+                        │     Sender       │
+                        └──────────────────┘
+                                  │
+          ┌───────────────────────┼───────────────────────┐
+          ▼                       ▼                       ▼
+     ┌────────┐            ┌──────────┐           ┌──────────┐
+     │ Slack  │            │  Email   │           │ GitHub   │
+     │Webhook │            │  SMTP    │           │ Issues   │
+     └────────┘            └──────────┘           └──────────┘
+
+          ┌───────────────────────────────────────┐
+          │      GitHub Actions Workflow          │
+          │  (Scheduled + On-Push automation)     │
+          └───────────────────────────────────────┘
+                           │
+          ┌────────────────┼────────────────┐
+          ▼                ▼                ▼
+    Daily 9 AM      On every push   Weekly Mon 10 AM
+    Health Check    Impact Check     Deprecation Check
+
+          ┌───────────────────────────────────────┐
+          │         Health Dashboard              │
+          │   (Real-time monitoring web UI)       │
+          └───────────────────────────────────────┘
+                           │
+          ┌────────────────┼────────────────┐
+          ▼                ▼                ▼
+    Health Stats    Impact Graph    Recent Changes
+```
+
+### Workflow
+
+1. **Change Detection**: Impact propagation wykrywa zmiany w dokumentach (MD5 checksums)
+2. **Severity Assessment**: Severity calculation na podstawie version bumps
+3. **Impact Analysis**: Identyfikacja downstream documents przez cross-references
+4. **Health Monitoring**: Health check weryfikuje 7 aspektów każdego dokumentu
+5. **Deprecation Management**: Deprecation workflow zarządza sunset lifecycle
+6. **Notification Routing**: Notifications wysyłane przez właściwy kanał (Slack/Email/GitHub)
+7. **Dashboard Visualization**: Real-time dashboard pokazuje status wszystkich dokumentów
+
 ---
 
 ## 📦 Instalacja
@@ -91,6 +200,130 @@ documents = parser.parse_directory(".", skip_templates=True)
 # Znajdź dokument po ID
 doc = parser.find_document_by_id("PRD-001-V2")
 ```
+
+### Impact Propagation
+
+**Check all documents (last 24h):**
+```bash
+cd docs
+python automation/scripts/impact_propagation.py --check-all --since-hours 24
+```
+
+**Output jako JSON (dla CI/CD):**
+```bash
+python automation/scripts/impact_propagation.py --check-all --format json > impact-report.json
+```
+
+**Actually apply changes (disable dry-run):**
+```bash
+python automation/scripts/impact_propagation.py --check-all --apply
+```
+
+**Przykład output:**
+```
+🔍 Checking for document changes in last 24 hours...
+
+📊 Found 2 changed documents
+
+📄 DOC-PRD-003 (modified)
+   ⚠️  Impacts 3 downstream documents
+      → DOC-TDD-001
+      → DOC-ADR-005
+      → DOC-IMPL-001
+
+📄 DOC-ADR-012 (new)
+   ✅ No downstream impacts
+```
+
+### Deprecation Workflow
+
+**Deprecate document (dry-run):**
+```bash
+cd docs
+python automation/scripts/deprecation_workflow.py \
+  --deprecate DOC-PRD-001 \
+  --reason "Replaced by PRD-003" \
+  --sunset-days 90 \
+  --migration-target DOC-PRD-003
+```
+
+**Actually apply deprecation:**
+```bash
+python automation/scripts/deprecation_workflow.py \
+  --deprecate DOC-PRD-001 \
+  --reason "Replaced by PRD-003" \
+  --apply
+```
+
+**Check for approaching sunsets:**
+```bash
+python automation/scripts/deprecation_workflow.py --check-sunsets
+```
+
+**Generate deprecation banner (preview):**
+```bash
+python automation/scripts/deprecation_workflow.py \
+  --generate-banner DOC-PRD-001 \
+  --reason "Outdated approach" \
+  --sunset-days 60
+```
+
+### Notification Sender
+
+**Test Slack notification:**
+```bash
+export SLACK_WEBHOOK_URL="https://hooks.slack.com/services/..."
+python automation/scripts/notification_sender.py \
+  --channel slack \
+  --message "Test notification" \
+  --severity critical \
+  --test
+```
+
+**Create GitHub issue:**
+```bash
+export GITHUB_TOKEN="ghp_..."
+export GITHUB_REPO="owner/repo"
+python automation/scripts/notification_sender.py \
+  --channel github \
+  --message "Document health check failed" \
+  --severity high \
+  --test
+```
+
+**Send custom message:**
+```bash
+python automation/scripts/notification_sender.py \
+  --channel slack \
+  --message "⚠️ 3 documents approaching sunset!" \
+  --severity warning
+```
+
+### Health Dashboard
+
+**Uruchomienie lokalnie:**
+```bash
+cd docs/automation/dashboard
+
+# Jeśli masz Python http.server
+python -m http.server 8080
+
+# Otworzyj w przeglądarce
+open http://localhost:8080
+```
+
+**Deployment na GitHub Pages:**
+```bash
+# Dashboard jest statyczny HTML/CSS/JS - wystarczy skopiować do gh-pages branch
+cp -r automation/dashboard/* gh-pages/
+```
+
+**Mock data testing:**
+Dashboard automatycznie używa mock data gdy nie znajdzie plików:
+- `automation/reports/health-report.json`
+- `automation/reports/impact-report.json`
+- `automation/reports/deprecation-report.json`
+- `automation/reports/recent-changes.json`
 
 ---
 
@@ -299,11 +532,15 @@ Sprawdź czy dokumenty mają rozszerzone metadane Living Documentation (version_
 
 ## 📈 Roadmap
 
-- [x] Phase 2.1: Core scripts (parser, health check)
-- [ ] Phase 2.2: Impact propagation script
-- [ ] Phase 2.3: GitHub Action workflow
-- [ ] Phase 2.4: Email/Slack notifications
-- [ ] Phase 2.5: Web dashboard
+- [x] Phase 2.1: Core scripts (parser, health check) ✅
+- [x] Phase 2.2: Impact propagation script ✅
+- [x] Phase 2.3: GitHub Action workflow ✅
+- [x] Phase 2.4: Email/Slack notifications ✅
+- [x] Phase 2.5: Web dashboard ✅
+
+**Phase 2 Complete!** 🎉
+
+All Living Documentation Framework automation tools są gotowe do użycia.
 
 ---
 
