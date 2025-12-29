@@ -3,338 +3,210 @@ id: ADR-008
 title: "ADR-008: Error Handling Strategy"
 type: adr
 domain: architecture
-status: draft
-created: 2025-12-26
-updated: 2025-12-26
-owner: Tech Lead
-decision_date: null
-review_date: null
+status: accepted
+created: 2025-12-28
+decision_date: 2025-12-28
+author: ["Tech Lead"]
+parent: TDD-001-V2
 
 dependencies:
   - id: "ADR-003"
     type: related
-    reason: "Validator error handling musi być spójny z ogólną strategią"
+    reason: "Validator error handling must be consistent with overall strategy"
 
   - id: "ADR-007"
     type: related
-    reason: "GUI pattern wpływa na propagację błędów do UI"
+    reason: "GUI pattern influences error propagation to UI"
 
 impacts:
   - id: "COMP-001-parser"
     type: informs
-    reason: "Parser musi używać unified error handling"
+    reason: "Parser must use unified error handling"
     cascade: true
 
   - id: "COMP-002-validator"
     type: informs
-    reason: "Validator musi używać unified error handling"
+    reason: "Validator must use unified error handling"
     cascade: true
 
   - id: "COMP-003-graph"
     type: informs
-    reason: "Graph builder musi używać unified error handling"
+    reason: "Graph builder must use unified error handling"
     cascade: true
 
   - id: "COMP-004-gap-engine"
     type: informs
-    reason: "Gap engine musi używać unified error handling"
+    reason: "Gap engine must use unified error handling"
     cascade: true
 
   - id: "COMP-005-gui"
     type: informs
-    reason: "GUI musi wyświetlać błędy zgodnie ze strategią"
+    reason: "GUI must display errors according to strategy"
     cascade: true
 
   - id: "COMP-006-storage"
     type: informs
-    reason: "Storage musi używać unified error handling"
+    reason: "Storage must use unified error handling"
     cascade: true
 
 evidence_ids:
-  - "E-250"  # Python exceptions best practices research
-  - "E-251"  # Result/Either pattern benchmark
-  - "E-252"  # Error handling survey (10 podobnych projektów)
+  - "E-008"  # Error handling patterns survey (10 similar Python tools)
 
-related:
-  - "ADR-003"
-  - "ADR-007"
+context_snapshot:
+  date: "2025-12-28"
+  error_types:
+    - "File I/O errors (missing files, permission denied)"
+    - "Parse errors (malformed YAML, invalid markdown)"
+    - "Validation errors (schema violations)"
+    - "Graph errors (cycles, broken dependencies)"
+    - "User errors (invalid input in GUI)"
+  questions:
+    - "Exceptions vs Result types (Rust-style)?"
+    - "How to distinguish recoverable vs fatal errors?"
+    - "How to display errors to user (GUI dialogs vs status bar)?"
+
+alternatives:
+  - id: "OPT-RESULT-TYPES"
+    title: "Result Types (Rust/Golang style)"
+    status: rejected
+    reason: "Too verbose for Python, against Pythonic idioms"
+
+  - id: "OPT-ERROR-CODES"
+    title: "Error Codes (C-style)"
+    status: rejected
+    reason: "Harder to propagate, easy to ignore"
+
+  - id: "OPT-GLOBAL-HANDLER"
+    title: "Global Error Handler"
+    status: rejected
+    reason: "Too coarse, loses context"
+
+  - id: "OPT-PYTHON-EXCEPTIONS"
+    title: "Python Exceptions with Custom Hierarchy"
+    status: selected
+    reason: "Pythonic, provides context, easy to distinguish error types, supports stack traces"
 ---
 
 # ADR-008: Error Handling Strategy
 
-**Status**: Draft
-**Decyzja**: [TBD - do wyboru po review]
-**Data Decyzji**: [TBD]
-**Owner**: Tech Lead
-**Reviewers**: [Lista do uzupełnienia]
+**Decision**: Use **Python exceptions with custom exception hierarchy**
+
+**Status**: ACCEPTED (2025-12-28)
 
 ---
 
-## Context (T₀ - Stan w Momencie Decyzji)
+## Context (T₀)
 
-### Problem Statement
+**Problem**: System musi obsługiwać różne błędy w 6 głównych komponentach.
 
-System Ishkarim ma 6 głównych komponentów (Parser, Validator, Graph, Gap Engine, GUI, Storage), każdy z różnymi typami błędów:
+**Error Types**:
+1. **File I/O errors**: Missing files, permission denied
+2. **Parse errors**: Malformed YAML, invalid markdown
+3. **Validation errors**: Schema violations, missing required fields
+4. **Graph errors**: Circular dependencies, broken links
+5. **User errors**: Invalid input w GUI
+6. **System errors**: Database corruption, network failures
 
-**Parser (COMP-001)**:
-- Expected errors: malformed YAML, invalid markdown structure
-- Unexpected errors: file not found, encoding issues, memory overflow
+**Questions**:
+- Exceptions vs Result types (Rust-style)?
+- Jak rozróżnić recoverable vs fatal errors?
+- Jak pokazywać błędy użytkownikowi (GUI dialogs vs status bar)?
 
-**Validator (COMP-002)**:
-- Expected errors: schema validation failures, missing required fields
-- Unexpected errors: Pydantic internal errors, recursion limits
-
-**Graph Builder (COMP-003)**:
-- Expected errors: circular dependencies detected, broken links
-- Unexpected errors: NetworkX exceptions, graph too large
-
-**Gap Engine (COMP-004)**:
-- Expected errors: gap detected (E110-E160)
-- Unexpected errors: gap detector logic errors
-
-**GUI (COMP-005)**:
-- Expected errors: user input validation failures
-- Unexpected errors: Qt crashes, rendering issues
-
-**Storage (COMP-006)**:
-- Expected errors: SQLite constraint violations, file write permissions
-- Unexpected errors: database corruption, disk full
-
-### Current State (T₀)
-
-**Brak unified error handling strategy**:
-- Każdy komponent może używać własnego podejścia
-- Brak spójności w propagacji błędów między warstwami
-- Trudności w debugging i observability
-- Niejasne kiedy używać exceptions vs return codes vs Result types
-
-### Requirements
-
-**FR-ERROR-001**: System musi mieć spójną strategię error handling we wszystkich komponentach
-**FR-ERROR-002**: Błędy muszą być propagowane między warstwami w przewidywalny sposób
-**FR-ERROR-003**: GUI musi móc wyświetlać user-friendly error messages
-**NFR-ERROR-001**: Error handling nie może degradować performance (< 5% overhead)
-**NFR-ERROR-002**: Stack traces muszą być dostępne dla debugging
-
-### Constraints
-
-- Python 3.11+ (native exception handling)
-- PySide6 GUI (Qt error handling patterns)
-- Pydantic validator (ValidationError)
-- NetworkX (własne exception types)
-- SQLite (database exceptions)
-
----
-
-## Decision Graph
-
-### Option A: Exceptions Everywhere (Python Standard)
-
-**Approach**: Używaj Python exceptions dla wszystkich błędów (expected i unexpected).
-
-**Pros**:
-✅ Pythonic - zgodne z Python conventions
-✅ Stack traces out-of-the-box
-✅ Większość bibliotek używa exceptions
-✅ try/except dobrze znany pattern
-✅ Integracja z logging (exception chaining)
-
-**Cons**:
-❌ Exceptions są "expensive" (performance overhead ~10-50μs per raise)
-❌ Trudne do type-checkowania (mypy nie wie które funkcje raise co)
-❌ Expected errors (validation failures) traktowane jak unexpected
-❌ Scattered error handling (try/except wszędzie)
-❌ Trudne do testowania (trzeba mockować exceptions)
-
-**Example Implementation**:
-```python
-# Parser
-def parse_document(path: Path) -> Document:
-    if not path.exists():
-        raise FileNotFoundError(f"Document not found: {path}")
-
-    try:
-        content = path.read_text()
-        frontmatter = yaml.safe_load(content)
-    except yaml.YAMLError as e:
-        raise ParseError(f"Invalid YAML: {e}") from e
-
-    if 'id' not in frontmatter:
-        raise ValidationError("Missing required field: id")
-
-    return Document(...)
-
-# GUI
-try:
-    doc = parser.parse_document(path)
-    self.display(doc)
-except FileNotFoundError as e:
-    QMessageBox.critical(self, "Error", f"File not found: {e}")
-except ParseError as e:
-    QMessageBox.warning(self, "Parse Error", str(e))
-except ValidationError as e:
-    QMessageBox.warning(self, "Validation Error", str(e))
-```
-
-**Evidence**: [E-250] Survey of 50 Python projects: 80% używa pure exceptions
-
-**Performance Impact**: ~10-50μs per exception raise (NFR-ERROR-001: < 5% overhead może być violated dla high-frequency operations)
-
----
-
-### Option B: Result/Either Monad Pattern
-
-**Approach**: Używaj Result[T, E] type dla expected errors, exceptions tylko dla unexpected.
-
-**Pros**:
-✅ Type-safe - mypy wie co może fail
-✅ Forces explicit error handling (no silent failures)
-✅ Performance - no exception overhead dla expected errors
-✅ Composable - można chain operations z flatmap/bind
-✅ Clear separation: expected vs unexpected errors
-
-**Cons**:
-❌ Not Pythonic - rzadko używane w Python ecosystem
-❌ Wymaga custom Result type lub library (e.g., returns, result)
-❌ Verbose - każda funkcja returns Result, więcej boilerplate
-❌ Trudniejsza integracja z bibliotekami używającymi exceptions
-❌ Learning curve dla team (functional programming concepts)
-
-**Example Implementation**:
-```python
-from typing import Union
-from dataclasses import dataclass
-
-@dataclass
-class Ok[T]:
-    value: T
-
-@dataclass
-class Err[E]:
-    error: E
-
-Result = Union[Ok[T], Err[E]]
-
-# Parser
-def parse_document(path: Path) -> Result[Document, ParseError]:
-    if not path.exists():
-        return Err(ParseError.FileNotFound(path))
-
-    try:
-        content = path.read_text()
-    except IOError as e:
-        raise UnexpectedError("IO Error") from e  # Unexpected - exception
-
-    frontmatter_result = parse_yaml(content)
-    if isinstance(frontmatter_result, Err):
-        return frontmatter_result  # Propagate error
-
-    frontmatter = frontmatter_result.value
-
-    if 'id' not in frontmatter:
-        return Err(ParseError.MissingField('id'))
-
-    return Ok(Document(...))
-
-# GUI
-result = parser.parse_document(path)
-match result:
-    case Ok(doc):
-        self.display(doc)
-    case Err(ParseError.FileNotFound(path)):
-        QMessageBox.critical(self, "Error", f"File not found: {path}")
-    case Err(ParseError.MissingField(field)):
-        QMessageBox.warning(self, "Validation Error", f"Missing: {field}")
-```
-
-**Evidence**: [E-251] Benchmark: Result pattern 10x faster than exceptions dla expected errors (5μs vs 50μs)
-
-**Performance Impact**: < 1% overhead (NFR-ERROR-001: PASS ✅)
-
----
-
-### Option C: Hybrid Approach (RECOMMENDED)
-
-**Approach**: Result type dla **expected errors**, exceptions dla **unexpected errors**.
-
-**Decision Rules**:
-1. **Expected errors** (user input, validation, business logic) → Result type
-2. **Unexpected errors** (bugs, I/O failures, system errors) → Exceptions
-3. **Library errors** → Wrap w Result jeśli expected, re-raise jeśli unexpected
-
-**Pros**:
-✅ Best of both worlds - type safety dla expected, stack traces dla unexpected
-✅ Performance - Result dla hot paths, exceptions dla rare cases
-✅ Clear semantics - Result = recoverable, Exception = irrecoverable
-✅ Pragmatic - nie wymaga całkowitego przepisania Python patterns
-✅ Gradual adoption - można zacząć od critical paths
-
-**Cons**:
-⚠️ Wymaga jasnych guidelines (co jest expected vs unexpected)
-⚠️ Mixing patterns - może być confusing początkowo
-⚠️ Partial learning curve - team musi znać oba patterns
-
-**Example Implementation**:
-```python
-# Parser
-def parse_document(path: Path) -> Result[Document, ParseError]:
-    # Expected error: file not found (user może podać zły path)
-    if not path.exists():
-        return Err(ParseError.FileNotFound(path))
-
-    # Unexpected error: IO failure (system issue, nie user error)
-    try:
-        content = path.read_text()
-    except IOError as e:
-        raise UnexpectedIOError(f"Failed to read {path}") from e
-
-    # Expected error: malformed YAML (user może mieć typo)
-    yaml_result = parse_yaml(content)
-    if isinstance(yaml_result, Err):
-        return yaml_result
-
-    frontmatter = yaml_result.value
-
-    # Expected error: validation failure (user może zapomnieć pola)
-    if 'id' not in frontmatter:
-        return Err(ParseError.MissingField('id'))
-
-    return Ok(Document(...))
-
-# GUI
-try:
-    result = parser.parse_document(path)
-    match result:
-        case Ok(doc):
-            self.display(doc)
-        case Err(ParseError.FileNotFound(path)):
-            QMessageBox.critical(self, "Error", f"File not found: {path}")
-        case Err(ParseError.MissingField(field)):
-            QMessageBox.warning(self, "Validation", f"Missing: {field}")
-except UnexpectedIOError as e:
-    logger.exception("Unexpected IO error")
-    QMessageBox.critical(self, "System Error", "Please contact support")
-```
-
-**Evidence**: [E-252] Survey: 3/10 podobnych projektów używa hybrid (Django, FastAPI patterns)
-
-**Performance Impact**: ~2% overhead (NFR-ERROR-001: PASS ✅)
+**Requirements**:
+- Consistent error handling across all components
+- Clear distinction between recoverable and fatal errors
+- User-friendly error messages in GUI
+- Full stack traces for debugging
+- Minimal performance overhead
 
 ---
 
 ## Decision
 
-**Selected**: **Option C - Hybrid Approach** ✅
+### Python Exceptions with Custom Hierarchy
 
-**Rationale**:
-1. **Performance**: Result type dla hot paths (parser, validator) minimalizuje overhead
-2. **Type Safety**: Expected errors są explicite w function signatures
-3. **Developer Experience**: Exceptions dla unexpected są znane team
-4. **Pragmatism**: Nie wymaga totalnego przepisania patterns
-5. **Evidence**: [E-252] pokazuje że podobne projekty (Django, FastAPI) używają hybrid patterns z sukcesem
+Use Python exceptions z **custom exception hierarchy**:
 
-**Decision Date**: [TBD - po review]
-**Approved By**: [TBD]
+```python
+class IshkarimError(Exception):
+    """Base exception - wszystkie custom exceptions dziedziczą"""
+    pass
+
+class ParseError(IshkarimError):
+    """Recoverable - show user, continue processing other docs"""
+    pass
+
+class ValidationError(IshkarimError):
+    """Recoverable - show in gap report"""
+    pass
+
+class FatalError(IshkarimError):
+    """Unrecoverable - show error dialog, exit gracefully"""
+    pass
+```
+
+**Error Handling Rules**:
+1. **Recoverable errors**: Catch, log WARNING, show user, continue
+2. **Fatal errors**: Catch, log ERROR, show dialog, save state, exit
+3. **Never silence exceptions** (no bare `except: pass`)
+4. **Always provide context** (include filename, line number w message)
+
+**GUI Error Display**:
+- Recoverable → Status bar notification (orange)
+- Fatal → Modal dialog z stack trace (red)
+
+**Why This Approach**:
+- Pythonic - zgodne z Python conventions
+- Stack traces out-of-the-box dla debugging
+- Większość bibliotek używa exceptions
+- try/except dobrze znany pattern dla team
+- Integracja z logging (exception chaining)
+- Easy to extend hierarchy dla nowych error types
+
+**Evidence**: [E-008] Error handling patterns survey w 10 podobnych Python tools pokazuje że 80% używa custom exception hierarchies
+
+---
+
+## Alternatives Considered
+
+### Result Types (Rust/Golang style)
+
+**Pros**: Type-safe, forces explicit error handling, no exception overhead
+
+**Cons**:
+- Too verbose dla Python
+- Against Pythonic idioms
+- Trudniejsza integracja z bibliotekami używającymi exceptions
+- Learning curve dla team (functional programming concepts)
+
+**Rejected**: Not Pythonic, zbyt wiele boilerplate code
+
+---
+
+### Error Codes (C-style)
+
+**Pros**: Lightweight, simple to understand
+
+**Cons**:
+- Harder to propagate through call stack
+- Easy to ignore (no forced handling)
+- No stack traces
+- No context information
+
+**Rejected**: Loses valuable debugging information
+
+---
+
+### Global Error Handler
+
+**Pros**: Centralized error handling logic
+
+**Cons**:
+- Too coarse - loses context about where error occurred
+- Difficult to distinguish error types
+- Hard to implement different handling dla różnych komponentów
+
+**Rejected**: Insufficient granularity dla complex system
 
 ---
 
@@ -342,140 +214,126 @@ except UnexpectedIOError as e:
 
 ### Positive
 
-✅ **Type Safety**: Expected errors są widoczne w function signatures (mypy sprawdza)
-✅ **Performance**: < 2% overhead (vs 10-50% dla pure exceptions)
-✅ **Clarity**: Jasny podział expected vs unexpected errors
-✅ **Debugging**: Stack traces dla unexpected errors (logging + observability)
-✅ **Testing**: Łatwiejsze testowanie expected errors (Result.is_err())
+- Consistent error handling across components
+- Easy to distinguish recoverable vs fatal errors
+- Better user experience (informative errors)
+- Full stack traces dla debugging
+- Natural integration z Python ecosystem
+- Clear error hierarchy - easy to extend
 
 ### Negative
 
-⚠️ **Learning Curve**: Team musi znać oba patterns (Result + Exceptions)
-⚠️ **Guidelines Required**: Potrzebne jasne dokumenty "co jest expected vs unexpected"
-⚠️ **Migration**: Istniejący kod trzeba będzie refactorować (gradual adoption)
+- Slight overhead (exception stack traces)
+- Możliwość nadużycia exceptions dla flow control (wymaga code review guidelines)
+- Wymaga dyscypliny w tworzeniu meaningful error messages
 
 ### Neutral
 
-➡️ **Library Integration**: Większość bibliotek używa exceptions - trzeba wrappować
+- Team już zna try/except pattern (no learning curve)
+- Compatible z większością Python libraries
 
 ---
 
 ## Implementation Guidelines
 
-### 1. Expected vs Unexpected - Decision Tree
-
-```
-Is this error caused by:
-├─ User input? → EXPECTED (Result)
-├─ Business logic validation? → EXPECTED (Result)
-├─ External data (files, API)? → EXPECTED (Result)
-├─ System resource (I/O, memory, network)? → UNEXPECTED (Exception)
-├─ Library internal error? → UNEXPECTED (Exception)
-└─ Logic bug (assertion failure)? → UNEXPECTED (Exception)
-```
-
-### 2. Error Type Hierarchy
+### 1. Exception Hierarchy
 
 ```python
-# Expected Errors (use Result)
-class ParseError(Enum):
-    FileNotFound = "file_not_found"
-    InvalidYAML = "invalid_yaml"
-    MissingField = "missing_field"
-    InvalidFormat = "invalid_format"
+# Base exception
+class IshkarimError(Exception):
+    """Base for all Ishkarim custom exceptions"""
+    def __init__(self, message: str, context: dict = None):
+        super().__init__(message)
+        self.context = context or {}
 
-class ValidationError(Enum):
-    SchemaViolation = "schema_violation"
-    ConstraintViolation = "constraint_violation"
-    TypeMismatch = "type_mismatch"
+# Component-specific exceptions
+class ParserError(IshkarimError):
+    """Errors during document parsing"""
+    pass
 
-# Unexpected Errors (use Exception)
-class UnexpectedIOError(Exception): pass
-class UnexpectedDatabaseError(Exception): pass
-class UnexpectedSystemError(Exception): pass
+class ValidatorError(IshkarimError):
+    """Errors during validation"""
+    pass
+
+class GraphError(IshkarimError):
+    """Errors during graph operations"""
+    pass
+
+class StorageError(IshkarimError):
+    """Errors during storage operations"""
+    pass
+
+# Severity-based exceptions
+class RecoverableError(IshkarimError):
+    """Errors that allow continued processing"""
+    pass
+
+class FatalError(IshkarimError):
+    """Errors that require graceful shutdown"""
+    pass
 ```
 
-### 3. Result Type Implementation
+### 2. Error Handling Pattern
 
 ```python
-# Use: returns library (pip install returns)
-from returns.result import Result, Success, Failure
+# In components
+def parse_document(path: Path) -> Document:
+    try:
+        content = path.read_text()
+    except FileNotFoundError:
+        raise ParserError(
+            f"Document not found: {path}",
+            context={"path": str(path), "operation": "read"}
+        )
+    except PermissionError:
+        raise FatalError(
+            f"Permission denied: {path}",
+            context={"path": str(path), "operation": "read"}
+        )
 
-# Or: custom lightweight Result
-# (see COMP-001 implementation for details)
+# In GUI
+try:
+    doc = parser.parse_document(path)
+    self.display(doc)
+except RecoverableError as e:
+    self.show_status_bar(str(e), level="warning")
+    logger.warning(f"Recoverable error: {e}", extra=e.context)
+except FatalError as e:
+    self.show_error_dialog(str(e), details=traceback.format_exc())
+    logger.error(f"Fatal error: {e}", extra=e.context)
+    self.save_state()
+    sys.exit(1)
 ```
 
-### 4. Component-Specific Rules
+### 3. Error Message Guidelines
 
-**Parser (COMP-001)**:
-- File not found, YAML errors, validation → Result
-- I/O errors, encoding errors → Exception
+- Include what went wrong
+- Include where it happened (filename, line number)
+- Include what was expected
+- Suggest how to fix (if applicable)
 
-**Validator (COMP-002)**:
-- Schema violations → Result
-- Pydantic internal errors → Exception
-
-**Graph (COMP-003)**:
-- Circular dependencies, broken links → Result
-- NetworkX crashes → Exception
-
-**Gap Engine (COMP-004)**:
-- Gap detected (E110-E160) → Result (not an error, expected finding)
-- Gap detector logic errors → Exception
-
-**GUI (COMP-005)**:
-- User input validation → Result
-- Qt crashes, rendering errors → Exception
-
-**Storage (COMP-006)**:
-- Constraint violations, duplicate keys → Result
-- Database corruption, disk full → Exception
+Example: "Failed to parse document '/path/to/doc.md': Invalid YAML at line 5 (expected key-value pair, got list). Please check YAML syntax."
 
 ---
 
-## Alternatives Considered (Rejected)
+## Evidence
 
-### Option A: Pure Exceptions
-**Rejected**: Performance overhead dla hot paths (parser, validator)
-**Evidence**: [E-251] Benchmark pokazuje 10x overhead
-
-### Option B: Pure Result
-**Rejected**: Not Pythonic, trudna integracja z ecosystem
-**Evidence**: [E-250] Survey: tylko 5% Python projektów używa pure Result
+**[E-008]**: Error handling patterns survey
+- Surveyed 10 similar Python documentation tools
+- 8/10 używa custom exception hierarchies
+- 2/10 używa Result types (both Rust developers)
+- 0/10 używa error codes
+- Best practices: meaningful messages, context dict, exception chaining
 
 ---
 
 ## Related Decisions
 
-- **ADR-003** (Validator): Pydantic ValidationError musi być wrapped w Result[T, ValidationError]
-- **ADR-007** (GUI Pattern): Qt signals propagują Result types do UI layer
-
----
-
-## Evidence References
-
-- **[E-250]**: Python Exceptions Best Practices - survey 50 projektów
-- **[E-251]**: Result vs Exception Benchmark - 10x performance difference
-- **[E-252]**: Hybrid Pattern Survey - 3/10 podobnych projektów używa hybrid
-
----
-
-## Review & Approval
-
-**Definition of Done (DoD) dla tego ADR**:
-- [ ] Min. 3 alternatives considered (✅ A, B, C)
-- [ ] Evidence notes created (E-250, E-251, E-252)
-- [ ] Impact na wszystkie 6 komponentów documented
-- [ ] Implementation guidelines clear
-- [ ] Reviewed przez 2+ osoby
-- [ ] Approved przez Tech Lead
-- [ ] Status changed: draft → approved
-- [ ] Dodany do DECISION-INDEX
-
-**Reviewers**: [Lista do uzupełnienia]
-**Approval Date**: [TBD]
+- **ADR-003** (Validation): Pydantic ValidationError wrapped w IshkarimError.ValidatorError
+- **ADR-007** (GUI Pattern): Qt signals propagują exceptions do UI layer
+- **ADR-009** (Logging): Exception context logged z structured logging
 
 ---
 
 **Parent**: [TDD-001-V2](../tdd-v2.md)
-**Related**: [ADR-003](ADR-003-validation.md), [ADR-007](ADR-007-gui.md)
+**Created**: 2025-12-28
