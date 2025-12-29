@@ -3,9 +3,9 @@ id: VISION-001
 title: "Dokument Wizji - System Zarządzania Dokumentacją w Pythonie"
 type: vision
 domain: documentation
-status: draft
+status: approved
 created: 2025-12-26
-updated: 2025-12-26
+updated: 2025-12-29
 owner: Zespół Produktowy
 phase: discovery
 priority: high
@@ -14,6 +14,111 @@ dependencies:
 related:
   - BIZ-CASE-001
   - PRD-001
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: draft
+  status_changed_date: "2025-12-29"
+  status_reason: "Vision approved by stakeholders - provides long-term direction"
+  next_review_date: "2026-06-29"
+  review_frequency: "semi-annual"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: "2025-12-29"
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+
+# Version Metadata (Semantic Versioning)
+version: "1.0.0"
+version_metadata:
+  major: 1
+  minor: 0
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  note: "First approved version - establishes 12-24 month strategic direction"
+
+version_history:
+  - version: "1.0.0"
+    date: "2025-12-29"
+    author: "Zespół Produktowy"
+    type: "major"
+    summary: "Vision approved - long-term direction established"
+    breaking: false
+    changes:
+      - "Zdefiniowano wizję produktu (proaktywny partner dokumentacyjny)"
+      - "Określono 5 grup użytkowników docelowych"
+      - "Zdefiniowano główną propozycję wartości"
+      - "Ustalono cele biznesowe i metryki sukcesu"
+    impacts:
+      - id: "PRD-001-V2"
+        impact_type: "informs"
+        description: "PRD musi być zgodny z wizją długoterminową"
+      - id: "BIZ-CASE-001"
+        impact_type: "supports"
+        description: "Business case wspiera wizję strategiczną"
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending: []
+  downstream_impacts_pending:
+    - id: "PRD-001-V2"
+      notified_date: "2025-12-29"
+      acknowledged: true
+      acknowledged_by: "Product Owner"
+      acknowledged_date: "2025-12-29"
+      note: "PRD aligned with 12-24 month vision"
+
+# Document Health
+document_health:
+  status: "healthy"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 180
+      days_since_modified: 3
+      note: "Vision documents have longer freshness threshold (180 days vs 90)"
+
+    - name: "Dependency Validity"
+      status: "warning"
+      invalid_dependencies:
+        - "EXEC-SUM-001 (not found - recommended for strategic alignment)"
+      all_dependencies_valid: false
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Zespół Produktowy"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "healthy"
+      missing_sections: []
+      completeness: "100%"
+
+    - name: "Upstream Changes Pending"
+      status: "healthy"
+      pending_changes: 0
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+
+# Deprecation
+deprecation: null
+
 ---
 
 # Dokument Wizji: System Zarządzania Dokumentacją w Pythonie
