@@ -1,0 +1,54 @@
+{
+  "timestamp": "2025-12-29T11:56:37.200016",
+  "reports": [
+    {
+      "batch": "A",
+      "total": 13,
+      "success": 0,
+      "failed": 13,
+      "failed_docs": [
+        "ADR-009",
+        "API-SPEC-001",
+        "BIZ-CASE-001",
+        "COMP-001",
+        "COMP-002",
+        "COMP-003",
+        "COMP-004",
+        "COMP-005",
+        "COMP-006",
+        "DATA-MODEL-001",
+        "PRD-001-V2",
+        "SCHEMA-001",
+        "VISION-001"
+      ]
+    },
+    {
+      "batch": "B",
+      "total": 11,
+      "success": 0,
+      "failed": 11,
+      "failed_docs": [
+        "ADR-008",
+        "BIZ-CASE-001",
+        "BIZ-CASE-001-V2",
+        "CONCEPTS-001",
+        "CONCEPTS-001-V2",
+        "EXEC-SUM-001",
+        "PRD-001",
+        "PRD-001",
+        "VISION-001",
+        "VISION-001-V2",
+        "WORKFLOW-GUIDE-001"
+      ]
+    },
+    {
+      "batch": "C",
+      "total": 1,
+      "success": 0,
+      "failed": 1,
+      "failed_docs": [
+        "VERIFICATION-CHECKLIST-001"
+      ]
+    }
+  ]
+}

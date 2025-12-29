@@ -1,0 +1,194 @@
+{
+  "generated": "/home/jerzy/Dokumenty/Ishkarim/docs",
+  "total_documents": 25,
+  "batch_a_living_docs": {
+    "count": 13,
+    "documents": [
+      {
+        "id": "ADR-009",
+        "title": "ADR-009: Logging & Observability Strategy",
+        "file": "engineering/decisions/ADR-009-logging.md",
+        "type": "adr",
+        "status": "approved"
+      },
+      {
+        "id": "API-SPEC-001",
+        "title": "API-SPEC-001: Internal API Specifications",
+        "file": "engineering/apis/API-SPEC-001.md",
+        "type": "api-spec",
+        "status": "approved"
+      },
+      {
+        "id": "BIZ-CASE-001",
+        "title": "Uzasadnienie Biznesowe - System Zarządzania Dokumentacją w Pythonie",
+        "file": "pre-production/business-case.md",
+        "type": "business-case",
+        "status": "draft"
+      },
+      {
+        "id": "COMP-001",
+        "title": "COMP-001: Parser Component",
+        "file": "engineering/components/COMP-001-parser.md",
+        "type": "component",
+        "status": "draft"
+      },
+      {
+        "id": "COMP-002",
+        "title": "COMP-002: Validator Component",
+        "file": "engineering/components/COMP-002-validator.md",
+        "type": "component",
+        "status": "draft"
+      },
+      {
+        "id": "COMP-003",
+        "title": "COMP-003: Graph Builder Component",
+        "file": "engineering/components/COMP-003-graph.md",
+        "type": "component",
+        "status": "draft"
+      },
+      {
+        "id": "COMP-004",
+        "title": "COMP-004: Gap Detection Engine",
+        "file": "engineering/components/COMP-004-gap-engine.md",
+        "type": "component",
+        "status": "draft"
+      },
+      {
+        "id": "COMP-005",
+        "title": "COMP-005: GUI Controller Component",
+        "file": "engineering/components/COMP-005-gui.md",
+        "type": "component",
+        "status": "draft"
+      },
+      {
+        "id": "COMP-006",
+        "title": "COMP-006: Hybrid Storage Component",
+        "file": "engineering/components/COMP-006-storage.md",
+        "type": "component",
+        "status": "draft"
+      },
+      {
+        "id": "DATA-MODEL-001",
+        "title": "DATA-MODEL-001: Data Models Specification",
+        "file": "engineering/data-models/DATA-MODEL-001.md",
+        "type": "data-model",
+        "status": "approved"
+      },
+      {
+        "id": "PRD-001-V2",
+        "title": "Product Requirements Document - System Zarządzania Dokumentacją (Proof System)",
+        "file": "engineering/requirements/prd.md",
+        "type": "prd",
+        "status": "approved"
+      },
+      {
+        "id": "SCHEMA-001",
+        "title": "SCHEMA-001: Document Type Schemas",
+        "file": "engineering/data-models/SCHEMA-001.md",
+        "type": "schema",
+        "status": "approved"
+      },
+      {
+        "id": "VISION-001",
+        "title": "Dokument Wizji - System Zarządzania Dokumentacją w Pythonie",
+        "file": "pre-production/vision.md",
+        "type": "vision",
+        "status": "approved"
+      }
+    ]
+  },
+  "batch_b_core": {
+    "count": 11,
+    "documents": [
+      {
+        "id": "ADR-008",
+        "title": "ADR-008: Error Handling Strategy",
+        "file": "engineering/archive/ADR-008-error-handling-draft.md",
+        "type": "adr",
+        "status": "draft"
+      },
+      {
+        "id": "BIZ-CASE-001",
+        "title": "Uzasadnienie Biznesowe - System Zarządzania Dokumentacją w Pythonie",
+        "file": "pre-production/business-case-v1-deprecated.md",
+        "type": "business-case",
+        "status": "deprecated"
+      },
+      {
+        "id": "BIZ-CASE-001-V2",
+        "title": "Uzasadnienie Biznesowe - System Zarządzania Dokumentacją (Proof System)",
+        "file": "pre-production/business-case-v2.md",
+        "type": "business-case",
+        "status": "approved"
+      },
+      {
+        "id": "CONCEPTS-001",
+        "title": "Dokument Koncepcje - System Zarządzania Dokumentacją w Pythonie",
+        "file": "engineering/archive/koncepcje-v1.md",
+        "type": "concepts",
+        "status": "deprecated"
+      },
+      {
+        "id": "CONCEPTS-001-V2",
+        "title": "System Koncepcji - Proof System z Pełną Audytowalnością",
+        "file": "engineering/concepts/koncepcje-v2.md",
+        "type": "concepts",
+        "status": "completed"
+      },
+      {
+        "id": "EXEC-SUM-001",
+        "title": "Podsumowanie Wykonawcze - System Zarządzania Dokumentacją w Pythonie",
+        "file": "pre-production/executive-summary.md",
+        "type": "executive-summary",
+        "status": "approved"
+      },
+      {
+        "id": "PRD-001",
+        "title": "Product Requirements Document - System Zarządzania Dokumentacją",
+        "file": "engineering/archive/prd-v1-deprecated.md",
+        "type": "prd",
+        "status": "deprecated"
+      },
+      {
+        "id": "PRD-001",
+        "title": "Product Requirements Document - System Zarządzania Dokumentacją",
+        "file": "engineering/archive/prd-draft.md",
+        "type": "prd",
+        "status": "draft"
+      },
+      {
+        "id": "VISION-001",
+        "title": "Dokument Wizji - System Zarządzania Dokumentacją w Pythonie",
+        "file": "pre-production/vision-v1-deprecated.md",
+        "type": "vision",
+        "status": "deprecated"
+      },
+      {
+        "id": "VISION-001-V2",
+        "title": "Dokument Wizji - System Zarządzania Dokumentacją (Proof System)",
+        "file": "pre-production/vision-v2.md",
+        "type": "vision",
+        "status": "approved"
+      },
+      {
+        "id": "WORKFLOW-GUIDE-001",
+        "title": "Concept Exploration Workflows - User Guide",
+        "file": "engineering/workflows/concept-exploration-workflows.md",
+        "type": "guide",
+        "status": "draft"
+      }
+    ]
+  },
+  "batch_c_satellites": {
+    "count": 1,
+    "documents": [
+      {
+        "id": "VERIFICATION-CHECKLIST-001",
+        "title": "Checklista Weryfikacyjna - Dokumentacja Proof System",
+        "file": "satellites/evidence/VERIFICATION-CHECKLIST.md",
+        "type": "verification",
+        "status": "completed"
+      }
+    ]
+  }
+}
