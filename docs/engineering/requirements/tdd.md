@@ -3,12 +3,122 @@ id: TDD-001-V2
 title: "Technical Design Document - System Zarządzania Dokumentacją (Proof System)"
 type: tdd
 domain: architecture
-status: draft
+status: evolving
 created: 2025-12-26
-updated: 2025-12-26
+updated: 2025-12-29
 owner: Tech Lead
 phase: design
 priority: critical
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: draft
+  status_changed_date: "2025-12-29"
+  status_reason: "Design w iteracji - 90% complete, evolving based on implementation feedback"
+  next_review_date: "2026-01-15"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: null
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+
+# Version Metadata (Semantic Versioning)
+version: "0.9.0"
+version_metadata:
+  major: 0
+  minor: 9
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  pre_release: true
+  note: "Pre-release - design 90% complete, awaiting final review"
+
+version_history:
+  - version: "0.9.0"
+    date: "2025-12-26"
+    author: "Tech Lead"
+    type: "minor"
+    summary: "Initial TDD draft - architektura 90% zdefiniowana"
+    breaking: false
+    changes:
+      - "Zdefiniowano 6 głównych komponentów (Parser, Validator, Graph, Gap Engine, GUI, Storage)"
+      - "Wybrano stack technologiczny (PySide6, Pydantic, NetworkX, SQLite)"
+      - "Zdefiniowano 10 ADRów (Architecture Decision Records)"
+      - "Zaprojektowano modele danych i API"
+    impacts:
+      - id: "IMPL-PLAN-001"
+        impact_type: "blocked"
+        description: "Implementacja zablokowana do czasu approved TDD"
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending:
+    - id: "PRD-001-V2"
+      changed_version: "2.0.0"
+      changed_date: "2025-12-26"
+      change_type: "major"
+      impact_severity: "high"
+      action_required: "Zweryfikować czy architektura pokrywa wszystkie 95 FR"
+      acknowledged: true
+      acknowledged_by: "Tech Lead"
+      acknowledged_date: "2025-12-26"
+  downstream_impacts_pending: []
+
+# Document Health
+document_health:
+  status: "warning"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 90
+      days_since_modified: 3
+
+    - name: "Dependency Validity"
+      status: "healthy"
+      invalid_dependencies: []
+      all_dependencies_valid: true
+      dependency_check:
+        - id: "PRD-001-V2"
+          status: "approved"
+          valid: true
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Tech Lead"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "warning"
+      missing_sections:
+        - "Performance Analysis (szczegółowe benchmarki)"
+        - "Security Considerations (threat model)"
+      completeness: "85%"
+      note: "Evolving status - expected gaps in pre-release version"
+
+    - name: "Upstream Changes Pending"
+      status: "healthy"
+      pending_changes: 1
+      note: "PRD v2.0.0 acknowledged, architektura zweryfikowana"
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+
+# Deprecation
+deprecation: null
 
 # Bramki wejścia (co wpływa na ten dokument)
 dependencies:

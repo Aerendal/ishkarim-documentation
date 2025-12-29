@@ -5,7 +5,7 @@ type: business-case
 domain: documentation
 status: draft
 created: 2025-12-26
-updated: 2025-12-26
+updated: 2025-12-29
 owner: Zespół Produktowy
 phase: discovery
 priority: critical
@@ -14,6 +14,109 @@ dependencies:
 related:
   - VISION-001
   - PRD-001
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: null
+  status_changed_date: "2025-12-26"
+  status_reason: "Initial draft creation"
+  next_review_date: "2026-01-10"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: null
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+
+# Version Metadata (Semantic Versioning)
+version: "0.5.0"
+version_metadata:
+  major: 0
+  minor: 5
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  pre_release: true
+  note: "Draft version - business case in discovery phase"
+
+version_history:
+  - version: "0.5.0"
+    date: "2025-12-26"
+    author: "Zespół Produktowy"
+    type: "minor"
+    summary: "Initial business case draft"
+    breaking: false
+    changes:
+      - "Zdefiniowano 4 główne problemy (pain points)"
+      - "Analiza kosztów utraconych możliwości"
+      - "Propozycja rozwiązania (Proof System)"
+    impacts: []
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending: []
+  downstream_impacts_pending:
+    - id: "PRD-001-V2"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Product Owner"
+      acknowledged_date: "2025-12-26"
+      note: "PRD bazuje na business case - wymagania muszą dawać ROI"
+
+# Document Health
+document_health:
+  status: "warning"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 90
+      days_since_modified: 3
+
+    - name: "Dependency Validity"
+      status: "warning"
+      invalid_dependencies:
+        - "EXEC-SUM-001 (not found - may need to be created)"
+      all_dependencies_valid: false
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Zespół Produktowy"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "warning"
+      missing_sections:
+        - "ROI calculation (detailed)"
+        - "Risk assessment (comprehensive)"
+        - "Budget breakdown"
+      completeness: "60%"
+      note: "Draft status - expected gaps in discovery phase"
+
+    - name: "Upstream Changes Pending"
+      status: "healthy"
+      pending_changes: 0
+
+    - name: "Satellite Completeness"
+      status: "warning"
+      missing_satellites:
+        - "Evidence documents (E-xxx series)"
+        - "Stakeholder approvals"
+
+# Deprecation
+deprecation: null
+
 ---
 
 # Uzasadnienie Biznesowe: System Zarządzania Dokumentacją w Pythonie
