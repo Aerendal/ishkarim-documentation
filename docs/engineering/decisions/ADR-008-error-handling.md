@@ -5,9 +5,155 @@ type: adr
 domain: architecture
 status: accepted
 created: 2025-12-28
+updated: 2025-12-29
 decision_date: 2025-12-28
 author: ["Tech Lead"]
 parent: TDD-001-V2
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: draft
+  status_changed_date: "2025-12-28"
+  status_reason: "Decision accepted after patterns survey - Python exceptions with custom hierarchy selected"
+  next_review_date: "2026-12-28"
+  review_frequency: "annual"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-28"
+  first_approved: "2025-12-28"
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+  note: "ADRs are typically long-lived - reviewed annually or when triggered"
+
+# Version Metadata (Semantic Versioning)
+version: "1.0.0"
+version_metadata:
+  major: 1
+  minor: 0
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  note: "ADR approved - establishes error handling strategy"
+
+version_history:
+  - version: "1.0.0"
+    date: "2025-12-28"
+    author: "Tech Lead"
+    type: "major"
+    summary: "Decision approved: Python exceptions with custom hierarchy"
+    breaking: false
+    changes:
+      - "Evaluated 4 options: Result Types, Error Codes, Global Handler, Python Exceptions"
+      - "Selected Python Exceptions with custom IshkarimError hierarchy"
+      - "Rejected Result Types (too verbose, against Pythonic idioms)"
+      - "Rejected Error Codes (loses stack traces, easy to ignore)"
+      - "Rejected Global Handler (too coarse, loses context)"
+    impacts:
+      - id: "COMP-001-parser"
+        impact_type: "informs"
+        description: "Parser must use unified error handling with custom exceptions"
+      - id: "COMP-002-validator"
+        impact_type: "informs"
+        description: "Validator must wrap Pydantic errors in IshkarimError hierarchy"
+      - id: "COMP-003-graph"
+        impact_type: "informs"
+        description: "Graph builder must use unified error handling"
+      - id: "COMP-004-gap-engine"
+        impact_type: "informs"
+        description: "Gap engine must use unified error handling"
+      - id: "COMP-005-gui"
+        impact_type: "informs"
+        description: "GUI must display errors according to strategy"
+      - id: "COMP-006-storage"
+        impact_type: "informs"
+        description: "Storage must use unified error handling"
+      - id: "TDD-001-V2"
+        impact_type: "informs"
+        description: "Architecture includes error handling strategy"
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending: []
+  downstream_impacts_pending:
+    - id: "COMP-001-parser"
+      notified_date: "2025-12-28"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-28"
+    - id: "COMP-002-validator"
+      notified_date: "2025-12-28"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-28"
+    - id: "COMP-003-graph"
+      notified_date: "2025-12-28"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-28"
+    - id: "COMP-004-gap-engine"
+      notified_date: "2025-12-28"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-28"
+    - id: "COMP-005-gui"
+      notified_date: "2025-12-28"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-28"
+    - id: "COMP-006-storage"
+      notified_date: "2025-12-28"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-28"
+
+# Document Health
+document_health:
+  status: "healthy"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 365
+      days_since_modified: 1
+      note: "ADRs have longer freshness threshold (365 days)"
+
+    - name: "Dependency Validity"
+      status: "healthy"
+      invalid_dependencies: []
+      all_dependencies_valid: true
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Tech Lead"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "healthy"
+      missing_sections: []
+      completeness: "100%"
+
+    - name: "Upstream Changes Pending"
+      status: "healthy"
+      pending_changes: 0
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+      note: "Evidence E-008 supports decision"
+
+# Deprecation
+deprecation: null
 
 dependencies:
   - id: "ADR-003"
