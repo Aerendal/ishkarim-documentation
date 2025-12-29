@@ -3,7 +3,9 @@
 **Data:** 2025-12-27
 **Autor:** Analiza systemu szablonów Ishkarim
 **Wersja:** 1.0
-**Status:** Draft
+**Status:** Implemented
+**Data implementacji:** 2025-12-28
+**Commits:** 2cc1a23 (templates), 82a4c13 (examples)
 
 ---
 
