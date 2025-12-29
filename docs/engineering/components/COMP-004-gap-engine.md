@@ -2,8 +2,135 @@
 id: COMP-004
 title: "COMP-004: Gap Detection Engine"
 type: component
+domain: architecture
 status: draft
+created: 2025-12-26
+updated: 2025-12-29
+owner: Tech Lead
 parent: TDD-001-V2
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: null
+  status_changed_date: "2025-12-26"
+  status_reason: "Initial component specification - awaiting implementation"
+  next_review_date: "2026-01-15"
+  review_frequency: "bi-weekly during implementation"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: null
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+  note: "Draft specification - implementation not started"
+
+# Version Metadata (Semantic Versioning)
+version: "0.1.0"
+version_metadata:
+  major: 0
+  minor: 1
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  pre_release: true
+  note: "Draft specification - implementation phase not started"
+
+version_history:
+  - version: "0.1.0"
+    date: "2025-12-26"
+    author: "Tech Lead"
+    type: "minor"
+    summary: "Initial component specification for Gap Detection Engine"
+    breaking: false
+    changes:
+      - "Zdefiniowano public API (GapEngineAPI class)"
+      - "Określono all 10 gap types (E110-E200)"
+      - "Zdefiniowano gap detection logic (validator-based + graph-based)"
+      - "Określono remediation generation templates"
+      - "Określono prioritization algorithm (severity × impact)"
+      - "Benchmark: 1.26s dla 100 docs (E-168)"
+    impacts:
+      - id: "COMP-005-gui"
+        impact_type: "informs"
+        description: "GUI wyświetla gaps w GapsPanel"
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending:
+    - id: "COMP-002-validator"
+      change_type: "requires"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Gap Engine requires Validator for E110, E120, E170, E180, E190, E200"
+    - id: "COMP-003-graph"
+      change_type: "requires"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Gap Engine requires Graph Builder for E130, E140, E150, E160"
+  downstream_impacts_pending:
+    - id: "COMP-005-gui"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "GUI czeka na Gap list format dla GapsPanel"
+
+# Document Health
+document_health:
+  status: "warning"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 30
+      days_since_modified: 3
+      note: "Draft components reviewed bi-weekly during implementation"
+
+    - name: "Dependency Validity"
+      status: "warning"
+      invalid_dependencies:
+        - "API-SPEC-001 (not found - needs to be created)"
+      all_dependencies_valid: false
+      note: "API-SPEC-001 referenced but not yet created"
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Tech Lead"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "healthy"
+      missing_sections: []
+      completeness: "100%"
+      note: "Specification complete - awaiting implementation"
+
+    - name: "Upstream Changes Pending"
+      status: "warning"
+      pending_changes: 2
+      note: "Blocked by COMP-002-validator and COMP-003-graph"
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+      note: "Evidence E-168 supports gap detection performance"
+
+# Deprecation
+deprecation: null
 
 dependencies:
   - id: "COMP-002-validator"

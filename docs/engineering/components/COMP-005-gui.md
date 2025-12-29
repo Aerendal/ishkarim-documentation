@@ -2,8 +2,146 @@
 id: COMP-005
 title: "COMP-005: GUI Controller Component"
 type: component
+domain: architecture
 status: draft
+created: 2025-12-26
+updated: 2025-12-29
+owner: Tech Lead
 parent: TDD-001-V2
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: null
+  status_changed_date: "2025-12-26"
+  status_reason: "Initial component specification - awaiting implementation"
+  next_review_date: "2026-01-15"
+  review_frequency: "bi-weekly during implementation"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: null
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+  note: "Draft specification - implementation not started"
+
+# Version Metadata (Semantic Versioning)
+version: "0.1.0"
+version_metadata:
+  major: 0
+  minor: 1
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  pre_release: true
+  note: "Draft specification - implementation phase not started"
+
+version_history:
+  - version: "0.1.0"
+    date: "2025-12-26"
+    author: "Tech Lead"
+    type: "minor"
+    summary: "Initial component specification for GUI Controller"
+    breaking: false
+    changes:
+      - "Zdefiniowano public API (MainWindow class)"
+      - "Określono component architecture (GraphWidget, PreviewWidget, GapsPanel)"
+      - "Zdefiniowano Model-View pattern (Qt Signal/Slot = implicit controller)"
+      - "Określono Cytoscape.js embed via QtWebEngine"
+      - "Benchmark: 85ms UI response (E-151)"
+    impacts: []
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending:
+    - id: "ADR-001"
+      change_type: "requires"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "GUI uses PySide6 (ADR-001 decision)"
+    - id: "ADR-007"
+      change_type: "requires"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "GUI implements Model-View pattern (ADR-007)"
+    - id: "ADR-004"
+      change_type: "requires"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "GUI embeds Cytoscape.js via QtWebEngine (ADR-004)"
+    - id: "COMP-003-graph"
+      change_type: "requires"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "GUI displays graphs from Graph Builder"
+    - id: "COMP-004-gap-engine"
+      change_type: "requires"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "GUI displays gaps from Gap Engine"
+  downstream_impacts_pending: []
+
+# Document Health
+document_health:
+  status: "warning"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 30
+      days_since_modified: 3
+      note: "Draft components reviewed bi-weekly during implementation"
+
+    - name: "Dependency Validity"
+      status: "warning"
+      invalid_dependencies:
+        - "API-SPEC-001 (not found - needs to be created)"
+      all_dependencies_valid: false
+      note: "API-SPEC-001 referenced but not yet created"
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Tech Lead"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "healthy"
+      missing_sections: []
+      completeness: "100%"
+      note: "Specification complete - awaiting implementation"
+
+    - name: "Upstream Changes Pending"
+      status: "warning"
+      pending_changes: 5
+      note: "Blocked by ADR-001, ADR-004, ADR-007, COMP-003-graph, COMP-004-gap-engine"
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+      note: "Evidence E-150, E-151 support GUI architecture and performance"
+
+# Deprecation
+deprecation: null
 
 dependencies:
   - id: "ADR-001"

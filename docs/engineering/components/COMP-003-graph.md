@@ -2,8 +2,136 @@
 id: COMP-003
 title: "COMP-003: Graph Builder Component"
 type: component
+domain: architecture
 status: draft
+created: 2025-12-26
+updated: 2025-12-29
+owner: Tech Lead
 parent: TDD-001-V2
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+
+# Status Metadata
+status_metadata:
+  previous_status: null
+  status_changed_date: "2025-12-26"
+  status_reason: "Initial component specification - awaiting implementation"
+  next_review_date: "2026-01-15"
+  review_frequency: "bi-weekly during implementation"
+
+# Lifecycle Tracking
+lifecycle:
+  created: "2025-12-26"
+  first_approved: null
+  last_modified: "2025-12-29"
+  last_reviewed: "2025-12-29"
+  sunset_date: null
+  migration_target: null
+  note: "Draft specification - implementation not started"
+
+# Version Metadata (Semantic Versioning)
+version: "0.1.0"
+version_metadata:
+  major: 0
+  minor: 1
+  patch: 0
+  breaking_changes: false
+  backward_compatible_with: []
+  pre_release: true
+  note: "Draft specification - implementation phase not started"
+
+version_history:
+  - version: "0.1.0"
+    date: "2025-12-26"
+    author: "Tech Lead"
+    type: "minor"
+    summary: "Initial component specification for Graph Builder"
+    breaking: false
+    changes:
+      - "Zdefiniowano public API (GraphBuilderAPI class)"
+      - "Określono graph structure (nodes with metadata, edges with types)"
+      - "Zdefiniowano algorithms (cycle detection, hierarchy calculation)"
+      - "Określono incremental update strategy (10ms vs 800ms full rebuild)"
+      - "Benchmark: 800ms dla 100 nodes + 200 edges (E-143)"
+    impacts:
+      - id: "COMP-004-gap-engine"
+        impact_type: "informs"
+        description: "Gap Engine używa graph analysis do E130, E140, E150, E160"
+      - id: "COMP-005-gui"
+        impact_type: "informs"
+        description: "GUI renderuje graf z NetworkX DiGraph"
+
+# Cross-Reference Status
+cross_reference_status:
+  upstream_changes_pending:
+    - id: "COMP-001-parser"
+      change_type: "requires"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Graph builder requires parsed Documents"
+  downstream_impacts_pending:
+    - id: "COMP-004-gap-engine"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "Gap Engine czeka na graph analysis (cycle detection, ghost nodes)"
+    - id: "COMP-005-gui"
+      notified_date: "2025-12-26"
+      acknowledged: true
+      acknowledged_by: "Component Developers"
+      acknowledged_date: "2025-12-26"
+      note: "GUI czeka na NetworkX DiGraph format"
+
+# Document Health
+document_health:
+  status: "warning"
+  last_health_check: "2025-12-29"
+  checks:
+    - name: "Freshness Check"
+      status: "healthy"
+      last_modified: "2025-12-29"
+      threshold_days: 30
+      days_since_modified: 3
+      note: "Draft components reviewed bi-weekly during implementation"
+
+    - name: "Dependency Validity"
+      status: "warning"
+      invalid_dependencies:
+        - "API-SPEC-001 (not found - needs to be created)"
+      all_dependencies_valid: false
+      note: "API-SPEC-001 referenced but not yet created"
+
+    - name: "Cross-Reference Consistency"
+      status: "healthy"
+      all_references_valid: true
+      broken_references: []
+
+    - name: "Owner Assignment"
+      status: "healthy"
+      owner: "Tech Lead"
+      owner_active: true
+
+    - name: "Required Sections Completeness"
+      status: "healthy"
+      missing_sections: []
+      completeness: "100%"
+      note: "Specification complete - awaiting implementation"
+
+    - name: "Upstream Changes Pending"
+      status: "warning"
+      pending_changes: 1
+      note: "Blocked by COMP-001-parser (awaiting parsed Documents)"
+
+    - name: "Satellite Completeness"
+      status: "healthy"
+      missing_satellites: []
+      note: "Evidence E-143 supports NetworkX benchmark"
+
+# Deprecation
+deprecation: null
 
 dependencies:
   - id: "COMP-001-parser"
