@@ -1,0 +1,42 @@
+{
+	"nodes":[
+		{"id":"12fc779e3dbc6917","type":"group","x":-40,"y":-580,"width":400,"height":400,"label":"Grupa bez nazwy"},
+		{
+			"id":"5d6fd8eb-3786-41ed-baa6-fb7a9cdd2066",
+			"type":"text",
+			"text":"Wybór bazy danych",
+			"_semantic":{
+				"version":"1.0",
+				"nodeType":"architecture-diagram",
+				"domain":"decisions",
+				"status":"draft",
+				"metadata":{},
+				"requirements":[],
+				"outputs":[]
+			},
+			"x":-560,
+			"y":-280,
+			"width":250,
+			"height":150
+		},
+		{
+			"id":"a77dcd13-3104-41c2-8422-28f3fb543598",
+			"type":"text",
+			"text":"Wykonanie z SQLite rag z wiedzą",
+			"_semantic":{
+				"version":"1.0",
+				"nodeType":"research",
+				"domain":"decisions",
+				"status":"in-progress",
+				"metadata":{},
+				"requirements":[],
+				"outputs":[]
+			},
+			"x":-560,
+			"y":-500,
+			"width":250,
+			"height":150
+		}
+	],
+	"edges":[]
+}

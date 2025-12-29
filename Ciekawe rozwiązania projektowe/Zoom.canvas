@@ -1,0 +1,10 @@
+{
+	"nodes":[
+		{"id":"df3f86c602dbd867","type":"group","x":-430,"y":-338,"width":626,"height":646,"label":"Grupa bez nazwy"},
+		{"id":"14e2a013ecf4c995","type":"text","text":"![[Screenshot from 2025-12-26 14-15-59 1.png]]\n\n![[Screenshot from 2025-12-26 14-15-58-1 1.png]]\n\n![[Screenshot from 2025-12-26 14-15-58 1.png]]\n\n![[Screenshot from 2025-12-26 14-15-57 1.png]]\n\n![[Screenshot from 2025-12-26 14-15-56-1 1.png]]\n\n![[Screenshot from 2025-12-26 14-15-56 1.png]]\n\n![[Screenshot from 2025-12-26 14-15-54 1.png]]","x":-420,"y":-320,"width":250,"height":400},
+		{"id":"ef29bfa008b6a823","type":"text","text":"![[Pasted image 20251226141536.png]]","x":-100,"y":-300,"width":250,"height":240}
+	],
+	"edges":[
+		{"id":"e6a072fefff9eb4e","fromNode":"ef29bfa008b6a823","fromSide":"left","toNode":"14e2a013ecf4c995","toSide":"right"}
+	]
+}

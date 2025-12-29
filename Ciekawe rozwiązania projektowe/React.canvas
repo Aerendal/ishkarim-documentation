@@ -1,0 +1,16 @@
+{
+	"nodes":[
+		{"id":"c7081a87d85fd7f9","x":-78,"y":-315,"width":558,"height":655,"type":"group","label":"Grupa bez nazwy"},
+		{"id":"bc4b269b45ca6afe","x":-417,"y":-319,"width":297,"height":659,"type":"group","label":"SteamPunkZegar"},
+		{"id":"28f7b1a00aa417db","x":-400,"y":-300,"width":250,"height":260,"type":"text","text":"![[Pasted image 20251227233546.png]]"},
+		{"id":"cf57e562b9ce741b","x":-400,"y":-40,"width":250,"height":100,"type":"text","text":"![[Pasted image 20251227233609.png]]"},
+		{"id":"7efaf7d76d03e582","x":-400,"y":60,"width":250,"height":198,"type":"text","text":"![[Pasted image 20251227233623.png]]![[Pasted image 20251227233629.png]]"},
+		{"id":"d2df6112526a39bb","x":-400,"y":258,"width":250,"height":60,"type":"text","text":"https://www.tiktok.com/@codewithbhurtel/video/7557961738495233294"},
+		{"id":"5449efd9df1fab22","x":-60,"y":-300,"width":250,"height":60,"type":"text","text":"https://www.tiktok.com/@codewithbhurtel/video/7558299377232645390"},
+		{"id":"c791e5c06c0f0c5e","x":-60,"y":-230,"width":250,"height":548,"type":"text","text":"\n| upewnić się że znam podstawy React                                                          |     |\n| ------------------------------------------------------------------------------------------- | --- |\n| html,css,JS,                                                                                |     |\n| ![[Pasted image 20251227233930.png]]                                                        |     |\n| Zaznajomienie się z funkcjami takimi jak :<br>Arrow Function<br>Promises<br>Async/Await<br> |     |\n| upewnić się że znam podstawy <br>Components<br>Props<br>State<br>Hooks                      |     |\n| Usestate<br>Useeffect<br>                                                                   |     |\n"},
+		{"id":"b78ebb1dfc9755ba","x":220,"y":-300,"width":250,"height":80,"type":"text","text":"Będzie możżna tworzyć:\nMałe todolisty"},
+		{"id":"1aa9007af4db5cd2","x":220,"y":-200,"width":250,"height":120,"type":"text","text":"nauczyć się urzywania ReactRouter\ni Context API"},
+		{"id":"1d42ab7339a49fba","x":220,"y":-70,"width":250,"height":388,"type":"text","text":"gdzie sprawdzać projekty\n\n| ![[Pasted image 20251227235228.png]] |     |\n| ------------------------------------ | --- |\n| ![[Pasted image 20251227235408.png]] |     |\n| urzywanie stylizowanych komponentów  |     |\n| ![[Pasted image 20251227235442.png]] |     |\n| ![[Pasted image 20251227235456.png]] |     |\n| potem testowanie swoich aplikacji w  |     |\n| ![[Pasted image 20251227235529.png]] |     |\n| ![[Pasted image 20251227235544.png]] |     |\n| po pomyślnych testach odpalić na     |     |\n| ![[Pasted image 20251227235628.png]] |     |\n| ![[Pasted image 20251227235637.png]] |     |\n|                                      |     |\n|                                      |     |\n|                                      |     |\n|                                      |     |\n|                                      |     |\n|                                      |     |\n"}
+	],
+	"edges":[]
+}

@@ -1,0 +1,12 @@
+{
+	"nodes":[
+		{"id":"781f9b8eb75a8659","type":"group","x":-500,"y":-600,"width":607,"height":560,"label":"Algorytm_0001"},
+		{"id":"f10946f4d518e615","type":"file","file":"Screeny/Pasted image 20251226135623.png","x":-173,"y":-588,"width":267,"height":400},
+		{"id":"dc57251755356849","type":"text","text":"![[Pasted image 20251226135714.png]]\n![[Pasted image 20251226135736.png]]\n![[Pasted image 20251226135746.png]]\n![[Pasted image 20251226135754.png]]\n![[Pasted image 20251226135805.png]]\n![[Pasted image 20251226135817.png]]\n![[Pasted image 20251226135847.png]]\n![[Pasted image 20251226140030.png]]\n![[Pasted image 20251226140043.png]]\n![[Pasted image 20251226140053.png]]\n","x":-480,"y":-588,"width":250,"height":523},
+		{"id":"7e0b06eb754d41fe","type":"text","text":"algorytmy sortowania","x":-31,"y":-760,"width":250,"height":60}
+	],
+	"edges":[
+		{"id":"38e667789cf9420c","fromNode":"dc57251755356849","fromSide":"right","toNode":"f10946f4d518e615","toSide":"left"},
+		{"id":"864075ccf6f89e02","fromNode":"7e0b06eb754d41fe","fromSide":"bottom","toNode":"781f9b8eb75a8659","toSide":"top"}
+	]
+}

@@ -1,0 +1,21 @@
+{
+	"nodes":[
+		{"id":"b6e6a641501d974b","x":-46,"y":-318,"width":606,"height":778,"type":"group","label":"Grupa bez nazwy"},
+		{"id":"e17b8f22f0b6be48","type":"group","x":-382,"y":-318,"width":302,"height":398,"label":"Grupa bez nazwy"},
+		{"id":"19edd1e7480be8eb","type":"text","text":"![[Pasted image 20251226140911.png]]\n![[Pasted image 20251226140932.png]]","x":-360,"y":-300,"width":250,"height":300},
+		{"id":"2c94c5887833dec4","type":"text","text":"![[Pasted image 20251226140948.png]]","x":-360,"y":0,"width":250,"height":60},
+		{"id":"6676271738651a8f","x":-20,"y":-300,"width":250,"height":220,"type":"text","text":"![[Pasted image 20251226210553.png]]"},
+		{"id":"24143a68a1f24db2","x":-20,"y":-60,"width":250,"height":120,"type":"text","text":"![[Pasted image 20251226210621.png]]\n"},
+		{"id":"414451476d4f3f68","x":-20,"y":80,"width":250,"height":380,"type":"text","text":"![[Screenshot from 2025-12-26 21-10-18.png]]\n\n![[Screenshot from 2025-12-26 21-10-13.png]]\n\n![[Screenshot from 2025-12-26 21-10-12.png]]\n\n![[Screenshot from 2025-12-26 21-10-11.png]]\n\n![[Screenshot from 2025-12-26 21-10-09-1.png]]\n\n![[Screenshot from 2025-12-26 21-10-09.png]]\n\n![[Screenshot from 2025-12-26 21-10-08.png]]\n\n![[Screenshot from 2025-12-26 21-10-07-1.png]]\n\n![[Screenshot from 2025-12-26 21-10-07.png]]\n\n![[Screenshot from 2025-12-26 21-10-06.png]]"},
+		{"id":"2f9cf95d8dc53846","x":260,"y":-150,"width":250,"height":110,"type":"text","text":"modal logowania pojawia się jako glowwing objekt"},
+		{"id":"477a82896427ab1b","x":260,"y":-30,"width":250,"height":101,"type":"text","text":"rozrasta się do formy modalu panelu logowania w stylu Glossy"},
+		{"id":"88829d358251eba4","x":260,"y":100,"width":250,"height":140,"type":"text","text":"pruba zalogowania bez podania danych wymaganych do logowania powoduje rozjaśnienie modalu na czerwono"},
+		{"id":"441e39eea34ed773","x":260,"y":280,"width":250,"height":60,"type":"text","text":"Wpisywanie danych nie wywołuje zmiany koloru"},
+		{"id":"c74f9abfbb9afe38","x":260,"y":360,"width":250,"height":60,"type":"text","text":"zalogowanie się z poprawnymi danymi rozświetla modal na zielono. Wszystko to się dzieje w stylu glossy\n"}
+	],
+	"edges":[
+		{"id":"c9335dd5bf054ee6","fromNode":"19edd1e7480be8eb","fromSide":"bottom","toNode":"2c94c5887833dec4","toSide":"top"},
+		{"id":"8329d321a66695c1","fromNode":"6676271738651a8f","fromSide":"bottom","toNode":"24143a68a1f24db2","toSide":"top"},
+		{"id":"0d16ae3632b9f39a","fromNode":"24143a68a1f24db2","fromSide":"bottom","toNode":"414451476d4f3f68","toSide":"top"}
+	]
+}

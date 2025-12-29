@@ -1,0 +1,13 @@
+# Obsidian
+.obsidian/
+*.base
+
+# Temporary files
+Bez nazwy*.md
+Bez nazwy*.base
+
+# Images (unless needed)
+*.png
+
+# Excalidraw working files
+Excalidraw/

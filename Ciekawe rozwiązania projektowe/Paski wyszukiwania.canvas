@@ -1,0 +1,15 @@
+{
+	"nodes":[
+		{"id":"9174f3ba628adbf8","x":-400,"y":-660,"width":700,"height":1300,"type":"group","label":"Grupa bez nazwy"},
+		{"id":"446fbd66323d329e","x":-360,"y":-620,"width":250,"height":1200,"type":"text","text":"![[Pasted image 20251226174535.png]] ![[Pasted image 20251226174644.png]]![[Pasted image 20251226174700.png]]"},
+		{"id":"f67f9e2113069c1b","x":-40,"y":-620,"width":250,"height":300,"type":"text","text":"![[Pasted image 20251226174730.png]]"},
+		{"id":"1e416c19d4651455","x":-40,"y":-20,"width":250,"height":140,"type":"text","text":"zatwierdzenie enterem, albo kliknięcie lupy powoduje że  neon pracuje w drugą stronę z około 0,25 sec na pełne okrążenie DO TYŁU. zakończenie procesu wyszukiwania  reseruje efekty interakcyjne"},
+		{"id":"318b103d51f02682","x":-40,"y":-280,"width":250,"height":60,"type":"text","text":"Gdy pole wyszukiwania nie jest aktywowane (kliknięcie w niego) neony sobie krążą z prędkością około z szybkością około 2 sec na pełne okrążenie "},
+		{"id":"42d0418e3f5646a6","x":-40,"y":-160,"width":250,"height":80,"type":"text","text":"kliknięcie powoduje spowolnienie do około 6 sec na pełne okrążenie. samo wpisanie powoduje niejako rwanie animacji, tak jakby chciała iść do przeodu ale nie dawała rady"},
+		{"id":"e5591b617abdd05b","x":-40,"y":200,"width":250,"height":60,"type":"text","text":"https://www.tiktok.com/@dev_flash/video/7574124843411590411"}
+	],
+	"edges":[
+		{"id":"15a074391b1fcf31","fromNode":"318b103d51f02682","fromSide":"left","toNode":"446fbd66323d329e","toSide":"right"},
+		{"id":"8d132490a2156a4c","fromNode":"42d0418e3f5646a6","fromSide":"left","toNode":"446fbd66323d329e","toSide":"right"}
+	]
+}
