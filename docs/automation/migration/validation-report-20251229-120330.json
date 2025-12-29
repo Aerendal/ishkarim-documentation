@@ -1,0 +1,88 @@
+{
+  "timestamp": "2025-12-29T12:03:30.680485",
+  "report": {
+    "total_tests": 8,
+    "passed": 6,
+    "warnings": 1,
+    "failed": 1,
+    "results": [
+      {
+        "test": "Liczba dokumentów",
+        "status": "warning",
+        "message": "Różnica: 22 w bazie vs 25 plików",
+        "details": {
+          "db_count": 22,
+          "file_count": 25,
+          "difference": 3,
+          "reason": "Niektóre pliki mogły być zduplikowane (INSERT OR REPLACE)"
+        }
+      },
+      {
+        "test": "Metadane (sample)",
+        "status": "fail",
+        "message": "1 błędów w 3 próbkach",
+        "details": {
+          "errors": [
+            "TDD-001-V2: nie znaleziono w plikach"
+          ]
+        }
+      },
+      {
+        "test": "Integralność grafu",
+        "status": "pass",
+        "message": "35 krawędzi, 0 broken, 2 orphaned nodes",
+        "details": {
+          "total_edges": 35,
+          "broken_edges": 0,
+          "orphaned_nodes": 2
+        }
+      },
+      {
+        "test": "FTS5 Search",
+        "status": "pass",
+        "message": "FTS5 działa, 25 wpisów zaindeksowanych",
+        "details": {
+          "indexed_count": 25,
+          "test_query": "parser",
+          "results_found": 1
+        }
+      },
+      {
+        "test": "Living Doc Metadata",
+        "status": "pass",
+        "message": "11 wpisów, 11 z wersją, 11 z health status",
+        "details": {
+          "total": 11,
+          "with_version": 11,
+          "with_health": 11
+        }
+      },
+      {
+        "test": "Version History",
+        "status": "pass",
+        "message": "11 wpisów, 1 breaking changes",
+        "details": {
+          "total_entries": 11,
+          "breaking_changes": 1
+        }
+      },
+      {
+        "test": "Provenance Trail",
+        "status": "pass",
+        "message": "22 wpisów, wszystkie dokumenty pokryte",
+        "details": {
+          "total_entries": 22
+        }
+      },
+      {
+        "test": "Database Integrity",
+        "status": "pass",
+        "message": "15 tabel, 29 indeksów, foreign keys OK",
+        "details": {
+          "table_count": 15,
+          "index_count": 29
+        }
+      }
+    ]
+  }
+}
