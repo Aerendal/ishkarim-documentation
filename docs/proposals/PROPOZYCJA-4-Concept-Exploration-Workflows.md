@@ -3,7 +3,9 @@
 **Data:** 2025-12-27
 **Autor:** Analiza systemu szablonów Ishkarim
 **Wersja:** 1.0
-**Status:** Draft
+**Status:** Implemented
+**Data implementacji:** 2025-12-29
+**Commit:** f38dc8e
 
 ---
 
@@ -852,11 +854,13 @@ workflow_paths:
 ### Następne kroki
 
 1. ✅ **Approve workflows** – Stakeholder review
-2. ⏭️ **Create specs_workflows.md** – Formal workflow definitions
-3. ⏭️ **Extend gates** – Add workflow-specific gates
-4. ⏭️ **Pilot projects** – Test each workflow (1 projekt per workflow)
-5. ⏭️ **Training** – Workshops dla teams (workflow navigation)
-6. ⏭️ **Rollout** – Organization-wide adoption
+2. ✅ **Create specs_workflows.md** – Formal workflow definitions (402 lines, 4 workflows)
+3. ✅ **Extend gates** – Add workflow-specific gates (4 new gates added)
+4. ✅ **Extend dependency_graph.md** – Add workflow graphs (Graf I, J, K, L)
+5. ✅ **Create workflow user guide** – concept-exploration-workflows.md (1336 lines)
+6. ⏭️ **Pilot projects** – Test each workflow (1 projekt per workflow)
+7. ⏭️ **Training** – Workshops dla teams (workflow navigation)
+8. ⏭️ **Rollout** – Organization-wide adoption
 
 ---
 
