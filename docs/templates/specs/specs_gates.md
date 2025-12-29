@@ -82,6 +82,47 @@ gates:
       - {doctype: ROADMAP_PRODUCT, min_status: archived}
     approvers: ["Sponsor", "Project Manager"]
 
+  # === Concept Exploration Workflow Gates (PROPOZYCJA-4) ===
+
+  GATE-HYPOTHESIS_REVIEW:
+    description: "Hypothesis validation checkpoint (Tech Exploration / Business Innovation)"
+    required_documents:
+      - {doctype: HYPOTHESIS-DOC, min_status: approved}
+    required_rules:
+      - RULE-HYP-TESTABLE
+      - RULE-HYP-SUCCESS-CRITERIA
+    required_satellites:
+      - {kind: APPROVAL, for_doctypes: [HYPOTHESIS-DOC]}
+    approvers: ["Research Lead", "Product Owner"]
+
+  GATE-VALIDATION_GATE:
+    description: "Research validation checkpoint (Tech Exploration)"
+    required_documents:
+      - {doctype: RESEARCH-FINDINGS, min_status: approved}
+    required_satellites:
+      - {kind: EVIDENCE, for_doctypes: [RESEARCH-FINDINGS]}
+      - {kind: APPROVAL, for_doctypes: [RESEARCH-FINDINGS]}
+    approvers: ["Tech Lead", "Product Owner"]
+
+  GATE-OPTIONS_IDENTIFIED:
+    description: "Alternative options identified (Risk Mitigation)"
+    required_documents:
+      - {doctype: ALTERNATIVE-EXPLORATION, min_status: approved}
+    required_rules:
+      - RULE-ALT-MIN-3-OPTIONS
+    required_satellites:
+      - {kind: APPROVAL, for_doctypes: [ALTERNATIVE-EXPLORATION]}
+    approvers: ["Decision Owner"]
+
+  GATE-MERGE_KILL_DECISION:
+    description: "Concept branch merge/kill decision (Parallel Branching)"
+    required_documents:
+      - {doctype: RESEARCH-FINDINGS, min_status: approved}
+      - {doctype: ADR, min_status: approved}
+    required_satellites:
+      - {kind: APPROVAL, for_doctypes: [RESEARCH-FINDINGS, ADR]}
+    approvers: ["Research Lead", "CTO"]
+
 # Uwaga: Gate-centric reporting
 # Walidator powinien generować raport: które gate'y są zablokowane i przez jakie root-cause błędy.
 ```

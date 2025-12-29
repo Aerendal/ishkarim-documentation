@@ -98,50 +98,118 @@ Gap Identified → Proposal Created → Review → Approve/Reject → Implement 
 
 **Recommendation:** ✅ **Approve** (fills critical gap)
 
-### 2. PROPOZYCJA-2-Living-Documentation-Framework.md 💡
+### 2. PROPOZYCJA-2-Living-Documentation-Framework.md ✅ 🚧
 
 **ID:** PROP-002
-**Status:** 💡 Proposal
+**Status:** ✅ Approved & 🚧 Partially Implemented (Phase 1)
 **Created:** 2025-12-27
+**Implemented:** 2025-12-29 (Phase 1 completed)
 
 **Problem:**
 - Documents become outdated (stale status, broken links, old metrics)
 - No automated freshness tracking
 - Manual validation tedious
+- Documents treated as static artifacts with simple lifecycle (draft → approved → archived)
+- No cross-reference propagation when upstream documents change
+- Deprecation workflow missing (chaos when documents become obsolete)
 
 **Proposed Solution:**
-- **Living Documentation Engine** — Auto-update docs based on code/system state
+- **Living Documentation Framework** — Treat documents as living organisms that evolve with the project
 
-**Features:**
+**Core Features:**
 
-1. **Auto-status propagation**
-   - When TDD status = design-complete → PRD auto-links update
-   - Dependency graph auto-refreshes
+1. **Extended Lifecycle States** (11 states vs 4)
+   - Initial: draft, in-review
+   - Active: approved, evolving, validating, refining
+   - Transition: superseded, deprecated, sunset
+   - Terminal: archived, migrated
 
-2. **Freshness tracking**
-   - Each doc has `last_validated: YYYY-MM-DD`
-   - Alert if >30 days stale: "⚠️ Doc may be outdated"
+2. **Semantic Versioning for Documents**
+   - MAJOR.MINOR.PATCH versioning
+   - Breaking change tracking
+   - Version history with impacts
+   - Compatibility matrix
 
-3. **Link integrity checker**
-   - CI/CD workflow: Check all internal links valid
-   - Fail build if broken refs found
+3. **Dynamic Cross-Reference Updates**
+   - Impact propagation system
+   - Automatic notifications when upstream docs change
+   - Acknowledgment tracking
+   - Gate blocking for critical changes
 
-4. **Metrics auto-update**
-   - ROI calculation (E-090) refreshes when actuals available
-   - Test coverage (test-plan.md) pulls from CI/CD (pytest-cov report)
+4. **Deprecation Workflow**
+   - Structured process: deprecated → sunset → archived/migrated
+   - Migration guides
+   - Retirement notices
+   - 90-day sunset periods
 
-**Implementation:**
-- Parser extension: Read `last_validated` from frontmatter
-- Validator extension: Check freshness, warn if stale
-- CI/CD: GitHub Actions workflow (nightly link check)
+5. **Document Health Checks**
+   - Freshness checks (7 check types)
+   - Dependency validity
+   - Owner assignment tracking
+   - Automated alerts and escalation
+
+**Implementation Status:**
+
+**Phase 1: Foundation** ✅ **COMPLETED** (2025-12-29)
+- ✅ Extended status_order in specs_doc_types.md (11 states)
+- ✅ Added lifecycle_config, version_config, deprecation_config to PRD, TDD, BUSINESS_CASE
+- ✅ Created extended-front-matter-template.md
+- ✅ Extended TODO-template.md with lifecycle tracking
+- ✅ Created semantic-changelog-template.md
+- ✅ Created migration-guide-template.md
+- ✅ Created retirement-notice-template.md
+- ✅ Created document-health-check-spec.md
+- ✅ Created impact-propagation-rules.md
+
+**Phase 2: Automation** ⏳ **PENDING**
+- [ ] Impact propagation system (automation scripts)
+- [ ] Auto-notification (email/Slack integration)
+- [ ] Health dashboard (web UI)
+- [ ] Deprecation workflow automation
+
+**Phase 3: Pilot** ⏳ **PENDING**
+- [ ] Pilot on 3 projects
+- [ ] Feedback collection
+- [ ] Refinement based on usage
+
+**Phase 4: Rollout** ⏳ **PENDING**
+- [ ] Organization-wide adoption
+- [ ] Training materials
+- [ ] Metrics dashboard
+
+**Implementation Artifacts:**
+
+Created templates in `templates/living-documentation/`:
+- `extended-front-matter-template.md` — Extended YAML front-matter with lifecycle, versioning, health
+- `semantic-changelog-template.md` — Semantic versioning changelog format
+- `migration-guide-template.md` — Migration guide for breaking changes
+- `retirement-notice-template.md` — Document retirement documentation
+- `document-health-check-spec.md` — Health check specifications (7 check types)
+- `impact-propagation-rules.md` — Impact propagation rules and automation
+
+Updated core specs:
+- `specs/specs_doc_types.md` — Extended with lifecycle_config, version_config, deprecation_config for key doctypes
 
 **Impact:**
-- **Reduced manual work:** Auto-updates save 2h/week (per E-081 interviews)
-- **Higher accuracy:** Metrics always current
+- **Phase 1:** Foundation templates ready for use
+- **Reduced manual work:** (projected) Auto-updates save 2h/week when Phase 2 complete
+- **Higher accuracy:** Version tracking and impact propagation reduces inconsistencies
+- **Document freshness:** >80% target (vs current ~40%)
+- **Consistency:** >98% valid dependencies (automated propagation)
 
-**Effort:** 1-2 weeks (parser + validator extensions)
+**Effort:**
+- **Phase 1:** 4 hours (COMPLETED)
+- **Phase 2:** 1-2 weeks (automation)
+- **Phase 3:** 2 weeks (pilot)
+- **Phase 4:** 4-6 weeks (rollout)
 
-**Recommendation:** 💡 **Consider** (high value, moderate effort)
+**Recommendation:** ✅ **Approved** - Phase 1 implemented. Proceed with Phase 2 automation when ready.
+
+**Next Steps:**
+1. Review Phase 1 templates with stakeholders
+2. Gather feedback on front-matter extensions
+3. Plan Phase 2 automation (Python scripts, GitHub Actions)
+4. Select 3 pilot projects for Phase 3
 
 ### 3. PROPOZYCJA-3-Decision-Templates-Enhancement.md 💡
 

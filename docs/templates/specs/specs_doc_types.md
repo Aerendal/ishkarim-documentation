@@ -82,14 +82,29 @@ satellites:
 ---
 
 ```yaml
-version: 1
+version: 2
 
 # Kolejność statusów (używane do porównań min_status)
+# Extended for Living Documentation Framework (PROPOZYCJA-2)
 status_order:
-  - draft
-  - in-review
-  - approved
-  - archived
+  # Initial states
+  - draft              # Initial creation, work in progress
+  - in-review          # Under review by stakeholders
+
+  # Active states
+  - approved           # Formally approved, active
+  - evolving           # Approved but actively evolving (iterative refinement)
+  - validating         # Under validation (testing assumptions)
+  - refining           # Minor refinements (approved but being polished)
+
+  # Transition states
+  - superseded         # Replaced by newer version (still accessible)
+  - deprecated         # Marked for sunset (still usable, but discouraged)
+  - sunset             # End-of-life announced (sunset date set)
+
+  # Terminal states
+  - archived           # No longer active, historical reference only
+  - migrated           # Migrated to new document (with migration link)
 
 # Wykrywanie pustych treści / placeholderów
 placeholders:
@@ -162,6 +177,34 @@ doctypes:
         section_id: SEC-BC-EVID
         check: {kind: require_non_placeholder}
         remediation: "Uzupełnij evidence: linki/załączniki (arkusz finansowy, źródła rynku) i opisz ich użycie."
+    # Living Documentation Framework (PROPOZYCJA-2)
+    lifecycle_config:
+      allowed_statuses: [draft, in-review, approved, evolving, validating, refining, deprecated, sunset, archived, migrated]
+      default_status: draft
+      freshness_threshold_days: 180
+      auto_health_check: true
+      auto_deprecation_notice: true
+    version_config:
+      semantic_versioning: true
+      major_change_triggers:
+        - business_model_changed
+        - target_market_pivoted
+        - budget_changed_over_20_percent
+        - recommendation_flipped
+      minor_change_triggers:
+        - scenario_added
+        - risk_added
+        - budget_adjusted_under_20_percent
+        - alternative_added
+      patch_change_triggers:
+        - typo_fix
+        - formatting_change
+        - clarification
+        - roi_calculation_refined
+    deprecation_config:
+      deprecation_notice_days: 90
+      requires_migration_guide: true
+      auto_notify_references: true
 
   FINANCIAL_PLAN:
     group: investor
@@ -270,6 +313,34 @@ doctypes:
         section_id: SEC-PRD-FUNC
         check: {kind: min_list_items, min: 10}
         remediation: "Uzupełnij wymagania funkcjonalne: min. 10 user stories (lub uzasadnij mniejszy zakres w BRD)."
+    # Living Documentation Framework (PROPOZYCJA-2)
+    lifecycle_config:
+      allowed_statuses: [draft, in-review, approved, evolving, validating, refining, deprecated, sunset, archived, migrated]
+      default_status: draft
+      freshness_threshold_days: 90
+      auto_health_check: true
+      auto_deprecation_notice: true
+    version_config:
+      semantic_versioning: true
+      major_change_triggers:
+        - section_removed
+        - scope_pivoted
+        - breaking_dependency_change
+        - target_users_changed
+      minor_change_triggers:
+        - section_added
+        - dependency_added
+        - scope_expanded
+        - new_functional_requirement
+      patch_change_triggers:
+        - typo_fix
+        - formatting_change
+        - clarification
+        - acceptance_criteria_clarified
+    deprecation_config:
+      deprecation_notice_days: 90
+      requires_migration_guide: true
+      auto_notify_references: true
 
   HLA:
     group: design
@@ -314,6 +385,34 @@ doctypes:
       - {doctype: PRD, min_status: approved}
     outputs:
       unlock_gates: [GATE-RELEASE_READY]
+    # Living Documentation Framework (PROPOZYCJA-2)
+    lifecycle_config:
+      allowed_statuses: [draft, in-review, approved, evolving, validating, refining, deprecated, sunset, archived, migrated]
+      default_status: draft
+      freshness_threshold_days: 120
+      auto_health_check: true
+      auto_deprecation_notice: true
+    version_config:
+      semantic_versioning: true
+      major_change_triggers:
+        - architecture_pattern_changed
+        - technology_stack_changed
+        - breaking_api_change
+        - database_schema_breaking_change
+      minor_change_triggers:
+        - new_module_added
+        - api_endpoint_added
+        - database_table_added
+        - new_integration_added
+      patch_change_triggers:
+        - typo_fix
+        - diagram_update
+        - clarification
+        - performance_tuning_details
+    deprecation_config:
+      deprecation_notice_days: 60
+      requires_migration_guide: true
+      auto_notify_references: true
 
   ADR:
     group: decisions

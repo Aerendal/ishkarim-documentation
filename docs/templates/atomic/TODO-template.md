@@ -9,6 +9,26 @@ created: "YYYY-MM-DD"
 due: "YYYY-MM-DD"
 related: ["DOC-<id>"]
 acceptance_criteria: []
+
+# === Living Documentation Framework (PROPOZYCJA-2) ===
+# Lifecycle tracking for TODO items
+todo_lifecycle:
+  created_from_doc: "DOC-<id>"
+  created_from_version: "X.Y.Z"
+  triggered_by_change: "Description of what triggered this TODO (e.g., PRD version bump, new section added)"
+  completed_for_doc_version: null  # Will be filled when TODO is done
+  status_history:
+    - status: "todo"
+      date: "YYYY-MM-DD"
+      reason: "Created from parent document change"
+
+# Impact propagation tracking
+impact_tracking:
+  blocks_documents: []  # List of doc IDs that are blocked until this TODO is completed
+  notified_stakeholders:
+    - stakeholder: "<Name/Team>"
+      notified_date: "YYYY-MM-DD"
+      acknowledged: false
 ---
 
 # TODO: <Short title>

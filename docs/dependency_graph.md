@@ -934,3 +934,295 @@ Specjalistyczny dokument dla migration projects, łączący AS-IS → TO-BE z ex
 **Kluczowe połączenia:**
 - Input: AS-IS-ARCHITECTURE, TO-BE-ARCHITECTURE, REFACTORING-PROCESS
 - Output: IMPLEMENTATION-PLAN, TEST-PLAN, DEPLOYMENT-GUIDE, ROLLBACK-PLAN
+
+---
+
+## Graf I: Tech Exploration Workflow
+
+Workflow dla eksploracji technicznej (R&D software development).
+
+**Use case:** Zespół eksploruje nową technologię / architekturę / tool.
+
+**Workflow:** Unknown/Risk → Hypothesis → Experiment/PoC → Decision → Implementation
+
+```mermaid
+graph TB
+    UNKNOWN["🔍 Unknown Identified<br/>(Backlog, Risk Register)"]
+    HYPOTHESIS["📋 Hypothesis Document<br/>SEC-HYP: Formulate hypothesis"]
+    SPIKE["⚡ Spike Solution<br/>(if quick answer needed)"]
+    POC["🔬 Proof of Concept<br/>SEC-POC: Detailed validation"]
+    EXPERIMENT["📊 Experiment Log<br/>SEC-EXP: Track execution"]
+    FINDINGS["📈 Research Findings<br/>SEC-RF: Aggregate results"]
+    TRADEOFF["⚖️ Trade-off Analysis<br/>SEC-TA: Quantitative scoring"]
+    ADR["✅ Architecture Decision Record<br/>SEC-ADR: Final decision"]
+    TDD["📐 Technical Design Document<br/>SEC-TDD: Implementation design"]
+    IMPL["🚀 Implementation<br/>(Sprint Core)"]
+
+    UNKNOWN -->|"Formalize"| HYPOTHESIS
+    HYPOTHESIS -->|"Quick exploration<br/>(2-5 days)"| SPIKE
+    HYPOTHESIS -->|"Detailed validation<br/>(2-4 weeks)"| POC
+    SPIKE -->|"Results"| FINDINGS
+    POC -->|"Track execution"| EXPERIMENT
+    EXPERIMENT -->|"Results"| FINDINGS
+    FINDINGS -->|"Multiple options?"| TRADEOFF
+    TRADEOFF -->|"Recommendation"| ADR
+    FINDINGS -->|"Single option"| ADR
+    ADR -->|"Decision: Proceed"| TDD
+    TDD -->|"Implementation plan"| IMPL
+
+    style UNKNOWN fill:#fff3cd
+    style HYPOTHESIS fill:#cfe2ff
+    style SPIKE fill:#d1ecf1
+    style POC fill:#d1ecf1
+    style EXPERIMENT fill:#d1ecf1
+    style FINDINGS fill:#d4edda
+    style TRADEOFF fill:#f8d7da
+    style ADR fill:#d4edda
+    style TDD fill:#e2e3e5
+    style IMPL fill:#e2e3e5
+```
+
+**Checkpoints:**
+- **GATE-HYPOTHESIS_REVIEW** (after HYPOTHESIS) - Hypothesis validated?
+- **GATE-VALIDATION_GATE** (after FINDINGS) - Results validate hypothesis (>70%)?
+- **GATE-DECISION_APPROVAL** (after ADR) - Stakeholders approve decision?
+- **GATE-REQ_FREEZE** (after TDD) - Ready for implementation?
+
+**Example:** Explore React Server Components dla performance optimization
+- HYPOTHESIS: RSC reduce initial page load by 30%+
+- SPIKE: Quick compatibility check (3 days) → Compatible ✅
+- POC: 2-week prototype → 420ms load time (48% improvement) ✅
+- FINDINGS: Performance goal achieved, but Redux migration needed
+- TRADEOFF: RSC + Zustand (8.5) vs Current (6.2) → RSC wins
+- ADR: Migrate to RSC + Zustand
+- TDD: Technical design dla implementation
+- IMPL: Sprint 16-17
+
+**Duration target:** <8 weeks
+
+---
+
+## Graf J: Business Innovation Workflow
+
+Workflow dla innowacji biznesowych (Product/Startup validation).
+
+**Use case:** Startup/Product team eksploruje nowy pomysł biznesowy.
+
+**Workflow:** Idea → Research → Validation → Business Case → PRD → Implementation
+
+```mermaid
+graph TB
+    IDEA["💡 Idea<br/>(Innovation Log, Brainstorm)"]
+    HYPOTHESIS["📋 Hypothesis Document<br/>Business hypothesis"]
+    MARKET["📊 Market Analysis<br/>TAM/SAM/SOM research"]
+    EXPERIMENT["🧪 Experiment Log<br/>Customer interviews, A/B tests"]
+    FINDINGS["📈 Research Findings<br/>Aggregate validation data"]
+    FEASIBILITY["🔍 Feasibility Study<br/>Technical/Economic/Legal"]
+    GONOGO["🚦 Go/No-Go Decision<br/>Proceed vs Pivot vs Kill"]
+    BIZCASE["💼 Business Case<br/>ROI justification"]
+    PRD["📋 Product Requirements<br/>Detailed requirements"]
+    MVP["🚀 MVP Implementation"]
+
+    IDEA -->|"Formalize"| HYPOTHESIS
+    HYPOTHESIS -->|"Market validation"| MARKET
+    HYPOTHESIS -->|"Customer validation"| EXPERIMENT
+    MARKET -->|"Data"| FINDINGS
+    EXPERIMENT -->|"Results"| FINDINGS
+    FINDINGS -->|"Validated?"| FEASIBILITY
+    FEASIBILITY -->|"Go/No-Go decision"| GONOGO
+    GONOGO -->|"GO"| BIZCASE
+    GONOGO -->|"PIVOT"| HYPOTHESIS
+    GONOGO -->|"NO-GO"| IDEA
+    BIZCASE -->|"Approved"| PRD
+    PRD -->|"Implementation"| MVP
+
+    style IDEA fill:#fff3cd
+    style HYPOTHESIS fill:#cfe2ff
+    style MARKET fill:#d1ecf1
+    style EXPERIMENT fill:#d1ecf1
+    style FINDINGS fill:#d4edda
+    style FEASIBILITY fill:#f8d7da
+    style GONOGO fill:#f8d7da
+    style BIZCASE fill:#d4edda
+    style PRD fill:#e2e3e5
+    style MVP fill:#e2e3e5
+```
+
+**Checkpoints:**
+- **GATE-HYPOTHESIS_VALIDATION** (after HYPOTHESIS) - Customer problem validated (>10 interviews)?
+- **GATE-MARKET_VALIDATION** (after FINDINGS) - TAM >$100M, realistic SOM?
+- **GATE-GO_NO_GO** (after FEASIBILITY) - GO vs PIVOT vs NO-GO?
+- **GATE-REQ_FREEZE** (after PRD) - Requirements frozen, stakeholders aligned?
+- **GATE-RELEASE_READY** (after MVP) - Ready to launch?
+
+**Example:** AI-powered invoice processing dla SMB
+- HYPOTHESIS: SMB spend >5h/week on manual invoicing, AI can reduce to <30min (90%)
+- EXPERIMENT: 20 customer interviews → 17/20 confirm pain point ✅
+- MARKET: TAM $5B, SAM $500M, SOM $50M ✅
+- FINDINGS: 85% customer validation, attractive market
+- FEASIBILITY: OCR+NLP achievable (92% accuracy), CAC $150, LTV $1,800 ✅
+- GO/NO-GO: **GO** (all criteria met)
+- BUSINESS-CASE: $500K investment, 5x ROI Year 3, break-even Month 18
+- PRD: Features, metrics, MVP scope
+- MVP: 6-month implementation
+
+**Duration target:** <12 weeks
+
+---
+
+## Graf K: Risk Mitigation Workflow
+
+Workflow dla mitygacji ryzyka (Enterprise/Compliance).
+
+**Use case:** Enterprise projekt identyfikuje risk → eksploruje mitigation alternatives.
+
+**Workflow:** Risk Identified → Alternative Exploration → Trade-off Analysis → Decision → Mitigation Plan
+
+```mermaid
+graph TB
+    RISK["⚠️ Risk Identified<br/>(Risk Register, RAID Log)"]
+    ALT["🔀 Alternative Exploration<br/>Identify mitigation options"]
+    POC["🔬 PoC/Experiment<br/>(if validation needed)"]
+    TRADEOFF["⚖️ Trade-off Analysis<br/>Quantitative scoring"]
+    DECISION["✅ Decision<br/>(ADR or Decision Log)"]
+    MITIGATION["🛡️ Mitigation Plan<br/>Implementation plan"]
+    MONITORING["📊 Monitoring Plan<br/>Risk tracking"]
+
+    RISK -->|"Explore options"| ALT
+    ALT -->|"Validate options"| POC
+    POC -->|"Results"| TRADEOFF
+    ALT -->|"No validation needed"| TRADEOFF
+    TRADEOFF -->|"Recommendation"| DECISION
+    DECISION -->|"Mitigation approach"| MITIGATION
+    MITIGATION -->|"Track effectiveness"| MONITORING
+
+    style RISK fill:#f8d7da
+    style ALT fill:#fff3cd
+    style POC fill:#d1ecf1
+    style TRADEOFF fill:#f8d7da
+    style DECISION fill:#d4edda
+    style MITIGATION fill:#e2e3e5
+    style MONITORING fill:#e2e3e5
+```
+
+**Checkpoints:**
+- **GATE-OPTIONS_IDENTIFIED** (after ALT) - Min 3 mitigation options identified?
+- **GATE-DECISION_REVIEW** (after TRADEOFF) - Clear winner (score >7/10)?
+- **GATE-APPROVAL** (after DECISION) - Stakeholders approve mitigation?
+
+**Example:** Vendor lock-in risk (AWS-only → multi-cloud)
+- RISK: 100% AWS dependency → vendor lock-in, pricing risk
+- ALT: 4 options explored (Multi-cloud, K8s abstraction, Accept, Hybrid)
+- POC: Kubernetes abstraction layer tested → achievable, 20% overhead
+- TRADEOFF: K8s (7.5) vs Multi-cloud (6.8) vs AWS-only (5.2) → K8s wins
+- DECISION (ADR): Adopt Kubernetes dla cloud abstraction
+- MITIGATION: 6-month migration plan (Q1 dev, Q2 staging, Q3 production)
+- MONITORING: Track cloud costs monthly, alert if >15% increase
+
+**Duration target:** <6 weeks
+
+---
+
+## Graf L: Parallel Branching Workflow
+
+Workflow dla równoległej eksploracji konceptów (R&D/Innovation).
+
+**Use case:** R&D team eksploruje 2-3 różne podejścia równolegle.
+
+**Workflow:** Parent Concept → Branch 1 & 2 & 3 → Compare → Merge/Kill Decision
+
+```mermaid
+graph TB
+    PARENT["🌳 Parent Concept<br/>(Main hypothesis)"]
+    BRANCH1["🔀 Branch 1<br/>(Approach A)"]
+    BRANCH2["🔀 Branch 2<br/>(Approach B)"]
+    BRANCH3["🔀 Branch 3<br/>(Approach C)"]
+    EXP1["🧪 Experiment Log 1"]
+    EXP2["🧪 Experiment Log 2"]
+    EXP3["🧪 Experiment Log 3"]
+    COMPARE["📊 Research Findings<br/>(Compare all branches)"]
+    DECISION["✅ Merge/Kill Decision"]
+    MERGE["🔀 Merge to Parent"]
+    KILL["❌ Kill Branch"]
+
+    PARENT -->|"Fork"| BRANCH1
+    PARENT -->|"Fork"| BRANCH2
+    PARENT -->|"Fork"| BRANCH3
+    BRANCH1 -->|"Track"| EXP1
+    BRANCH2 -->|"Track"| EXP2
+    BRANCH3 -->|"Track"| EXP3
+    EXP1 -->|"Results"| COMPARE
+    EXP2 -->|"Results"| COMPARE
+    EXP3 -->|"Results"| COMPARE
+    COMPARE -->|"Evaluate"| DECISION
+    DECISION -->|"Branch 1 wins"| MERGE
+    DECISION -->|"Branch 2 & 3 fail"| KILL
+
+    style PARENT fill:#fff3cd
+    style BRANCH1 fill:#cfe2ff
+    style BRANCH2 fill:#cfe2ff
+    style BRANCH3 fill:#cfe2ff
+    style COMPARE fill:#d4edda
+    style DECISION fill:#f8d7da
+    style MERGE fill:#d4edda
+    style KILL fill:#f8d7da
+```
+
+**Checkpoints:**
+- **GATE-BRANCH_CREATION** (after fork) - Clear divergence point, separate resources?
+- **GATE-MID_POINT_REVIEW** (Week 2) - Each branch progressing, no blockers?
+- **GATE-RESULTS_REVIEW** (after experiments) - All branches complete results?
+- **GATE-MERGE_KILL_DECISION** (after comparison) - Merge best / Kill rest / Hybrid?
+
+**Example:** Churn prediction model (3 architectures)
+- PARENT: "AI model can predict churn z accuracy >80%"
+- BRANCH1: Transformer (BERT-based, Team A, 4 weeks)
+- BRANCH2: GNN (Graph Neural Network, Team B, 4 weeks)
+- BRANCH3: Random Forest (baseline, Team C, 2 weeks)
+- Mid-point (Week 2): Transformer 75% ✅, GNN 70% ⚠️, RF 72% ✅ → Continue all
+- Results (Week 4):
+  - Transformer: 83% accuracy ✅, 50ms inference ✅
+  - GNN: 85% accuracy ✅, 300ms inference ❌
+  - RF: 78% accuracy ❌, 10ms inference ✅
+- TRADEOFF: Transformer (8.2) vs GNN (7.5) vs RF (6.8) → Transformer best balance
+- DECISION: **Merge** Transformer to production, **Keep** RF as fallback, **Kill** GNN
+- ADR: Transformer for production (83% accuracy, 50ms), RF for auditing (explainability)
+
+**Duration target:** <6 weeks
+
+---
+
+## Workflow Paths Summary
+
+**Concept Exploration Workflows (PROPOZYCJA-4):**
+
+### Tech Exploration Path (Graf I):
+```
+UNKNOWN → HYPOTHESIS-DOC → SPIKE-SOLUTION → RESEARCH-FINDINGS → ADR → TDD → IMPL
+UNKNOWN → HYPOTHESIS-DOC → POC-DOC → EXPERIMENT-LOG → RESEARCH-FINDINGS → TRADE-OFF-ANALYSIS → ADR → TDD → IMPL
+```
+
+### Business Innovation Path (Graf J):
+```
+IDEA → HYPOTHESIS-DOC → MARKET-ANALYSIS → RESEARCH-FINDINGS → FEASIBILITY → GO-NO-GO → BUSINESS-CASE → PRD → SPRINT-CORE
+IDEA → HYPOTHESIS-DOC → EXPERIMENT-LOG → RESEARCH-FINDINGS → FEASIBILITY → GO-NO-GO → BUSINESS-CASE → PRD → MVP
+```
+
+### Risk Mitigation Path (Graf K):
+```
+RISK-REGISTER → ALTERNATIVE-EXPLORATION → POC-DOC → TRADE-OFF-ANALYSIS → ADR → MITIGATION-PLAN → MONITORING-PLAN
+RISK-REGISTER → ALTERNATIVE-EXPLORATION → TRADE-OFF-ANALYSIS → ADR → MITIGATION-PLAN → MONITORING-PLAN
+```
+
+### Parallel Branching Paths (Graf L):
+```
+HYPOTHESIS-DOC → CONCEPT-BRANCH-001 → EXPERIMENT-LOG-001 → RESEARCH-FINDINGS → ADR
+HYPOTHESIS-DOC → CONCEPT-BRANCH-002 → EXPERIMENT-LOG-002 → RESEARCH-FINDINGS → ADR
+HYPOTHESIS-DOC → CONCEPT-BRANCH-003 → EXPERIMENT-LOG-003 → RESEARCH-FINDINGS → ADR
+RESEARCH-FINDINGS → TRADE-OFF-ANALYSIS → ADR
+```
+
+**Integration z istniejącymi workflows:**
+- Tech Exploration może być nested w Business Innovation (dla feasibility validation)
+- Parallel Branching może być nested w Tech Exploration (dla porównania opcji)
+- Risk Mitigation może używać Tech Exploration (dla walidacji mitigation options)
